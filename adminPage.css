@@ -1,0 +1,35 @@
+.container{
+    margin-top: 5%;
+    color:black;
+    font-weight: bold;
+}
+
+.topic{
+    color: brown;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn1:hover{
+    background: white;
+    border:1px solid;
+    color: black;
+}
+
+body {
+    background: url("Photos/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 100vh;
+}

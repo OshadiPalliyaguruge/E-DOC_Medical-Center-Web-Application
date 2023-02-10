@@ -1,0 +1,37 @@
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 30%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.topic{
+    color: brown;
+}
+
+
+.btn1:hover{
+    background: white;
+    border:1px solid;
+    color: black;
+}
+
+.card-body {
+    background-image: url("Photos/FOE.avif") ;
+    background-size: cover;
+    display: flex;
+    height: 500px;
+    position: relative;
+
+ }
+ .row{
+    background-color:rgb(175, 176, 177);
+    margin-bottom: 5%;
+    align-items: center;
+    height: 70%;
+ }
+ 

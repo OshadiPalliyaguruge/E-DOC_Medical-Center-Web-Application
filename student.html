@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="student.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto  mb-2 mb-lg-0 n">
+                  
+                  <div class="nav-item ">
+                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="doctor.html">Doctors</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="other.html">Other</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+
+
+    <!--------------------------------------edit profile-------------------------------------->
+
+    <div class="container rounded bg-white mt-5 mb-5">
+      <div class="row">
+          <div class="col-md-3 border-right">
+              <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="Photos/profile.png"><span class="font-weight-bold">Judy</span><span class="text-black-50">Judy@mail.com</span><span> </span></div>
+          </div>
+          <div class="col-md-5 border-right">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="text-right">Profile Settings</h4>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-md-6"><label class="labels">First Name</label><input type="text" id="enterFirstName" class="form-control" placeholder="first name" value=""></div>
+                      <div class="col-md-6"><label class="labels">Last name</label><input type="text" id="enterSecondName" class="form-control" value="" placeholder="surname"></div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Gaurdian's Name</label><input type="text" id="enterFirstGName" class="form-control" placeholder="Gaurdian's name" value=""></div>
+                    <div class="col-md-6"><label class="labels">Gaurdian's Last Name</label><input type="text"id="enterSecondGName" class="form-control" value="" placeholder="surname"></div>
+                </div>
+                  <div class="row mt-3">
+                      <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" id="enterNumber" class="form-control" placeholder="Phone number" value=""></div>
+                      <div class="col-md-12"><label class="labels">Address</label><input type="text" id="enterAddress" class="form-control" placeholder="Address" value=""></div>
+                      <div class="col-md-12"><label class="labels">Email ID</label><input type="text" id="enterEmailID" class="form-control" placeholder="Email Id" value=""></div>
+                      <div class="col-md-12"><label class="labels">Registration No</label><input type="text" id="enterRegNumber" class="form-control" placeholder="ENXXXXX" value=""></div>
+                  </div>
+                  
+                  <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="insert" type="button">Save Profile</button></div>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  </div>
+
+  <script type="module">
+
+    //------------------------------------getData-----------------------------------//
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+  apiKey: "AIzaSyCp1l1kQ--YqQsZEPnIvsfDMIF6JJ_2b88",
+  authDomain: "se-mini-project-80afd.firebaseapp.com",
+  projectId: "se-mini-project-80afd",
+  storageBucket: "se-mini-project-80afd.appspot.com",
+  messagingSenderId: "702500110773",
+  appId: "1:702500110773:web:e184c3eb4f26f85a1399fc"
+};
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+            
+            import {getDatabase,set,get,update,remove,ref,child}
+            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+            
+            const db =getDatabase();
+            
+            
+                        var enterFirstName=document.querySelector("#enterFirstName");
+                        var enterSecondName=document.querySelector("#enterSecondName");
+                        var enterFirstGName=document.querySelector("#enterFirstGName");
+                        var enterSecondGName=document.querySelector("#enterSecondGName");
+                        var enterNumber=document.querySelector("#enterNumber");   
+                        var enterAddress=document.querySelector("#enterAddress");
+                        var enterEmailID=document.querySelector("#enterEmailID");
+                        var enterRegNumber=document.querySelector("#enterRegNumber");
+                        
+                        
+                        var insertBtn=document.querySelector("#insert");
+                        var selecBtn=document.querySelector("#select");
+                        var removeBtn=document.querySelector("#remove");
+                       
+    
+                        function InsertData()
+                        {
+                            set(ref(db,"Student Profile/"+enterFirstName.value ),{
+                                FirstName:enterFirstName.value,
+                                SecondName:enterSecondName.value,
+                                FirstGName:enterFirstGName.value,
+                                SecondGName:enterSecondGName.value,
+                                Number:enterNumber.value,
+                                Address:enterAddress.value,
+                                EmailID:enterEmailID.value,
+                                RegNumber:enterRegNumber.value,
+                                
+                            })
+                            .then(()=>{
+                                alert("Data added Successfully!")
+                            })
+                            .catch((error)=>{
+                                alert(error)
+                            });
+    
+                    
+                        }
+                       
+                        insertBtn.addEventListener('click',InsertData);
+    
+                        function selectData()
+                        {
+                            const dbref=ref(db);
+                            get(child(dbref,"Student/" + enterFirstName.value)).then((snapshot)=>{
+                                if(snapshot.exists()){
+                                    enterSecondName.value=snapshot.val().SecondName;
+                                    enterFirstGName.value=snapshot.val().FirstGName;
+                                    enterSecondGName.value=snapshot.val().SecondGName;
+                                    enterAge.value=snapshot.val().Age;
+                                    enterNumber.value=snapshot.val().Number;
+                                    enterAddress.value=snapshot.val().Address;
+                                    enterEmailID.value=snapshot.val().EmailID;
+                                    enterRegNumber.value=snapshot.val().RegNumber;
+                                }
+                                else{
+                                    alert("No data found");
+                                }
+                            })
+                            .catch((error)=>{
+                                alert(error);
+                            })
+                            
+                        }
+                        selecBtn.addEventListener('click',selectData);
+    
+                        function RemoveData()
+                        {
+                            remove(ref(db,"Student/"+enterFirstName.value),{
+                                FirstName: enterFirstName,
+                                SecondName: enterSecondName,
+                                FirstGName: enterFirstGName,
+                                SecondGName: enterSecondGName,
+                                Age: enterAge,
+                                Grade: enterGrade,
+                                Number: enterNumber,
+                                Birthday: enterBirth,
+                                Gender: enterGender
+                            })
+                            .then(()=>{
+                                alert("Your data removed. Fill again. ")
+                            })
+                            .catch((error)=>{
+                                alert(error)
+                            });
+    
+                        }
+                        removeBtn.addEventListener('click',RemoveData);
+        //---------------------------------GetImage----------------------------------------------//
+    
+    import{getStorage,ref as sRef,uploadBytesResumable,getDownloadURL} 
+    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+                        
+    function upload()
+    {
+            var image=document.getElementById("image").files[0];
+            var imageName=image.name;
+            var storageRef=firebase.storage().ref('images/'+imageName);
+            var uploadTask=storageRef.put(image);
+    
+            uploadTask.on('state_changed',function(snapshot){
+                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                console.log("upload is "+progress +"done");
+            },function(error){
+                console.log(error.message);
+                
+            },function(){
+                uploadTask.snapshot.ref.getDownLoadURL().then(function(downloadURL){
+                    console.log(downloadURL);
+                });
+            
+            });
+    }
+    
+              
+          </script>
+
+
+<!---------------------------------end of edit profile----------------------------------------------------------->
+
+<div class="form-row">
+  <div class="col-lg-7">
+      <form action="submitMedical.html">
+          <input type="submit" class="btn1 mt-3 mb-4" value="Submit Your Medical">
+      </form>
+  </div>
+</div>
+
+
+<!-----------------------------Footer----------------------------------------------------->
+    <footer class="bg-light text-lg-start mt-auto">
+      
+  
+        <hr class="m-0" />
+    
+        <div class="text-center py-4 align-items-center">
+          <div class="name">
+            <p>University of Sri Jayewardenepura<br>
+              Gangodawila, Nugegoda, Sri Lanka.</p>
+          </div>
+  
+          <div class="name">
+            <p>+94 11 2758000, +94 11 2802022<br>
+              +94 11 2801024, +94 11 2801025</p>
+          </div>
+         
+          </a>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
