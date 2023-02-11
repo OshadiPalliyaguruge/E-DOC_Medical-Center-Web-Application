@@ -63,12 +63,12 @@
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
+              <input type="password" id="password1" class="form-control form-control-lg" placeholder="Password" />
           
             </div>
 
             <div class="form-outline mb-4">
-              <input type="ConfirmPassword" id="typeConfirmPasswordX-2" class="form-control form-control-lg" placeholder="confirm" />
+              <input type="password" id="password2" class="form-control form-control-lg" placeholder="confirm" />
            
             </div>
 
@@ -81,7 +81,7 @@
 
             <div class="form-row">
               <div class="col-lg-7">
-                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit">Sign Up</button>
+                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit" onClick=matchPassword()>Sign Up</button>
               </div>
           </div>
 
@@ -124,29 +124,43 @@
   signUp.addEventListener('click',(e)=>{
 
   var email=document.getElementById('email').value;
-  var password=document.getElementById('password').value;
+  var password1=document.getElementById('password1').value;
+  var password2=document.getElementById('password2').value;
   var userName=document.getElementById('userName').value;
 
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password1,password2)
   .then((userCredential) => {
   // Signed in 
   const user = userCredential.user;
 
-  set(ref(database,'Students Account Details/'+user.uid),{
-  userName:userName,
-  email:email,        //never save our password to the database
+  if(password1 != password2)  
+  {   
+    alert("Passwords did not match");  
+  } else {  
+    alert("Password created successfully"); 
+    set(ref(database,'Students Account Details/'+user.uid),{
+    userName:userName,
+    email:email,        //never save our password to the database
+    })
+    alert('Account created');
+    window.location.replace("student.html") 
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+ 
+    alert('You entered Email or Password is Incorrect');
+    });
+  }
+
+  
+ 
   })
-  alert('Account created');
-  window.location.replace("student.html")
-  // ...
+  
   })
-  .catch((error) => {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  // ..
-  alert('You entered Email or Password is Incorrect');
-  });
-  })
+
+
+  
+
 </script>
 <!------------------------------------------------------------------------------------------------------------------->
 

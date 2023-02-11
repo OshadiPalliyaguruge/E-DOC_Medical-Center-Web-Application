@@ -46,7 +46,7 @@
 
     <!--------------------------------------edit profile-------------------------------------->
 
-    <div class="container rounded bg-white mt-5 mb-5">
+    <form1 onsubmit ="return validateForm()"><div class="container rounded bg-white mt-5 mb-5">
       <div class="row">
           <div class="col-md-3 border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="Photos/profile.png"><span class="font-weight-bold">Judy</span><span class="text-black-50">Judy@mail.com</span><span> </span></div>
@@ -79,7 +79,7 @@
       </div>
   </div>
   </div>
-  </div>
+  </div></form1>
 
   <script type="module">
 
@@ -119,8 +119,7 @@
                         
                         
                         var insertBtn=document.querySelector("#insert");
-                        var selecBtn=document.querySelector("#select");
-                        var removeBtn=document.querySelector("#remove");
+                     
                        
     
                         function InsertData()
@@ -137,10 +136,15 @@
                                 
                             })
                             .then(()=>{
-                                alert("Data added Successfully!")
+
+                              if(enterFirstName == "") {  
+                                alert("Fill all the blocks!")
+       
+                              } else{
+                                alert("Data added Successfully!")}
                             })
                             .catch((error)=>{
-                                alert(error)
+                              alert(error);
                             });
     
                     
@@ -148,53 +152,24 @@
                        
                         insertBtn.addEventListener('click',InsertData);
     
-                        function selectData()
-                        {
-                            const dbref=ref(db);
-                            get(child(dbref,"Student/" + enterFirstName.value)).then((snapshot)=>{
-                                if(snapshot.exists()){
-                                    enterSecondName.value=snapshot.val().SecondName;
-                                    enterFirstGName.value=snapshot.val().FirstGName;
-                                    enterSecondGName.value=snapshot.val().SecondGName;
-                                    enterAge.value=snapshot.val().Age;
-                                    enterNumber.value=snapshot.val().Number;
-                                    enterAddress.value=snapshot.val().Address;
-                                    enterEmailID.value=snapshot.val().EmailID;
-                                    enterRegNumber.value=snapshot.val().RegNumber;
-                                }
-                                else{
-                                    alert("No data found");
-                                }
-                            })
-                            .catch((error)=>{
-                                alert(error);
-                            })
-                            
-                        }
-                        selecBtn.addEventListener('click',selectData);
-    
-                        function RemoveData()
-                        {
-                            remove(ref(db,"Student/"+enterFirstName.value),{
-                                FirstName: enterFirstName,
-                                SecondName: enterSecondName,
-                                FirstGName: enterFirstGName,
-                                SecondGName: enterSecondGName,
-                                Age: enterAge,
-                                Grade: enterGrade,
-                                Number: enterNumber,
-                                Birthday: enterBirth,
-                                Gender: enterGender
-                            })
-                            .then(()=>{
-                                alert("Your data removed. Fill again. ")
-                            })
-                            .catch((error)=>{
-                                alert(error)
-                            });
-    
-                        }
-                        removeBtn.addEventListener('click',RemoveData);
+                        
+                       
+
+// validated
+
+function validateForm() {  
+    //collect form data in JavaScript variables   
+    var name1 = document.getElementById("enterFirstName").value;  
+    var name2 = document.getElementById("enterSecondName").value;  
+      
+    //check empty first name field  
+    if(name1 == "") {  
+      document.getElementById("blankMsg").innerHTML = "**Fill the first name";  
+      return false;  
+    }  
+}
+
+
         //---------------------------------GetImage----------------------------------------------//
     
     import{getStorage,ref as sRef,uploadBytesResumable,getDownloadURL} 
