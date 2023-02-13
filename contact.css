@@ -1,0 +1,56 @@
+
+@media only screen and (min-width: 992px) {
+    .row{
+        display: inline-block;
+    }
+  }
+
+
+  @media only screen and (min-width: 600px) {
+    .row{
+        display: block;
+    }
+  }
+
+
+.map-responsiv{
+    height:100%;
+    width:40%;
+    align-items: center;
+   
+}
+/*.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+   
+}
+
+.fa-house{
+    color: rgb(205, 205, 224);
+    float: right;
+    size:40%;
+}
+.last{
+    width:100%;
+}
+.social,.contact{
+   
+    margin:0px;
+    margin-top: 0px;
+    width: 30%;
+    height: 100%;
+    margin-left: 10%;
+    display: block;
+    
+}
+.contactus{
+    background-color: rgba(157, 168, 164, 0.5);
+    border-radius: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 10%;
+    padding-top: 5%;
+    margin-bottom: 2%;
+}*/
