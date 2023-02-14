@@ -57,14 +57,8 @@
 
         <div class="row">
           <div class="small-12 medium-2 large-2 columns">
-            <div class="circle">
-              <img class="profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
-       
-            </div>
-            <div class="p-image">
-              <i class="fa fa-camera upload-button"></i>
-               <input class="file-upload" type="file" accept="image/*"/>
-            </div>
+            <input type="file" id="photo" /></br>
+          <button id="upload">Upload Image</button>
          </div>
        </div>
 
@@ -106,24 +100,24 @@
     //------------------------------------getData-----------------------------------//
     
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-  apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
-  authDomain: "se-mini-project-fcee4.firebaseapp.com",
-  projectId: "se-mini-project-fcee4",
-  storageBucket: "se-mini-project-fcee4.appspot.com",
-  messagingSenderId: "574489212826",
-  appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+    import { getDatabase,set,get,update,remove,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+//paste here your copied configuration code
+const firebaseConfig = {
+apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+authDomain: "se-mini-project-fcee4.firebaseapp.com",
+databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+projectId: "se-mini-project-fcee4",
+storageBucket: "se-mini-project-fcee4.appspot.com",
+messagingSenderId: "574489212826",
+appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
 };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+ 
+const app = initializeApp(firebaseConfig);
+const storage = getStorage();
+const storageRef = ref(storage);
             
-            import {getDatabase,set,get,update,remove,ref,child}
-            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
             
             const db =getDatabase();
             
@@ -134,8 +128,7 @@
                         var enterNumber=document.querySelector("#enterNumber");                 
                         var enterEmailID=document.querySelector("#enterEmailID");
                         var enterGender=document.querySelector("#enterGender");
-                        
-                        
+                       
                         var insertBtn=document.querySelector("#insert");
                      
                        
@@ -150,14 +143,11 @@
                                 EmailID:enterEmailID.value,
                                 Gender:enterGender.value,
                                 
+                                
                             })
                             .then(()=>{
 
-                              if(enterFirstName == "") {  
-                                alert("Fill all the blocks!")
-       
-                              } else{
-                                alert("Data added Successfully!")}
+                                alert("Data added Successfully!")
                             })
                             .catch((error)=>{
                               alert(error);
@@ -188,29 +178,65 @@ function validateForm() {
 
         //---------------------------------GetImage----------------------------------------------//
     
-    import{getStorage,ref as sRef,uploadBytesResumable,getDownloadURL} 
-    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
-                        
-    function upload()
-    {
-            var image=document.getElementById("image").files[0];
-            var imageName=image.name;
-            var storageRef=firebase.storage().ref('images/'+imageName);
-            var uploadTask=storageRef.put(image);
-    
-            uploadTask.on('state_changed',function(snapshot){
-                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                console.log("upload is "+progress +"done");
-            },function(error){
-                console.log(error.message);
-                
-            },function(){
-                uploadTask.snapshot.ref.getDownLoadURL().then(function(downloadURL){
-                    console.log(downloadURL);
-                });
-            
-            });
+        var submitBtn=document.querySelector("#upload");
+
+function uploadImage() {
+    const metadata = {
+    contentType: 'image/jpeg'
+    };
+     
+    const file=document.getElementById("photo").files[0];
+    const storageRef = ref(storage, 'Profile Pictures/' + file.name);
+   // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on('state_changed',
+    (snapshot) => {
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    alert('Upload is 100% done');
+  
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
     }
+  }, 
+  (error) => {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      // ...
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect error.serverResponse
+        break;
+    }
+  }, 
+  () => {
+    // Upload completed successfully, now we can get the download URL
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+    });
+  }
+);
+
+
+
+
+   }
+   submitBtn.addEventListener('click',uploadImage);
+   //const errorMsgElement = document.querySelector('span#errorMsg');
     
               
           </script>

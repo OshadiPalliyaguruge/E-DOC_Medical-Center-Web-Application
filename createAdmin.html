@@ -81,9 +81,10 @@
 
             <div class="form-row">
               <div class="col-lg-7">
-                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit">Sign Up</button>
+                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit" onClick=matchPassword()>Sign Up</button>
               </div>
           </div>
+
     
 
             
@@ -109,14 +110,15 @@
   const firebaseConfig = {
   apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
   authDomain: "se-mini-project-fcee4.firebaseapp.com",
+  databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
   projectId: "se-mini-project-fcee4",
   storageBucket: "se-mini-project-fcee4.appspot.com",
   messagingSenderId: "574489212826",
   appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
 };
 
- // Initialize Firebase
- const app = initializeApp(firebaseConfig);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
   const database=getDatabase(app);
   const auth = getAuth();
 
@@ -127,23 +129,25 @@
   var password2=document.getElementById('password2').value;
   var userName=document.getElementById('userName').value;
 
-  createUserWithEmailAndPassword(auth, email, password1,password2)
-  .then((userCredential) => {
-  // Signed in 
-  const user = userCredential.user;
-
   if(password1 != password2)  
   {   
     alert("Passwords did not match");  
-  } else {  
-    alert("Password created successfully"); 
+  } 
+  else 
+  {  
+    createUserWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+  // Signed in 
+    const user = userCredential.user;
+
     set(ref(database,'Admins Account Details/'+user.uid),{
     userName:userName,
     email:email,        //never save our password to the database
     })
     alert('Account created');
     window.location.replace("adminPage.html") 
-    .catch((error) => {
+  })
+  .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
  
@@ -151,9 +155,17 @@
     });
   }
   })
+    
+
   
-  })
+
+
+
+  
+
 </script>
+<!------------------------------------------------------------------------------------------------------------------->
+
 
 
     <footer class="bg-light text-lg-start mt-auto">
