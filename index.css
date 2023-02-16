@@ -28,9 +28,9 @@
 body {
     min-height:100vh;
     width:100%;
-    background-image:linear-gradient(rgba(103, 105, 116, 0.7),rgba(43, 55, 107, 0.7)),url("Photos/background.jpg");
+    background-image:url("Photos/background.jpg");
     background-position:center ;
-    background-size: cover;
+    background-size: 100% 100%;
     position: relative;
 }
 

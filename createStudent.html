@@ -72,12 +72,6 @@
            
             </div>
 
-            <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-start mb-4">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-              <label class="form-check-label" for="form1Example3"> &nbsp;Remember password </label>
-            
-            </div>
 
             <div class="form-row">
               <div class="col-lg-7">
@@ -117,6 +111,7 @@
   appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
 };
 
+
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const database=getDatabase(app);
@@ -140,19 +135,23 @@
   // Signed in 
     const user = userCredential.user;
 
-    set(ref(database,'Students Account Details/'+user.uid),{
+    set(ref(database,'Student Account Details/'+ user.uid),{
     userName:userName,
     email:email,        //never save our password to the database
     })
-    alert('Account created');
-    window.location.replace("student.html") 
+    alert('Account created')
+    //window.location.replace("student.html")
+    location.href = "student.html";
   })
+    
+     
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
  
-    alert('You entered Email or Password is Incorrect');
+    alert(errorMessage);
     });
+    
   }
   })
     

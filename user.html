@@ -64,13 +64,13 @@
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="password" class="form-control form-control-lg" placeholder="Password"/>
+              <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" autocomplete="on"/>
               
             </div>
 
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-start mb-4">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
               <label class="form-check-label" for="form1Example3">&nbsp;Remember password </label>
           
             </div>
@@ -100,7 +100,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
   import { getDatabase,set,ref,update } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
-  import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged ,signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged ,signOut,inMemoryPersistence, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -129,14 +129,15 @@ signInWithEmailAndPassword(auth, email, password)
 // Signed in 
 const user = userCredential.user;
 const dt=new Date();
-update(ref(database,'Students Account Details/'+user.uid),{
+update(ref(database,'Student Account Details/'+user.uid),{
 last_login:dt,       //never save our password to the database
 })
 
 
 alert('User loged in ');
 // ...
-window.location.replace("viewStudentProfile.html")
+//window.location.replace("viewStudentProfile.html")
+location.href = "viewStudentProfile.html";
 })
 .catch((error) => {
 const errorCode = error.code;
@@ -147,6 +148,26 @@ alert('You entered Email or Password is Incorrect');
 })
 
 
+var remeberBtn=document.querySelector("#rememberMe");
+
+function rememberMe()
+{
+  setPersistence(auth, inMemoryPersistence)
+  .then(() => {
+    const provider = new GoogleAuthProvider();
+    // In memory persistence will be applied to the signed in Google user
+    // even though the persistence was set to 'none' and a page redirect
+    // occurred.
+    return signInWithRedirect(auth, provider);
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+}
+
+remeberBtn.addEventListener('click',rememberMe);
 </script>
 
 
