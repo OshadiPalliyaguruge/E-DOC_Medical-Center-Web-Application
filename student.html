@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
+
+    <style>
+    .img{
+      border-radius:50%;
+      border:5px solid rgb(177, 173, 173);
+    }
+     
+   </style>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="student.css">
     <link rel="stylesheet" href="viewStudentProfile.css">
@@ -56,10 +65,15 @@
         
 
         <div class="row">
-          <div class="small-12 medium-2 large-2 columns">
+          <div class="mb-4 d-flex justify-content-center">
+            <img alt="" class ="img" width="15%" height="20%"   />
+            
+        </div>
+          <div class="mb-4 d-flex justify-content-center">
             <input type="file" id="photo" /></br>
-          <button id="upload">Upload Image</button>
-         </div>
+            <button id="upload">Upload Image</button>
+            
+          </div>
        </div>
 
           <div class="col-md-5 border-right">
@@ -189,12 +203,14 @@ function uploadImage() {
     const storageRef = ref(storage, 'Profile Pictures/' + file.name);
    // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
     const uploadTask = uploadBytesResumable(storageRef, file);
+    const img=document.querySelector(".img");
 
     uploadTask.on('state_changed',
     (snapshot) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     alert('Upload is 100% done');
+   
   
     switch (snapshot.state) {
       case 'paused':
@@ -227,6 +243,12 @@ function uploadImage() {
     // Upload completed successfully, now we can get the download URL
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log('File available at', downloadURL);
+
+      if(downloadURL!="")
+      {
+        img.setAttribute("src",downloadURL);
+        img.style.display="block";
+      }
     });
   }
 );
