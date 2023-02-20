@@ -59,20 +59,15 @@
 
     <!--------------------------------------edit profile-------------------------------------->
 
-    <form1 onsubmit ="return validateForm()"><div class="container rounded bg-white mt-5 mb-5">
+    <div class="container rounded bg-white mt-5 mb-5">
       <div class="row">
-          
-        
-
         <div class="row">
           <div class="mb-4 d-flex justify-content-center">
-            <img alt="" class ="img" width="15%" height="20%"   />
-            
-        </div>
+            <img alt="" class ="img" width="15%" height="20%"   />            
+          </div>
           <div class="mb-4 d-flex justify-content-center">
             <input type="file" id="photo" /></br>
-            <button id="upload">Upload Image</button>
-            
+            <button id="upload">Upload Image</button>           
           </div>
        </div>
 
@@ -82,14 +77,20 @@
                       <h4 class="text-right mt-5">Profile Settings</h4>
                   </div>
                   <div class="row mt-2">
-                      <div class="col-md-6"><label class="labels">First Name</label><input type="text" id="enterFirstName" class="form-control" placeholder="first name" value=""></div>
-                      <div class="col-md-6"><label class="labels">Last name</label><input type="text" id="enterSecondName" class="form-control" value="" placeholder="Last name"></div>
-                  </div>
+                    <div class="message"></div>
+                      <div class="col-md-6"><label class="labels">First Name</label><input type="text" id="enterFirstName" class="form-control" placeholder="first name" value="" required></div>
+                      <div class="error"></div>
+                      <div class="col-md-6"><label class="labels">Last name</label><input type="text" id="enterSecondName" class="form-control" value="" placeholder="Last name" required></div>
+                      <div class="error"></div>
+                    </div>
 
                   <div class="row mt-2">
-                      <div class="col-md-12"><label class="labels">Registration No</label><input type="text" id="enterRegNumber" class="form-control" placeholder="ENxxxx" value=""></div>
-                      <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" id="enterNumber" class="form-control" placeholder="Phone number" value=""></div>
-                      <div class="col-md-12"><label class="labels">Email ID</label><input type="text" id="enterEmailID" class="form-control" placeholder="Email Id" value=""></div>
+                      <div class="col-md-12"><label class="labels">Registration No</label><input type="text" id="enterRegNumber" class="form-control" placeholder="ENxxxx" value="" required></div>
+                      <div class="error"></div>
+                      <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" id="enterNumber" class="form-control" placeholder="Phone number" value="" required></div>
+                      <div class="error"></div>
+                      <div class="col-md-12"><label class="labels">Email ID</label><input type="text" id="enterEmailID" class="form-control" placeholder="Email Id" value="" required></div>
+                      <div class="error"></div>
                       
                       
                   </div>
@@ -97,6 +98,7 @@
                   <div class="form-outline mb-3 mt-2">
                     <input type="radio" id="enterGender" name="gender" value="male"> Male
                     <input type="radio" id="enterGender" name="gender" value="female"> Female
+                    <div class="error"></div>
     
                   </div>
                   
@@ -114,8 +116,8 @@
     //------------------------------------getData-----------------------------------//
     
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
-    import { getDatabase,set,get,update,remove,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+    import { getDatabase,set,ref,get,update,remove,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
 //paste here your copied configuration code
 const firebaseConfig = {
@@ -130,7 +132,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
  
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
-const storageRef = ref(storage);
+const storageRef = sRef(storage);
             
             
             const db =getDatabase();
@@ -144,11 +146,16 @@ const storageRef = ref(storage);
                         var enterGender=document.querySelector("#enterGender");
                        
                         var insertBtn=document.querySelector("#insert");
-                     
                        
-    
+
                         function InsertData()
                         {
+
+                          if(enterFirstName.value=="" || enterSecondName.value=="" || enterRegNumber.value=="" || enterNumber.value=="" || enterEmailID.value=="" || enterGender.value=="")
+                          {
+                            alert("Please enter all the details");
+                          }
+                          else{
                             set(ref(db,"Student Profile/"+enterFirstName.value ),{
                                 FirstName:enterFirstName.value,
                                 SecondName:enterSecondName.value,
@@ -156,17 +163,16 @@ const storageRef = ref(storage);
                                 Number:enterNumber.value,
                                 EmailID:enterEmailID.value,
                                 Gender:enterGender.value,
-                                
-                                
+                                                               
                             })
                             .then(()=>{
-
-                                alert("Data added Successfully!")
+                                alert("Data added Successfully!");
                             })
                             .catch((error)=>{
                               alert(error);
                             });
     
+                          }                           
                     
                         }
                        
@@ -175,19 +181,6 @@ const storageRef = ref(storage);
                         
                        
 
-// validated
-
-function validateForm() {  
-    //collect form data in JavaScript variables   
-    var name1 = document.getElementById("enterFirstName").value;  
-    var name2 = document.getElementById("enterSecondName").value;  
-      
-    //check empty first name field  
-    if(name1 == "") {  
-      document.getElementById("blankMsg").innerHTML = "**Fill the first name";  
-      return false;  
-    }  
-}
 
 
         //---------------------------------GetImage----------------------------------------------//
@@ -200,7 +193,7 @@ function uploadImage() {
     };
      
     const file=document.getElementById("photo").files[0];
-    const storageRef = ref(storage, 'Profile Pictures/' + file.name);
+    const storageRef = sRef(storage, 'Profile Pictures/' + file.name);
    // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
     const uploadTask = uploadBytesResumable(storageRef, file);
     const img=document.querySelector(".img");
@@ -209,7 +202,7 @@ function uploadImage() {
     (snapshot) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    alert('Upload is 100% done');
+    
    
   
     switch (snapshot.state) {
@@ -220,6 +213,7 @@ function uploadImage() {
         console.log('Upload is running');
         break;
     }
+    alert('Upload is 100% done');
   }, 
   (error) => {
     // A full list of error codes is available at
@@ -258,7 +252,7 @@ function uploadImage() {
 
    }
    submitBtn.addEventListener('click',uploadImage);
-   //const errorMsgElement = document.querySelector('span#errorMsg');
+   const errorMsgElement = document.querySelector('span#errorMsg');
     
               
           </script>
