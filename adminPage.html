@@ -37,6 +37,9 @@
                   <div class="nav-item">
                     <a class="nav-link " href="other.html">Other</a>
                   </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="index.html"><i class="bi bi-box-arrow-right"></i>Log out</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,7 +65,7 @@
                   </a>
                   
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="addNew.html">Add New Record</a></li>
+                    <li><a class="dropdown-item" href="addNewStudent.html">Add New Record</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="getStudentDetails.html">Display Record </a></li>
                   </ul>
@@ -86,21 +89,41 @@
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="col-lg-7">
-                <form action="signIn.html">
-                    <input type="submit" class="btn1 mt-3 mb-4" value="Get Acedemic Staff Details">
-                </form>
-            </div>
-          </div>
 
           <div class="form-row">
             <div class="col-lg-7">
-                <form action="signIn.html">
-                    <input type="submit" class="btn1 mt-3 mb-4" value="Get Non Acedemic Staff Details">
-                </form>
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn1 mt-3 mb-4" type="submit">Academic Staff Details</button>
+                  </a>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="addNewAcademic.html">Add New Record</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="getAcademicDetails.html">Display Record </a></li>
+                  </ul>
+                </div>
             </div>
           </div>
+
+
+          <div class="form-row">
+            <div class="col-lg-7">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn1 mt-3 mb-4" type="submit">Non Academic Staff Details</button>
+                  </a>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="addNewNonAcademic.html">Add New Record</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="getNonAcademicDetails.html">Display Record </a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+
+
       </div>
     </div>
     

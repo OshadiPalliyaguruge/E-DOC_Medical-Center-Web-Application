@@ -38,6 +38,10 @@
                   <div class="nav-item">
                     <a class="nav-link " href="other.html">Other</a>
                   </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="index.html"><i class="bi bi-box-arrow-right"></i>Log out</a>
+                    
+                  </div>
                 </div>
               </div>
             </div>
@@ -48,7 +52,7 @@
 <!-------------------------------Table----------------------------------------------->
 <form1>
     
-    <h3>Student Record</h3>
+    <h3>Non Academic Record</h3>
 
    
 
@@ -56,7 +60,7 @@
         <thead>
             <th>FirstName</th>
             <th>SecondName</th>
-            <th>Registration No</th>
+            <th>StaffID</th>
             <th>Age</th>
             <th>Reason</th>
             <th>Gender</th>
@@ -74,7 +78,7 @@
 var tbody=document.getElementById("tbody1");
 
 
-function AddItemToTable(firstName,secondName,regNumber,age,reason,gender){
+function AddItemToTable(firstName,secondName,staffID,age,reason,gender){
    let trow=document.createElement("tr");
    let td1=document.createElement('td');
    let td2=document.createElement('td');
@@ -87,14 +91,14 @@ function AddItemToTable(firstName,secondName,regNumber,age,reason,gender){
   
    td1.innerHTML=firstName;
    td2.innerHTML=secondName;
-   td3.innerHTML=regNumber;
+   td3.innerHTML=staffID;
    td4.innerHTML=age;
    td5.innerHTML=reason;
    td6.innerHTML=gender;
 
   td1.classList +="firstNameField";
   td2.classList +="secondNameField";
-  td3.classList +="regNumberField";
+  td3.classList +="staffIDField";
   td4.classList +="ageField";
   td5.classList +="reasonField";
   td6.classList +="genderField";
@@ -115,7 +119,7 @@ function AddAllItemToTable(Student){
 
    tbody.innerHTML="";
    Student.forEach(element=>{
-       AddItemToTable(element.FirstName,element.SecondName,element.RegNumber,element.Age,element.Reason,element.Gender);
+       AddItemToTable(element.FirstName,element.SecondName,element.StaffID,element.Age,element.Reason,element.Gender);
    });
 }
    
@@ -151,7 +155,7 @@ const db=getDatabase();
 function GetAllDataOnce(){
 const dbRef=ref(db);
 
-get(child(dbRef,"Add New Student Record"))
+get(child(dbRef,"Add New Non Academic Record"))
 .then((snapshot)=>{
  var Student=[];
 
