@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Medical</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="addNew.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto  mb-2 mb-lg-0 n">
+                  
+                  <div class="nav-item ">
+                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="doctor.html">Doctors</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="other.html">Other</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+<!-------------------------------form----------------------------------------------->
+<section class="vh-100" >
+    <div class="container py-4 h-100 ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-2 text-center">
+  
+              <h3 class="mb-2">Add Medical</h3>
+              
+  
+              <div class="form-outline mb-3">
+                <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Opening Stock"/>
+              
+              </div>
+  
+              <div class="form-outline mb-3">
+                <input type="text" id="enterDescription" class="form-control form-control-lg" placeholder="Enter description"/>
+            
+              </div>
+              
+
+             
+              <div class="mb-4 d-flex justify-content-center">
+                <input type="file" id="medical" /></br>
+                <button id="upload">&nbsp; Upload &nbsp;</button>           
+              </div>
+           
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+
+   //------------------------------------getData-----------------------------------//
+    
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+    import { getDatabase,set,ref,get,update,remove,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+//paste here your copied configuration code
+const firebaseConfig = {
+apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+authDomain: "se-mini-project-fcee4.firebaseapp.com",
+databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+projectId: "se-mini-project-fcee4",
+storageBucket: "se-mini-project-fcee4.appspot.com",
+messagingSenderId: "574489212826",
+appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+};
+ 
+const app = initializeApp(firebaseConfig);
+const storage = getStorage();
+const storageRef = sRef(storage);
+            
+            
+            const db =getDatabase();
+            
+            
+            
+                        var enterMedicineName=document.querySelector("#enterDescription");
+                        var enterOpeningStock=document.querySelector("#enterDate");
+                        
+                        
+                        
+                        var insertBtn=document.querySelector("#upload");
+                        
+                       
+    
+                        function InsertData()
+                        {
+                            if(enterDate.value=="" || enterDescription.value=="" )
+                          {
+                            alert("Please enter all the details");
+                          }
+                          else{
+                            set(ref(db,"Medical Reports/"+enterDate.value ),{
+                                Date:enterDate.value,
+                                MedicalDescription:enterDescription.value,
+                                
+                            
+                            })
+                            .then(()=>{
+                               
+                            })
+                            .catch((error)=>{
+                                alert(error)
+                            });
+    
+                        }
+                        }
+                       
+                        insertBtn.addEventListener('click',InsertData);
+
+
+                        //---------------------------------Get file----------------------------------------------//
+    
+        var submitBtn=document.querySelector("#upload");
+
+function uploadFile() {
+    const metadata = {
+    contentType: 'image/jpeg'
+    };
+     
+    const file=document.getElementById("medical").files[0];
+    const storageRef = sRef(storage, 'Medical Reports/' + file.name);
+   // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    
+
+    uploadTask.on('state_changed',
+    (snapshot) => {
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    
+   
+  
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+    alert('Report Uploaded');
+  }, 
+  (error) => {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      // ...
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect error.serverResponse
+        break;
+    }
+  }, 
+  () => {
+    // Upload completed successfully, now we can get the download URL
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+
+      if(downloadURL!="")
+      {
+        img.setAttribute("src",downloadURL);
+        img.style.display="block";
+      }
+    });
+  }
+);
+
+
+
+
+   }
+   submitBtn.addEventListener('click',uploadFile);
+   const errorMsgElement = document.querySelector('span#errorMsg');
+    
+              
+          </script>
+  <!------------------------------------------------------------------------------------------------------------------->
+
+  
+    <footer class="bg-light text-lg-start mt-auto">
+      
+  
+        <hr class="m-0" />
+    
+        <div class="text-center py-4 align-items-center">
+          <div class="name">
+            <p>University of Sri Jayewardenepura<br>
+              Gangodawila, Nugegoda, Sri Lanka.</p>
+          </div>
+  
+          <div class="name">
+            <p>+94 11 2758000, +94 11 2802022<br>
+              +94 11 2801024, +94 11 2801025</p>
+          </div>
+         
+          </a>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>   
+</body>
+</html>

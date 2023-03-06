@@ -39,3 +39,14 @@
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     color: #999;
   }
+  .heading{
+    text-align: center;
+    font-size: 45px;
+   
+  }
+  .btn{
+    border-bottom: 2px dotted #fff;
+  }
+  .row1{
+    display: inline-block;
+  }
