@@ -12,7 +12,7 @@
 <body class="d-flex flex-column min-vh-100">
 
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
               <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,44 +52,39 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-2 text-center">
+            <div class="card-body p-4 text-center">
   
-              <h3 class="mb-2">Add New Record</h3>
+              <h3 class="mb-2">Add New Academic Record</h3>
   
-              <div class="form-outline mb-3">
-                <input type="text" id="enterFirstName" class="form-control form-control-lg" placeholder="First Name"/>
+              <div class="form-outline mb-2">
+                <input type="text" id="enterFullName" class="form-control form-control-lg" placeholder="Full Name"/>
             
               </div>
 
-  
-              <div class="form-outline mb-3">
-                <input type="text" id="enterSecondName" class="form-control form-control-lg" placeholder="Last Name"/>
-              
-              </div>
 
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterStaffID" class="form-control form-control-lg" placeholder="Staff ID"/>
               
               </div>
 
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterPosition" class="form-control form-control-lg" placeholder="Position"/>
               
               </div>
 
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="number" id="enterAge" class="form-control form-control-lg" placeholder="Age" />
              
               </div>
   
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterReason" class="form-control form-control-lg" placeholder="Reason" />
             
               </div>
 
-              <div class="form-outline mb-3">
-                <input type="radio" id="enterGender" name="gender" value="male"> Male
-                <input type="radio" id="enterGender" name="gender" value="female"> Female
+              <div class="form-outline mb-2">
+                <input type="radio" id="enterGender" name="gender" value="male"> &nbsp;Male
+                <input type="radio" id="enterGender" name="gender" value="female">&nbsp; Female
 
               </div>
 
@@ -135,8 +130,8 @@
             const db =getDatabase();
             
             
-                        var enterFirstName=document.querySelector("#enterFirstName");
-                        var enterSecondName=document.querySelector("#enterSecondName");
+                        var enterFullName=document.querySelector("#enterFullName");
+                      
                         var enterStaffID=document.querySelector("#enterStaffID");
                         var enterPosition=document.querySelector("#enterPosition");
                         var enterAge=document.querySelector("#enterAge");   
@@ -149,9 +144,13 @@
                 
                         function InsertData()
                         {
+                          if(enterFullName.value=="" || enterStaffID.value=="" ||enterPosition.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender.value=="" )
+                          {
+                            alert("Please enter all the details");
+                          }else{
                             set(ref(db,"Add New Academic Record/"+enterStaffID.value ),{
-                                FirstName:enterFirstName.value,
-                                SecondName:enterSecondName.value,
+                              FullName:enterFullName.value,
+                           
                                 StaffID:enterStaffID.value,
                                 Position:enterPosition.value,
                                 Age:enterAge.value,
@@ -167,7 +166,7 @@
                                 alert(error)
                             });
     
-                    
+                          }
                         }
                        
                         insertBtn.addEventListener('click',InsertData);
@@ -178,12 +177,12 @@
   <!------------------------------------------------------------------------------------------------------------------->
   
   
-    <footer class="bg-light text-lg-start mt-auto">
+  <footer class="bg-light text-lg-start mt-auto ">
       
   
         <hr class="m-0" />
     
-        <div class="text-center py-4 align-items-center">
+        <div class="text-center py-2 align-items-center">
           <div class="name">
             <p>University of Sri Jayewardenepura<br>
               Gangodawila, Nugegoda, Sri Lanka.</p>
@@ -198,7 +197,7 @@
         </div>
     
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
           © 2023 Copyright:
           <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
         </div>
