@@ -48,17 +48,17 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-2 text-center">
+            <div class="card-body p-4 text-center">
   
-              <h3 class="mb-2">Add Medical</h3>
+              <h3 class="mb-3">Add Medical</h3>
               
   
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-4">
                 <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Opening Stock"/>
               
               </div>
   
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-4">
                 <input type="text" id="enterDescription" class="form-control form-control-lg" placeholder="Enter description"/>
             
               </div>
@@ -69,6 +69,8 @@
                 <input type="file" id="medical" /></br>
                 <button id="upload">&nbsp; Upload &nbsp;</button>           
               </div>
+
+                    
            
 
             </div>
@@ -125,7 +127,7 @@ const storageRef = sRef(storage);
                             set(ref(db,"Medical Reports/"+enterDate.value ),{
                                 Date:enterDate.value,
                                 MedicalDescription:enterDescription.value,
-                                
+                            
                             
                             })
                             .then(()=>{
@@ -147,13 +149,14 @@ const storageRef = sRef(storage);
 
 function uploadFile() {
     const metadata = {
-    contentType: 'image/jpeg'
+    contentType: 'file/pdf'
     };
      
     const file=document.getElementById("medical").files[0];
     const storageRef = sRef(storage, 'Medical Reports/' + file.name);
    // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
     const uploadTask = uploadBytesResumable(storageRef, file);
+    const img=document.querySelector(".img");
     
 
     uploadTask.on('state_changed',

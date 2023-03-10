@@ -16,6 +16,7 @@ body{
 .container{
     background-color: #696868;
     color: #fff;
+    margin-top: 2%;
 }
 .btn-info{
     width:50%;

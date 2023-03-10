@@ -7,3 +7,7 @@ body {
     -o-background-size: cover;
     height: 100vh;
 }
+.topic{
+    color: brown;
+    text-align: center;
+}
