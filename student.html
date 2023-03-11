@@ -90,14 +90,12 @@
                       <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" id="enterNumber" class="form-control" placeholder="Phone number" value="" required></div>
                       <div class="error"></div>
                       <div class="col-md-12"><label class="labels">Email ID</label><input type="text" id="enterEmailID" class="form-control" placeholder="Email Id" value="" required></div>
-                      <div class="error"></div>
-                      
-                      
+                      <div class="error"></div>                                          
                   </div>
 
                   <div class="form-outline mb-3 mt-2">
-                    <input type="radio" id="enterGender" name="gender" value="male"> Male
-                    <input type="radio" id="enterGender" name="gender" value="female"> Female
+                    <input type="radio" id="enterGender" value="male"> Male
+                    <input type="radio" id="enterGender" value="female"> Female
                     <div class="error"></div>
     
                   </div>
@@ -235,7 +233,7 @@ function uploadImage() {
   }, 
   () => {
     // Upload completed successfully, now we can get the download URL
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log('File available at', downloadURL);
 
       if(downloadURL!="")

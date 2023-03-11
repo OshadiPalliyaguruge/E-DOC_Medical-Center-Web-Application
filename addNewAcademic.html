@@ -87,9 +87,8 @@
                 <input type="radio" id="enterGender" name="gender" value="female">&nbsp; Female
 
               </div>
-
                 <input type="submit" id="insert" class="btn btn-primary btn-lg btn-block" value="Add Data">
-            <hr>
+              <hr>
 
             <p>Do you want a prescription? 
                 <div class="yesNo"><a href="prescription.html">Yes</a></div>
@@ -107,7 +106,7 @@
 
     //------------------------------------getData-----------------------------------//
     
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -125,13 +124,12 @@
       const app = initializeApp(firebaseConfig);
             
             import {getDatabase,set,get,update,remove,ref,child}
-            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+            from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
             
             const db =getDatabase();
             
             
-                        var enterFullName=document.querySelector("#enterFullName");
-                      
+                        var enterFullName=document.querySelector("#enterFullName");                      
                         var enterStaffID=document.querySelector("#enterStaffID");
                         var enterPosition=document.querySelector("#enterPosition");
                         var enterAge=document.querySelector("#enterAge");   

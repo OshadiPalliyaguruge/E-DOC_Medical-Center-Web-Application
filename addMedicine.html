@@ -51,20 +51,19 @@
             <div class="card-body p-4 text-center">
   
               <h3 class="mb-3">Add Medicine</h3>
+
+              <div class="form-outline mb-4">
+                <h2 class="text-primary" id="stock">Opening Stock : 0</h2>
+                <br>           
+              </div>
   
               <div class="form-outline mb-4">
-                <input type="text" id="enterMedicineName" class="form-control form-control-lg" placeholder="Name Of the Drug"/>
-            
+                <input type="text" id="medicineName" class="form-control form-control-lg" placeholder="Name Of the Drug"/>           
               </div>
 
-  
-              <div class="form-outline mb-4">
-                <input type="text" id="enterOpeningStock" class="form-control form-control-lg" placeholder="Opening Stock"/>
-              
-              </div>
-
-
-                <input type="submit" id="insert" class="btn btn-primary btn-lg btn-block" value="Add">
+              <input type="submit" id="add" class="btn btn-primary btn-lg btn-block" value=" + ">
+              <input type="submit" id="remove" class="btn btn-primary btn-lg btn-block" value=" - "><br><br>
+              <button class="btn btn-info" id="save">Save</button>
            
 
             </div>
@@ -78,7 +77,7 @@
 
     //------------------------------------getData-----------------------------------//
     
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -96,40 +95,56 @@
       const app = initializeApp(firebaseConfig);
             
             import {getDatabase,set,get,update,remove,ref,child}
-            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+            from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
             
             const db =getDatabase();
             
+            var stock=0;
+
+          var insertBtn=document.querySelector("#add");
+          var removeBtn=document.querySelector("#remove");
+          var saveBtn=document.querySelector("#save");
+          function addScore(){
+            stock=stock+10;
+
+            document.querySelector("#stock").innerHTML="Opening Stock : "+stock;
+
+           }
+           function removeScore(){
+            stock=stock-10;
+
+            document.querySelector("#stock").innerHTML="Opening Stock : "+stock;
+
+           }
+          insertBtn.addEventListener('click',addScore);
+          removeBtn.addEventListener('click',removeScore);
+
+          function save(){
             
-                        var enterMedicineName=document.querySelector("#enterMedicineName");
-                        var enterOpeningStock=document.querySelector("#enterOpeningStock");
+        var medicineName=document.querySelector("#medicineName").value;
+        if(medicineName=="")
+            {
+              alert("Please enter medicine name");
+            }
+        else
+        {
+        set(ref(db,"Medicine Stock/"+medicineName),{
+            medicineName:medicineName,
+            stock:stock
+        })
+
+        .then(()=>{
+            alert("Medicine added Successfully!")
+        })
+        .catch((error)=>{
+            alert(error)
+        });
+      }
+    }
+
+    saveBtn.addEventListener('click',save);
+            
                         
-                        
-                        
-                        var insertBtn=document.querySelector("#insert");
-                        
-                       
-    
-                        function InsertData()
-                        {
-                            set(ref(db,"Medicine Stock/"+enterMedicineName.value ),{
-                                MedicineName:enterMedicineName.value,
-                                OpeningStock:enterOpeningStock.value,
-                                
-                                
-                                
-                            })
-                            .then(()=>{
-                                alert("Data added Successfully!")
-                            })
-                            .catch((error)=>{
-                                alert(error)
-                            });
-    
-                    
-                        }
-                       
-                        insertBtn.addEventListener('click',InsertData);
 </script>
   <!------------------------------------------------------------------------------------------------------------------->
 

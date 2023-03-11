@@ -74,8 +74,8 @@
               </div>
 
               <div class="form-outline mb-3">
-                <input type="radio" id="enterGender" name="gender" value="male"> Male
-                <input type="radio" id="enterGender" name="gender" value="female"> Female
+                <input type="radio" name="gender" value="male" id="enterGender" >Male 
+                <input type="radio" name="gender" value="female" id="enterGender">Female 
 
               </div>
 
@@ -98,7 +98,7 @@
 
     //------------------------------------getData-----------------------------------//
     
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -127,13 +127,7 @@
                         var enterAge=document.querySelector("#enterAge");   
                         var enterReason=document.querySelector("#enterReason");
                         var enterGender=document.querySelector("#enterGender");
-                        
-                        
-                        
-                        var insertBtn=document.querySelector("#insert");
-                        var selecBtn=document.querySelector("#select");
-                        var removeBtn=document.querySelector("#remove");
-                       
+                    
     
                         function InsertData()
                         {
@@ -146,8 +140,7 @@
                                 RegNumber:enterRegNumber.value,
                                 Age:enterAge.value,
                                 Reason:enterReason.value,
-                                Gender:enterGender.value,
-                                
+                                Gender:enterGender.value                              
                                 
                             })
                             .then(()=>{
@@ -170,7 +163,7 @@
         //---------------------------------GetImage----------------------------------------------//
     
     import{getStorage,ref as sRef,uploadBytesResumable,getDownloadURL} 
-    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+    from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
                         
     function upload()
     {
