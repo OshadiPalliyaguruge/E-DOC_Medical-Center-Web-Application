@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="createMedicalApprove.css">
+    <title>Create Medical Approve</title>
+</head>
+<body>
+    <div class="wrapper">
+        <textarea>
+                                    Medical Approval
+
+Date : 2023/03/15 
+
+To Adolanic Clinic;
+
+( Type here Full Name ) has our permission to obtain and order medical treatment and care for our child(Type here reason ) in our absence. They are empowerd to make medical treaatment decisions while we are absent.
+
+Sincerely,
+Medical Center,
+Faculty Of Engineering,
+University Of SriJayewardanapura
+
+        </textarea>
+        <div class="file-option">
+            <div class="option file-name">
+                <label>File Name</label>
+                <input type="text" placeholder="Enter File Name">
+            </div>
+            <div class="option save-as">
+                <label>Save as</label>
+                <div class="select-menu">
+                    <select>
+                        <option value="text/plain">Text File (.txt)</option>
+                        <!-- <option value="application/pdf">Pdf File (.txt)</option> -->
+                        <option value="application/msword">Doc File (.txt)</option>
+                        <option value="text/javascript">JS File (.txt)</option>
+                        <option value="application/vnd.ms-powerpoint">PPT File (.txt)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="save-btn">Save as Text File</button>
+    </div>
+
+    <script>
+
+    const textarea=document.querySelector("textarea"),
+    fileNameInput=document.querySelector(".file-name input"),
+    selectMenu=document.querySelector(".save-as select"),
+    saveBtn=document.querySelector(".save-btn");
+
+    selectMenu.addEventListener("change",()=>{
+        let selectedOption=selectMenu.options[selectMenu.selectedIndex].text;
+        saveBtn.innerText=`Save As ${selectedOption.split(" ")[0]} File`;
+    });
+
+    saveBtn.addEventListener("click",()=>{
+        const blob=new Blob([textarea.value],{type:selectMenu.value});
+
+        const fileUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download=fileNameInput.value;
+        link.href=fileUrl;
+        link.click();
+    });
+
+
+    </script>
+    
+</body>
+</html>

@@ -56,8 +56,7 @@
                 <input type="text" id="enterFullName" class="form-control form-control-lg" placeholder="Full Name"/>
             
               </div>
-
-
+              
               <div class="form-outline mb-3">
                 <input type="text" id="enterRegNumber" class="form-control form-control-lg" placeholder="Registration No"/>
               
@@ -104,19 +103,20 @@
     
       // Your web app's Firebase configuration
       const firebaseConfig = {
-  apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
-  authDomain: "se-mini-project-fcee4.firebaseapp.com",
-  projectId: "se-mini-project-fcee4",
-  storageBucket: "se-mini-project-fcee4.appspot.com",
-  messagingSenderId: "574489212826",
-  appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
-};
+    apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+    authDomain: "se-mini-project-fcee4.firebaseapp.com",
+    databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+    projectId: "se-mini-project-fcee4",
+    storageBucket: "se-mini-project-fcee4.appspot.com",
+    messagingSenderId: "574489212826",
+    appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+  };
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
             
             import {getDatabase,set,get,update,remove,ref,child}
-            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+            from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
             
             const db =getDatabase();
             
@@ -127,7 +127,7 @@
                         var enterAge=document.querySelector("#enterAge");   
                         var enterReason=document.querySelector("#enterReason");
                         var enterGender=document.querySelector("#enterGender");
-                    
+                        var insertBtn=document.querySelector("#insert");
     
                         function InsertData()
                         {
@@ -150,8 +150,6 @@
                                 alert(error)
                             });
                           }
-                            
-    
                     
                         }
                        
