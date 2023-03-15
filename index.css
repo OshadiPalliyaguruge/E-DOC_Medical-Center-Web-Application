@@ -12,11 +12,12 @@
     border: none;
     outline: none;
     height: 50px;
-    width: 30%;
+    width: auto;
     background-color: black;
     color: white;
     border-radius: 4px;
     font-weight: bold;
+    padding: 7px;
 }
 
 .btn1:hover{

@@ -49,7 +49,7 @@
          
           <h1 class="topic fw-bold mb-3">MEDICINE STOCK DETAILS</h1>
         
-                <table class="table table-light">
+                <table class="table table-striped bg-light table-bordered">
                 <thead>
                     <th>Name</th>
                     <th>Opening Stock</th>
@@ -66,13 +66,13 @@
         var tbody=document.getElementById("tbody1");
         
         
-        function AddItemToTable(medicineName,stock){
+        function AddItemToTable(MedicineName,Stock){
            let trow=document.createElement("tr");
            let td1=document.createElement('td');
            let td2=document.createElement('td');
   
-           td1.innerHTML=medicineName;
-           td2.innerHTML=stock;
+           td1.innerHTML=MedicineName;
+           td2.innerHTML=Stock;
 
         
           td1.classList +="medicineNameField";
@@ -112,7 +112,7 @@
 
             tbody.innerHTML="";
             Student.forEach(element=>{
-            AddItemToTable(element.medicineName,element.stock);
+            AddItemToTable(element.MedicineName,element.Stock);
                 });
           }
 

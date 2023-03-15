@@ -53,13 +53,13 @@
               <h3 class="mb-3">Add Medicine</h3>
 
               <div class="form-outline mb-4">
-                <h2 class="text-primary" id="stock">Opening Stock : 0</h2>
+                <h2 class="text-primary" id="stock"> Stock : <p class="openingStock"></p></h2>
                 <br>           
               </div>
   
               <div class="form-outline mb-4">
-                <select type="text" class="form-control" id="medicineName" placeholder="Name of the drug">
-                  <option value="Name of the drug">Name of the drug</option>
+                <select type="text" class="form-control" id="medicineName" placeholder="Select Medicine ">
+          
                   <option value="Atropine">Atropine</option>
                   <option value="Diazepam">Diazepam</option>
                   <option value="Morphine">Morphine</option>
@@ -114,13 +114,13 @@
           function addScore(){
             stock=stock+10;
 
-            document.querySelector("#stock").innerHTML="Opening Stock : "+stock;
+            document.querySelector("#stock").innerHTML=" Stock : "+stock;
 
            }
            function removeScore(){
             stock=stock-10;
 
-            document.querySelector("#stock").innerHTML="Opening Stock : "+stock;
+            document.querySelector("#stock").innerHTML=" Stock : "+stock;
 
            }
           insertBtn.addEventListener('click',addScore);
@@ -128,25 +128,25 @@
 
           function save(){
             
-        var medicineName=document.querySelector("#medicineName").value;
-        if(medicineName=="")
+        var medicineName=document.querySelector("#medicineName");
+        if(stock==0)
             {
-              alert("Please enter medicine name");
+              alert("Stock Can't Be Zero!");
             }
         else
         {
-        set(ref(db,"Medicine Stock/"+medicineName),{
-            medicineName:medicineName,
-            stock:stock
-        })
+            set(ref(db,"Medicine Stock/"+medicineName.value),{
+            MedicineName:medicineName.value,
+            Stock:stock
+            })
 
-        .then(()=>{
-            alert("Medicine added Successfully!")
-        })
-        .catch((error)=>{
-            alert(error)
-        });
-      }
+            .then(()=>{
+                alert("Medicine added Successfully!")
+            })
+            .catch((error)=>{
+                alert(error)
+            });
+        }
     }
 
     saveBtn.addEventListener('click',save);
