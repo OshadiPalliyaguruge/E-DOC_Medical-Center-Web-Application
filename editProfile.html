@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
-    <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">  
+    <!-- <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>  
     
 
 
     
-    <title>Profile</title>
+    <title>Edit Profile</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -167,19 +167,19 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Judy">
+                                        <p class="form-control" type="text" id="enterFirstName" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Kaushalya">
+                                        <p class="form-control" type="text" id="enterSecondName"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" value="judyKaushaya3@gmail.com">
+                                        <p class="form-control" type="email" id="enterEmail"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -191,48 +191,37 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="url" value="">
+                                        <p class="form-control" type="url" id="enterWebsite"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Address</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="" placeholder="Street">
+                                        <p class="form-control" type="text" id="enterStreet" placeholder="Street"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-6">
-                                        <input class="form-control" type="text" value="" placeholder="City">
+                                        <p class="form-control" type="text" id="enterCity" placeholder="City"></p>
                                     </div>
                                     <div class="col-lg-3">
-                                        <input class="form-control" type="text" value="" placeholder="State">
+                                        <p class="form-control" type="text" id="enterState" placeholder="State"></p>
                                     </div>
                                 </div>
                                
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <label class="col-lg-3 col-form-label form-control-label">Registration No</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="EN97599">
+                                        <p class="form-control" type="text" id="enterRegNumber"></p>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="123456">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="123456">
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row mt-2">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
-                                        <input type="reset" class="btn btn-secondary" value="Cancel">
-                                        <input type="button" class="btn btn-primary" value="Save Changes">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel" id="reset">
+                                        <input type="button" class="btn btn-primary" value="Save Changes" id="insert">
                                     </div>
                                 </div>
                             </form>
@@ -246,6 +235,95 @@
         </div>
 
 
+
+
+        <script type="module">
+
+          //------------------------------------getData-----------------------------------//
+          
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  import { getDatabase,set,ref,child,onValue,get} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+  
+          
+          
+            const firebaseConfig = {
+apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+authDomain: "se-mini-project-fcee4.firebaseapp.com",
+databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+projectId: "se-mini-project-fcee4",
+storageBucket: "se-mini-project-fcee4.appspot.com",
+messagingSenderId: "574489212826",
+appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+};
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+            const db =getDatabase();
+            
+         
+                                   
+                              var enterFirstName=document.querySelector("#enterFirstName");
+                              var enterSecondName=document.querySelector("#enterSecondName");
+                              var enterEmail=document.querySelector("#enterEmail");
+                              var enterWebsite=document.querySelector("#enterWebsite");
+                              var enterStreet=document.querySelector("#enterStreet");   
+                              var enterCity=document.querySelector("#enterCity");
+                              var enterState=document.querySelector("#enterState");
+                              var enterRegNumber=document.querySelector("#enterRegNumber");
+
+                              var insertBtn=document.querySelector("#insert");
+                              var selecBtn=document.querySelector("#select");
+                              var removeBtn=document.querySelector("#remove");
+              
+          
+    const user=auth.currentUser;
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+         const uid=user.uid;
+         //alert(uid);
+         getdata(uid);
+
+    } else {
+        //alert("Not signIn!")
+    }
+    });        
+
+                              
+function getdata(uid)
+  {
+    const user=auth.currentUser;
+    //const uid=user.uid;
+    get(ref(db,'Student Profile/'+uid))
+    .then((snapshot)=>{
+      
+        var firstName=snapshot.val().FirstName;
+        var secondName=snapshot.val().SecondName;
+        var email=snapshot.val().Email;
+        var website=snapshot.val().Website;
+        var street=snapshot.val().Street;
+        var city=snapshot.val().City;
+        var state=snapshot.val().State;
+        var regNumber=snapshot.val().RegNumber;
+        
+
+
+        document.getElementById('enterFirstName').innerHTML=firstName;
+        document.getElementById('enterSecondName').innerHTML=secondName;
+        document.getElementById('enterEmail').innerHTML=email;
+        document.getElementById('enterWebsite').innerHTML=website;
+        document.getElementById('enterStreet').innerHTML=street;
+        document.getElementById('enterCity').innerHTML=city;
+        document.getElementById('enterState').innerHTML=state;
+        document.getElementById('enterRegNumber').innerHTML=regNumber;
+      
+        
+    })
+  }
+   
+
+</script>
         <footer class="bg-light text-lg-start mt-auto ">
       
   

@@ -18,7 +18,7 @@
 
 
     
-    <title>Profile</title>
+    <title> View Profile</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -126,7 +126,7 @@
                         </li>
                     </ul>
                     <div class="tab-content p-3">
-                        <div class="tab-pane active show" id="profile">
+                        <div class="tab-pane" id="profile">
                             <h5 class="mb-3"><strong>User Profile</strong></h5>
                             <div class="row">
                                 <div class="col-md-6">
@@ -162,24 +162,24 @@
                             <!--/row-->
                         </div>
                         
-                        <div class="tab-pane" id="edit">
+                        <div class="tab-pane active show" id="edit">
                             <form>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Judy">
+                                        <input class="form-control" type="text" id="enterFirstName" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Kaushalya">
+                                        <input class="form-control" type="text" id="enterSecondName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" value="judyKaushaya3@gmail.com">
+                                        <input class="form-control" type="email" id="enterEmail">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -191,48 +191,37 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="url" value="">
+                                        <input class="form-control" type="url" id="enterWebsite">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Address</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="" placeholder="Street">
+                                        <input class="form-control" type="text" id="enterStreet" placeholder="Street">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-6">
-                                        <input class="form-control" type="text" value="" placeholder="City">
+                                        <input class="form-control" type="text" id="enterCity" placeholder="City">
                                     </div>
                                     <div class="col-lg-3">
-                                        <input class="form-control" type="text" value="" placeholder="State">
+                                        <input class="form-control" type="text" id="enterState" placeholder="State">
                                     </div>
                                 </div>
                                
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <label class="col-lg-3 col-form-label form-control-label">Registration No</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="EN97599">
+                                        <input class="form-control" type="text" id="enterRegNumber">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="123456">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="123456">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
+                                
+                                <div class="form-group row mt-2">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
-                                        <input type="reset" class="btn btn-secondary" value="Cancel">
-                                        <input type="button" class="btn btn-primary" value="Save Changes">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel" id="reset">
+                                        <input type="button" class="btn btn-primary" value="Save Changes" id="insert">
                                     </div>
                                 </div>
                             </form>
@@ -246,6 +235,110 @@
         </div>
 
 
+
+
+        <script type="module">
+
+          //------------------------------------getData-----------------------------------//
+          
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+            import { getDatabase,set,get,update,remove,ref,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+            import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+              
+          
+          
+            const firebaseConfig = {
+apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+authDomain: "se-mini-project-fcee4.firebaseapp.com",
+databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+projectId: "se-mini-project-fcee4",
+storageBucket: "se-mini-project-fcee4.appspot.com",
+messagingSenderId: "574489212826",
+appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+};
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+            const db =getDatabase();
+            
+         
+                                   
+                              var enterFirstName=document.querySelector("#enterFirstName");
+                              var enterSecondName=document.querySelector("#enterSecondName");
+                              var enterEmail=document.querySelector("#enterEmail");
+                              var enterWebsite=document.querySelector("#enterWebsite");
+                              var enterStreet=document.querySelector("#enterStreet");   
+                              var enterCity=document.querySelector("#enterCity");
+                              var enterState=document.querySelector("#enterState");
+                              var enterRegNumber=document.querySelector("#enterRegNumber");
+
+                              var insertBtn=document.querySelector("#insert");
+                              var selecBtn=document.querySelector("#select");
+                              var removeBtn=document.querySelector("#remove");
+              
+          
+                              function InsertData()
+                              {
+                                  const user=auth.currentUser;
+                                  const uid=user.uid;
+          
+                                  set(ref(db,"Student Profile/"+ uid),{
+                                      FirstName:enterFirstName.value,
+                                      SecondName:enterSecondName.value,
+                                      Email:enterEmail.value,
+                                      Website:enterWebsite.value,
+                                      Street:enterStreet.value,
+                                      City:enterCity.value,
+                                      State:enterState.value,
+                                      RegNumber:enterRegNumber.value,
+                                   
+                                     
+                                  })
+                                  .then(()=>{
+                                      alert("Data added Successfully!")
+                                  })
+                                  .catch((error)=>{
+                                      alert(error)
+                                  });
+                                
+                              }
+                              insertBtn.addEventListener('click',InsertData);
+
+                              
+function getdata(uid)
+  {
+    const user=auth.currentUser;
+    //const uid=user.uid;
+    get(ref(db,'Student Profile/'+uid))
+    .then((snapshot)=>{
+      
+        var enterFirstName=snapshot.val().FirstName;
+        var enterSecondName=snapshot.val().SecondName;
+        var enterEmail=snapshot.val().Email;
+        var enterWebsite=snapshot.val().Website;
+        var enterStreet=snapshot.val().Street;
+        var enterCity=snapshot.val().City;
+        var enterState=snapshot.val().State;
+        var enterRegNumber=snapshot.val().RegNumber;
+        
+
+
+        document.getElementById('enterFirstName').innerHTML=enterFirstName;
+        document.getElementById('enterSecondName').innerHTML=enterSecondName;
+        document.getElementById('enterEmail').innerHTML=enterEmail;
+        document.getElementById('enterWebsite').innerHTML=enterWebsite;
+        document.getElementById('enterStreet').innerHTML=enterStreet;
+        document.getElementById('enterCity').innerHTML=enterCity;
+        document.getElementById('enterState').innerHTML=enterState;
+        document.getElementById('enterRegNumber').innerHTML=enterRegNumber;
+      
+        
+    })
+  }
+   
+
+</script>
         <footer class="bg-light text-lg-start mt-auto ">
       
   

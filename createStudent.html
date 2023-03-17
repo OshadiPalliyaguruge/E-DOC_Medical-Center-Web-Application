@@ -75,7 +75,7 @@
 
             <div class="form-row">
               <div class="col-lg-7">
-                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit" onClick=matchPassword()>Sign Up</button>
+                  <button type="submit" id="signUp" class="btn btn-primary btn-lg btn-block" name="signup_submit" >Sign Up</button>
               </div>
           </div>
 
@@ -95,9 +95,9 @@
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-  import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
+  import { getDatabase,set,ref,update } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+  import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,onAuthStateChanged,sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
@@ -117,6 +117,9 @@
   const database=getDatabase(app);
   const auth = getAuth();
 
+
+  const user=auth.currentUser;
+
   signUp.addEventListener('click',(e)=>{
 
   var email=document.getElementById('email').value;
@@ -135,21 +138,34 @@
   // Signed in 
     const user = userCredential.user;
 
-    set(ref(database,'Student Account Details/'+ user.uid),{
+    set(ref(database,'Students Account Details/'+ user.uid),{
     userName:userName,
     email:email,        //never save our password to the database
     })
-    alert('Account created')
-    //window.location.replace("student.html")
-    location.href = "viewStudentProfile.html";
+    //alert('Account created')
+    //window.location.replace("viewStudentProfile.html")
+  
   })
+
+  signInWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+    // Signed in 
+    const dt=new Date();
+    const user = userCredential.user;
+    update(ref(database,'Students Account Details/'+user.uid),{
+    last_login:dt,        
+    })
+    alert('Account created and User Logged');
+    window.location.replace("viewStudentProfile.html")
+          
+    })
     
      
-  .catch((error) => {
+    .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
  
-    alert(errorMessage);
+    //alert(errorMessage);
     });
     
   }

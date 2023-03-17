@@ -129,15 +129,14 @@ signInWithEmailAndPassword(auth, email, password)
 // Signed in 
 const user = userCredential.user;
 const dt=new Date();
-update(ref(database,'Student Account Details/'+user.uid),{
+update(ref(database,'Students Account Details/'+user.uid),{
 last_login:dt,       //never save our password to the database
 })
 
 
 alert('User loged in ');
-// ...
-//window.location.replace("viewStudentProfile.html")
-location.href = "viewStudentProfile.html";
+
+location.href = "editProfile.html";
 })
 .catch((error) => {
 const errorCode = error.code;
