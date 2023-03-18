@@ -18,7 +18,7 @@
 
 
     
-    <title>Edit Profile</title>
+    <title> Profile</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -69,8 +69,11 @@
                        <div class="user-box">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
                       </div>
-                      <h5 class="mb-1 text-white">Judy Kaushalya</h5>
-                      <h6 class="text-light">Software Engineer</h6>
+                      <div>
+                        <span class="mb-1 text-white" id="enterFirstName"></span>
+                        <span class="mb-1 text-white" id="enterSecondName"></span>
+                      </div>
+                      <h6 class="text-light" id="enterRegNumber"></h6>
                      </div>
                       <div class="card-body">
                         <ul class="list-group shadow-none">
@@ -79,7 +82,7 @@
                             <i class="fa fa-phone-square"></i>
                           </div>
                           <div class="list-details">
-                            <span>0766605455</span>
+                            <span id="enterTelNumber"></span>
                             <small>Mobile Number</small>
                           </div>
                         </li>
@@ -88,7 +91,7 @@
                             <i class="fa fa-envelope"></i>
                           </div>
                           <div class="list-details">
-                            <span>en97599@foe.sp.ac.lk</span>
+                            <span id="enterEmail"></span>
                             <small>Email Address</small>
                           </div>
                         </li>
@@ -97,7 +100,7 @@
                             <i class="fa fa-globe"></i>
                           </div>
                           <div class="list-details">
-                            <span>judyKaushaya3@gmail.com</span>
+                            <span id="enterWebsite"></span>
                             <small>Website Address</small>
                           </div>
                         </li>
@@ -117,16 +120,17 @@
                    <div class="card z-depth-3">
                     <div class="card-body">
                     <ul class="nav nav-pills nav-pills-primary nav-justified">
+                      
                         <li class="nav-item">
-                            <a href="viewStudentProfile.html" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
+                            <a href="editProfile.html" data-target="#edit" data-toggle="pill" class="nav-link active show"><i class="icon-note"></i> <span class="hidden-xs"> Profile</span></a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a href="editProfile.html" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit Profile</span></a>
-                        </li>
+                          <a href="viewStudentProfile.html" data-target="#profile" data-toggle="pill" class="nav-link "><i class="icon-user"></i> <span class="hidden-xs">Edit Profile</span></a>
+                      </li>
                     </ul>
                     <div class="tab-content p-3">
-                        <div class="tab-pane" id="profile">
+                        <div class="tab-pane active show" id="profile">
                             <h5 class="mb-3"><strong>User Profile</strong></h5>
                             <div class="row">
                                 <div class="col-md-6">
@@ -151,7 +155,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-primary"><a class="dropdown-item" href="addMedical.html">Download Medical Report</a></button> 
+                                                    <button class="btn btn-primary"><a class="dropdown-item" href="downloadMedical.html">Download Medical Report</a></button> 
                                                 </td>
                                             </tr>
                                             
@@ -162,7 +166,7 @@
                             <!--/row-->
                         </div>
                         
-                        <div class="tab-pane active show" id="edit">
+                        <div class="tab-pane " id="edit">
                             <form>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
@@ -194,21 +198,7 @@
                                         <p class="form-control" type="url" id="enterWebsite"></p>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                                    <div class="col-lg-9">
-                                        <p class="form-control" type="text" id="enterStreet" placeholder="Street"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                                    <div class="col-lg-6">
-                                        <p class="form-control" type="text" id="enterCity" placeholder="City"></p>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <p class="form-control" type="text" id="enterState" placeholder="State"></p>
-                                    </div>
-                                </div>
+                                
                                
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Registration No</label>
@@ -217,13 +207,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="form-group row mt-2">
-                                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                                    <div class="col-lg-9">
-                                        <input type="reset" class="btn btn-secondary" value="Cancel" id="reset">
-                                        <input type="button" class="btn btn-primary" value="Save Changes" id="insert">
-                                    </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -265,12 +249,11 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
          
                                    
                               var enterFirstName=document.querySelector("#enterFirstName");
+                              var enterTelNumber=document.querySelector("#enterTelNumber");
                               var enterSecondName=document.querySelector("#enterSecondName");
                               var enterEmail=document.querySelector("#enterEmail");
                               var enterWebsite=document.querySelector("#enterWebsite");
-                              var enterStreet=document.querySelector("#enterStreet");   
-                              var enterCity=document.querySelector("#enterCity");
-                              var enterState=document.querySelector("#enterState");
+                              
                               var enterRegNumber=document.querySelector("#enterRegNumber");
 
                               var insertBtn=document.querySelector("#insert");
@@ -290,33 +273,30 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
     }
     });        
 
-                              
-function getdata(uid)
+    function getdata(uid)
   {
     const user=auth.currentUser;
     //const uid=user.uid;
     get(ref(db,'Student Profile/'+uid))
     .then((snapshot)=>{
       
-        var firstName=snapshot.val().FirstName;
-        var secondName=snapshot.val().SecondName;
-        var email=snapshot.val().Email;
-        var website=snapshot.val().Website;
-        var street=snapshot.val().Street;
-        var city=snapshot.val().City;
-        var state=snapshot.val().State;
-        var regNumber=snapshot.val().RegNumber;
+        var enterFirstName=snapshot.val().FirstName;
+        var enterTelNumber=snapshot.val().TelNumber;
+        var enterSecondName=snapshot.val().SecondName;
+        var enterEmail=snapshot.val().Email;
+        var enterWebsite=snapshot.val().Website;
+      
+        var enterRegNumber=snapshot.val().RegNumber;
         
 
 
-        document.getElementById('enterFirstName').innerHTML=firstName;
-        document.getElementById('enterSecondName').innerHTML=secondName;
-        document.getElementById('enterEmail').innerHTML=email;
-        document.getElementById('enterWebsite').innerHTML=website;
-        document.getElementById('enterStreet').innerHTML=street;
-        document.getElementById('enterCity').innerHTML=city;
-        document.getElementById('enterState').innerHTML=state;
-        document.getElementById('enterRegNumber').innerHTML=regNumber;
+        document.getElementById('enterFirstName').innerHTML=enterFirstName;
+        document.getElementById('enterTelNumber').innerHTML=enterTelNumber;
+        document.getElementById('enterSecondName').innerHTML=enterSecondName;
+        document.getElementById('enterEmail').innerHTML=enterEmail;
+        document.getElementById('enterWebsite').innerHTML=enterWebsite;
+       
+        document.getElementById('enterRegNumber').innerHTML=enterRegNumber;
       
         
     })
