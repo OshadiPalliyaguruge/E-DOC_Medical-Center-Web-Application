@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
-     
+    <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>  
     
 
@@ -67,7 +67,7 @@
                     <div class="card">
                       <div class="card-body text-center bg-primary rounded-top">
                        <div class="user-box">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" class="img1">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
                       </div>
                       <div>
                         <span class="mb-1 text-white" id="enterFirstName1">Full Name</span>
@@ -91,7 +91,7 @@
                             <i class="fa fa-envelope"></i>
                           </div>
                           <div class="list-details">
-                            <span id="enterEmail1">enxxxxx@foe.sjp.ac.lk</span>
+                            <span id="enterEmail1">xxxx@gmail.com</span>
                             <small>Email Address</small>
                           </div>
                         </li>
@@ -100,7 +100,7 @@
                             <i class="fa fa-globe"></i>
                           </div>
                           <div class="list-details">
-                            <span id="enterWebsite1">xxxxx@gmail.com</span>
+                            <span id="enterWebsite1">xxxx@gmail.com</span>
                             <small>Website Address</small>
                           </div>
                         </li>
@@ -137,9 +137,9 @@
                                     <p>
                                         Web Designer, UI/UX Engineer
                                     </p>
-                                    <h6><strong>Studies</strong></h6>
+                                    <h6><strong>Hobbies</strong></h6>
                                     <p>
-                                      University of sri jayewardenepura
+                                        Indie music, skiing and hiking. I love the great outdoors.
                                     </p>
                                 </div>
                                 
@@ -170,7 +170,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" id="enterFirstName">
+                                        <input class="form-control" type="text" id="enterFirstName" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -182,17 +182,15 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" ><p id="enterEmail"></p>
+                                        <input class="form-control" type="email" id="enterEmail">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="file" id="photo">
+                                        <input class="form-control" type="file">
                                     </div>
-                                     
                                 </div>
-                               
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Website</label>
                                     <div class="col-lg-9">
@@ -211,14 +209,16 @@
                                 <div class="col-lg-9">
                                     <input class="form-control" type="text" id="enterTelNumber">
                                 </div>
-                              </div>
-                             
+                            </div>
+                                
+                               
+                                
+                                
                                 <div class="form-group row mt-2">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
                                         <input type="reset" class="btn btn-secondary" value="Cancel" id="reset">
                                         <input type="button" class="btn btn-primary" value="Save Changes" id="insert">
-                                        <input type="button" class="btn btn-primary" value="Upload Profile" id="upload">
                                     </div>
                                 </div>
                             </form>
@@ -241,7 +241,7 @@
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
             import { getDatabase,set,get,update,remove,ref,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
             import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-            import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+              
           
           
             const firebaseConfig = {
@@ -258,8 +258,6 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
             const app = initializeApp(firebaseConfig);
             const auth = getAuth();
             const db =getDatabase();
-            const storage = getStorage();
-            const storageRef = sRef(storage);
             
          
                                    
@@ -271,8 +269,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                               
                               var enterRegNumber=document.querySelector("#enterRegNumber");
 
-                              var insertBtn1=document.querySelector("#insert");
-                              var insertBtn2=document.querySelector("#upload");
+                              var insertBtn=document.querySelector("#insert");
                               var selecBtn=document.querySelector("#select");
                               var removeBtn=document.querySelector("#remove");
               
@@ -286,7 +283,6 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                                         alert("Please enter all the details");
                                       }
                                   else{
-          
                                   set(ref(db,"Student Profile/"+ uid),{
                                       FirstName:enterFirstName.value,
                                       TelNumber:enterTelNumber.value,
@@ -298,7 +294,6 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                                    
                                      
                                   })
-
                                   .then(()=>{
                                       alert("Data added Successfully!")
                                   })
@@ -306,85 +301,9 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                                       alert(error)
                                   });
                                 
-                                }
                               }
-                              insertBtn1.addEventListener('click',InsertData);
-
-
-
-function uploadImage() {
-    const metadata = {
-    contentType: 'image/jpeg'
-    };
-    const user=auth.currentUser;
-    const uid=user.uid;
-    const file=document.getElementById("photo").files[0];
-    const storageRef = sRef(storage, 'Profile Pictures/' + uid);
-   // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    const img=document.querySelector(".img1");
-    
-
-    uploadTask.on('state_changed',
-    (snapshot) => {
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    
-   
-  
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-    }
-    alert('Upload is 100% done');
-  }, 
-  (error) => {
-    // A full list of error codes is available at
-    // https://firebase.google.com/docs/storage/web/handle-errors
-    switch (error.code) {
-      case 'storage/unauthorized':
-        // User doesn't have permission to access the object
-        break;
-      case 'storage/canceled':
-        // User canceled the upload
-        break;
-
-      // ...
-
-      case 'storage/unknown':
-        // Unknown error occurred, inspect error.serverResponse
-        break;
-    }
-  }, 
-  () => {
-    // Upload completed successfully, now we can get the download URL
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      console.log('File available at', downloadURL);
-      update(sRef(db,'Student Profile/'+user.uid),{
-        Photo: downloadURL,      
-      })
-      const img=document.querySelector(".img");
-      if(downloadURL!="")
-      {
-        img.setAttribute("src",downloadURL);
-        img.style.display="block";
-      }
-    });
-  }
-);
-
-
-
-
-   }
-   insertBtn2.addEventListener('click',uploadImage);
-
-
-
+                            }
+                              insertBtn.addEventListener('click',InsertData);
 
     const user=auth.currentUser;
     onAuthStateChanged(auth, (user) => {
@@ -413,14 +332,10 @@ function getdata(uid)
         // var enterCity=snapshot.val().City;
          var enterTelNumber=snapshot.val().TelNumber;
          var enterRegNumber=snapshot.val().RegNumber;
-
-         const img=document.querySelector(".img1");
-         img.setAttribute("src",downloadURL);
         
 
 
         document.getElementById('enterFirstName1').innerHTML=enterFirstName;
-        document.getElementById('enterFirstName').innerHTML=enterFirstName;
         //document.getElementById('fullName').innerHTML=enterFullName;
          document.getElementById('enterSecondName1').innerHTML=enterSecondName;
          document.getElementById('enterEmail1').innerHTML=enterEmail;
