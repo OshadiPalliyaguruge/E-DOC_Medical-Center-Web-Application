@@ -137,6 +137,7 @@
 //-------------------------------------Filling Table-----------------------//
 
 var tbody=document.getElementById("tbody1");
+var selecBtn=document.querySelector("#edit");
 var No=0;
 var stdList=[];
 
@@ -174,13 +175,35 @@ function AddItemToTable(fullName,regNumber,age,reason,gender){
 
    var ControlDiv = document.createElement("div");
     //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="FillBoxes(null)">Edit Record</button>';
-   ControlDiv.innerHTML+= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick=FillBoxes('+No+') >Edit Record</button>';
+   ControlDiv.innerHTML+= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillBoxes('+No+')" id="edit">Edit Record</button>';
 
    trow.appendChild(ControlDiv);
    tbody.appendChild(trow);
 
 }       
 
+                    // function selectData()
+                    // {
+                    //     const dbref=ref(db);
+                    //     get(child(dbref,"Student Profile/" + nameMod.value)).then((snapshot)=>{
+                    //         if(snapshot.exists()){
+                    //           nameMod.value=snapshot.val().FullName;
+                    //           regMod.value=snapshot.val().RegNumber;
+                    //           ageMod.value=snapshot.val().Age;
+                    //           reasonMod.value=snapshot.val().Reason;
+                    //           genderMod.value=snapshot.val().Gender;
+                                
+                    //         }
+                    //         else{
+                    //             alert("No data found");
+                    //         }
+                    //     })
+                    //     .catch((error)=>{
+                    //         alert(error);
+                    //     })
+                        
+                    // }
+                    // selecBtn.addEventListener('click',selectData);
 var nameMod=document.getElementById("nameMod");
 var regMod=document.getElementById("regMod");
 var ageMod=document.getElementById("ageMod");
@@ -189,6 +212,7 @@ var genderMod=document.getElementById("genderMod");
 
 var updateMod=document.getElementById("update");
 var modal=document.getElementById("modal");
+
 function FillBoxes(index){
   if(index==null){
     nameMod.value="";

@@ -274,7 +274,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                               var removeBtn=document.querySelector("#remove");
               
           
-                              function InsertData()
+                              function InsertData(imageUrl)
                               {
                                   const user=auth.currentUser;
                                   const uid=user.uid;
@@ -289,7 +289,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                                       SecondName:enterSecondName.value,
                                       Email:enterEmail.value,
                                       Website:enterWebsite.value,
-                                      
+                                      Picture :imageUrl,
                                       RegNumber:enterRegNumber.value,
                                    
                                      
