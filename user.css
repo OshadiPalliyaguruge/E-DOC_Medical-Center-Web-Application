@@ -11,3 +11,21 @@ body {
     color: brown;
     text-align: center;
 }
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: auto;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    padding: 7px;
+}
+
+.btn1:hover{
+    background: white;
+    border:1px solid;
+    color: black;
+}
