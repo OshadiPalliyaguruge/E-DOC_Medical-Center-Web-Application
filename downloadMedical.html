@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,19 +95,30 @@
                     
                        tbody.appendChild(trow);
                     
-                    }       
-                    
+                    }     
+
+                    function download(){
+                      // alert("hii");
+                       td3.innerHTML=report;
+                      //  t3.setAttribute("href",report);
+                    }
+
                     function AddAllItemToTable(Student){
                     
                        tbody.innerHTML="";
                        Student.forEach(element=>{
-                           AddItemToTable(element.Date,element.MedicalDescription,element.file);
+                           AddItemToTable(element.Date,element.MedicalDescription,element.DownloadLink);
                        });
                     }
                        
                     //------------------------------import + Configuration---------------------//
                     
                     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                    import { getDatabase,set,ref,child,onValue,get,update,remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+                    import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+                    import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+                   // alert("22");
+                    
                     // TODO: Add SDKs for Firebase products that you want to use
                     // https://firebase.google.com/docs/web/setup#available-libraries
                     
@@ -122,13 +134,9 @@
                     
                     // Initialize Firebase
                     const app = initializeApp(firebaseConfig);
-                    
-                    import{
-                    getDatabase,ref,child,onValue,get
-                    }
-                    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
-                    
-                    const db=getDatabase();
+                    const db=getDatabase(app);
+                    const auth = getAuth();
+                  
                     
                     
                     //-----------------------------Get All Data---------------------------------------//

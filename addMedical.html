@@ -12,7 +12,7 @@
 <body class="d-flex flex-column min-vh-100">
 
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
               <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,17 +48,17 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-4 text-center">
+            <div class="card-body p-2 text-center">
   
-              <h3 class="mb-3">Add Medical</h3>
+              <h3 class="mb-2">Add Medical</h3>
               
   
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Opening Stock"/>
               
               </div>
   
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <input type="text" id="enterDescription" class="form-control form-control-lg" placeholder="Enter description"/>
             
               </div>
@@ -66,11 +66,9 @@
 
              
               <div class="mb-4 d-flex justify-content-center">
-                <input type="file" id="medical" /></br>
+                <input type="file" id="medical" /></br> 
                 <button id="upload">&nbsp; Upload &nbsp;</button>           
               </div>
-
-                    
            
 
             </div>
@@ -83,89 +81,95 @@
   <script type="module">
 
    //------------------------------------getData-----------------------------------//
-    
-   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
-    import { getDatabase,set,ref,get,update,remove,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
-//paste here your copied configuration code
-const firebaseConfig = {
-apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
-authDomain: "se-mini-project-fcee4.firebaseapp.com",
-databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
-projectId: "se-mini-project-fcee4",
-storageBucket: "se-mini-project-fcee4.appspot.com",
-messagingSenderId: "574489212826",
-appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
-};
- 
-const app = initializeApp(firebaseConfig);
-const storage = getStorage();
-const storageRef = sRef(storage);
-            
-            
-            const db =getDatabase();
-            
-            
-            
-                        var enterMedicineName=document.querySelector("#enterDescription");
-                        var enterOpeningStock=document.querySelector("#enterDate");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                    import { getDatabase,set,ref,child,onValue,get,update,remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+                    import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+                    import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+                   
+                    
+                    // TODO: Add SDKs for Firebase products that you want to use
+                    // https://firebase.google.com/docs/web/setup#available-libraries
+                    
+                    // Your web app's Firebase configuration
+                    const firebaseConfig = {
+                      apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+                      authDomain: "se-mini-project-fcee4.firebaseapp.com",
+                      projectId: "se-mini-project-fcee4",
+                      storageBucket: "se-mini-project-fcee4.appspot.com",
+                      messagingSenderId: "574489212826",
+                      appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+                    };
+
+
+  const app = initializeApp(firebaseConfig);
+  const db=getDatabase(app);
+  const auth = getAuth();
+  //const storage = getStorage();
+   
+
+   var enterDescription=document.querySelector("#enterDescription");
+                        var enterDate=document.querySelector("#enterDate");
                         
+ var insertBtn=document.querySelector("#upload");
                         
-                        
-                        var insertBtn=document.querySelector("#upload");
-                        
-                       
-    
-                        function InsertData()
-                        {
-                            if(enterDate.value=="" || enterDescription.value=="" )
-                          {
-                            alert("Please enter all the details");
-                          }
-                          else{
-                            set(ref(db,"Medical Reports/"+enterDate.value ),{
-                                Date:enterDate.value,
-                                MedicalDescription:enterDescription.value,
-                            
-                            
-                            })
-                            .then(()=>{
-                               
-                            })
-                            .catch((error)=>{
-                                alert(error)
-                            });
-    
-                        }
-                        }
-                       
-                        insertBtn.addEventListener('click',InsertData);
+
+
+onAuthStateChanged(auth, (user) => {
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  const uid = user.uid;
+ alert(uid);
+
+    function InsertData(medicalDownloadLink)
+    {
+      
+        if(enterDate.value=="" || enterDescription.value=="" )
+        {
+        alert("Please enter all the details");
+        }
+        else{
+        set(ref(db,"Medical Reports/"+uid ),{
+            Date:enterDate.value,
+            MedicalDescription:enterDescription.value,
+            DownloadLink:medicalDownloadLink
+
+            
+        
+        })
+        .then(()=>{
+            alert('data addeded to medical reports');
+        })
+        .catch((error)=>{
+            alert(error)
+        });
+
+    }
+    }
 
 
                         //---------------------------------Get file----------------------------------------------//
     
-        var submitBtn=document.querySelector("#upload");
+       // var submitBtn=document.querySelector("#upload");
 
 function uploadFile() {
+
+    
     const metadata = {
-    contentType: 'file/pdf'
+    contentType: 'image/jpeg'
     };
-     
+       
     const file=document.getElementById("medical").files[0];
-    const storageRef = sRef(storage, 'Medical Reports/' + file.name);
+    const storage = getStorage();
+    const storageRef = setRef(storage, 'Medical Reports/' + uid);
    // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
     const uploadTask = uploadBytesResumable(storageRef, file);
-    const img=document.querySelector(".img");
-    
 
     uploadTask.on('state_changed',
     (snapshot) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    
-   
-  
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -201,31 +205,29 @@ function uploadFile() {
 
       if(downloadURL!="")
       {
-        img.setAttribute("src",downloadURL);
-        img.style.display="block";
+        InsertData(downloadURL);
       }
     });
   }
 );
-
-
-
-
    }
-   submitBtn.addEventListener('click',uploadFile);
+ 
+   insertBtn.addEventListener('click',uploadFile);
+  // submitBtn.addEventListener('click',uploadFile);
    const errorMsgElement = document.querySelector('span#errorMsg');
-    
+} 
+}); 
               
           </script>
   <!------------------------------------------------------------------------------------------------------------------->
 
   
-  <footer class="bg-light text-lg-start mt-auto ">
+    <footer class="bg-light text-lg-start mt-auto">
       
   
         <hr class="m-0" />
     
-        <div class="text-center py-2 align-items-center">
+        <div class="text-center py-4 align-items-center">
           <div class="name">
             <p>University of Sri Jayewardenepura<br>
               Gangodawila, Nugegoda, Sri Lanka.</p>
@@ -240,7 +242,7 @@ function uploadFile() {
         </div>
     
         <!-- Copyright -->
-        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
           © 2023 Copyright:
           <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
         </div>

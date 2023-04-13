@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
-    <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">  
+    <!-- <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>  
     
 
@@ -67,7 +67,7 @@
                     <div class="card">
                       <div class="card-body text-center bg-primary rounded-top">
                        <div class="user-box">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" id="proPic">
                       </div>
                       <div>
                         <span class="mb-1 text-white" id="enterFirstName1">Full Name</span>
@@ -100,12 +100,12 @@
                             <i class="fa fa-globe"></i>
                           </div>
                           <div class="list-details">
-                            <span id="enterWebsite1">xxxx@gmail.com</span>
-                            <small>Website Address</small>
+                            <span id="enterAddress1">No 46/A west palangathura</span>
+                            <small>Address</small>
                           </div>
                         </li>
                         </ul>
-                        
+                        <br>
                        </div>
                        <div class="card-footer text-center">
                          <a href="javascript:void()" class="btn-social btn-facebook waves-effect waves-light m-1"><i class="fa fa-facebook"></i></a>
@@ -113,6 +113,7 @@
                          <a href="javascript:void()" class="list-inline-item btn-social btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
                          <a href="javascript:void()" class="list-inline-item btn-social btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
                        </div>
+                       <br>
                      </div>
                    </div>
                 </div>
@@ -133,13 +134,13 @@
                             <h5 class="mb-3"><strong>User Profile</strong></h5>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6><strong>About</strong></h6>
-                                    <p>
-                                        Web Designer, UI/UX Engineer
+                                    <h6><strong>Date Of Birth</strong></h6>
+                                    <p id="dob">
+                                        DOB
                                     </p>
-                                    <h6><strong>Hobbies</strong></h6>
-                                    <p>
-                                        Indie music, skiing and hiking. I love the great outdoors.
+                                    <h6><strong>Gender</strong></h6>
+                                    <p id="gender">
+                                        Male/Female
                                     </p>
                                 </div>
                                 
@@ -173,37 +174,50 @@
                                         <input class="form-control" type="text" id="enterFirstName" >
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                     <div class="col-lg-9">
                                         <input class="form-control" type="text" id="enterSecondName">
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                  <label class="col-lg-3 col-form-label form-control-label">Date Of Birth</label>
+                                  <div class="col-lg-9">
+                                      <input class="form-control" type="date" id="enterDOB">
+                                  </div>
+                               </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
                                         <input class="form-control" type="email" id="enterEmail">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="file">
+                                        <input class="form-control" type="file" id="enterProPic">
                                     </div>
                                 </div>
+                                
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                                  <label class="col-lg-3 col-form-label form-control-label">Address</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="url" id="enterWebsite">
+                                        <input class="form-control" type="text" id="enterAddress">
                                     </div>
                                 </div>
+                                 
 
                                 <div class="form-group row">
                                   <label class="col-lg-3 col-form-label form-control-label">Registration No</label>
                                   <div class="col-lg-9">
                                       <input class="form-control" type="text" id="enterRegNumber">
                                   </div>
-                              </div>
+                                </div>
+                                  
                               <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Tel No</label>
                                 <div class="col-lg-9">
@@ -239,9 +253,11 @@
           //------------------------------------getData-----------------------------------//
           
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-            import { getDatabase,set,get,update,remove,ref,child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+            import { getDatabase,set,get,update,remove,ref,child,onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
             import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-              
+            import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+
+   
           
           
             const firebaseConfig = {
@@ -257,98 +273,213 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const auth = getAuth();
-            const db =getDatabase();
+            const db =getDatabase(app);
             
-         
+           
                                    
-                              var enterFirstName=document.querySelector("#enterFirstName");
-                              var enterTelNumber=document.querySelector("#enterTelNumber");
-                              var enterSecondName=document.querySelector("#enterSecondName");
-                              var enterEmail=document.querySelector("#enterEmail");
-                              var enterWebsite=document.querySelector("#enterWebsite");
-                              
-                              var enterRegNumber=document.querySelector("#enterRegNumber");
+                var enterFirstName=document.querySelector("#enterFirstName");
+                var enterSecondName=document.querySelector("#enterSecondName");
+                var enterDOB=document.querySelector("#enterDOB");
+                //var enterAddress=document.querySelector("#enterAddress");
+                var enterTelNumber=document.querySelector("#enterTelNumber");
+                var enterEmail=document.querySelector("#enterEmail");
+                var enterAddress=document.querySelector("#enterAddress");
+                var enterProPic=document.querySelector("#enterProPic");
+                var enterRegNumber=document.querySelector("#enterRegNumber");
+               
 
-                              var insertBtn=document.querySelector("#insert");
-                              var selecBtn=document.querySelector("#select");
-                              var removeBtn=document.querySelector("#remove");
+                var insertBtn=document.querySelector("#insert");
+                var selecBtn=document.querySelector("#select");
+                var removeBtn=document.querySelector("#remove");
+
+
+                const user=auth.currentUser;
+                //const uid=user.uid;
+                onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid=user.uid;
+                    //const userId=user.uid;
+                    //alert(uid);
+                    getdata(uid);
+
+                } else {
+                    //alert("Not signIn!")
+                }
+                }); 
+    
+                function profilePic()
+                {
+                  //alert("hii");    
+                  const user=auth.currentUser;
+                  const uid=user.uid;
+                  var enterGender=getGender();
+                  if(enterFirstName.value=="" || enterSecondName.value=="" || enterRegNumber.value=="" || enterTelNumber.value=="" || enterEmail.value=="" || enterAddress.value=="" || enterProPic.value=="" || enterDOB.value=="" )
+                  {
+                    alert("Please enter all the details");
+                  }
+                  else{
+                  const file=document.getElementById('enterProPic').files[0];
+                
+                  const storage = getStorage();
+                  const storageRef = setRef(storage, 'Profile Pictures/'+uid);
+                
+                  const metadata = {
+                  contentType: 'image/jpeg',};
+
+                // Upload the file
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                // Listen for state changes, errors, and completion of the upload.
+                uploadTask.on('state_changed',
+                  (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+
+                    switch (snapshot.state) {
+                      case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                      case 'running':
+                        console.log('Upload is running');
+                        break;
+                    }
+                   
+                  }, 
+                  (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                      case 'storage/unauthorized':
+                        console.log('Unauthorized Storage !!');
+                        break;
+                      case 'storage/canceled':
+                        console.log('Storage Canceled !!');
+                        break;
+                      case 'storage/unknown':
+                        console.log('Unknown error occured !!');
+                        break;
+                    }
+                  }, 
+                  () => {
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(uploadTask.snapshot.ref)
+                    .then((downloadURL) => {
+                      console.log('File available at', downloadURL);
+                      //var downloadLink=downloadURL;
+                      const img=document.querySelector("#proPic");
+                      //alert(downloadLink);
+                      if(downloadURL!="")
+                      {
+                        //alert("link");
+                        img.setAttribute("src",downloadURL);
+                        img.style.display="block";
+                        alert("Data added Successfully!")
+                       insertData(downloadURL,enterGender);
+                        //alert('sent2');
+                      }
+                      //return downloadURL;
+                     // alert('sent');
+                    });
+                  }
+                )
+
+                }
+              }
+
+
+                function insertData(imageURL)
+                {
+                    const user=auth.currentUser;
+                    const uid=user.uid;
+                   
+                    set(ref(db,"Student Profile/"+ uid),{
+                        FirstName:enterFirstName.value,
+                        SecondName:enterSecondName.value,
+                        BirthDay:enterDOB.value,
+                        
+                        TelNumber:enterTelNumber.value,
+                        Email:enterEmail.value,
+                        Address:enterAddress.value,
+                        Picture :imageURL,
+                        RegNumber:enterRegNumber.value,
+                      
+                        
+                    })
+                    .then(()=>{
+                        // alert("Data added Successfully!")
+                    })
+                    .catch((error)=>{
+                        alert(error)
+                    });
+                    getdata();
+                }
+                
+                insertBtn.addEventListener('click',profilePic);
+
+    
+    
+
+          function getdata()
+          {
+            const user=auth.currentUser;
+            const uid=user.uid;
+            get(ref(db,'Student Profile/'+uid))
+            .then((snapshot)=>{
               
-          
-                              function InsertData(imageUrl)
-                              {
-                                  const user=auth.currentUser;
-                                  const uid=user.uid;
-                                  if(enterFirstName.value=="" || enterSecondName.value=="" || enterRegNumber.value=="" || enterTelNumber.value=="" || enterEmail.value=="" || enterWebsite.value=="")
-                                      {
-                                        alert("Please enter all the details");
-                                      }
-                                  else{
-                                  set(ref(db,"Student Profile/"+ uid),{
-                                      FirstName:enterFirstName.value,
-                                      TelNumber:enterTelNumber.value,
-                                      SecondName:enterSecondName.value,
-                                      Email:enterEmail.value,
-                                      Website:enterWebsite.value,
-                                      Picture :imageUrl,
-                                      RegNumber:enterRegNumber.value,
-                                   
-                                     
-                                  })
-                                  .then(()=>{
-                                      alert("Data added Successfully!")
-                                  })
-                                  .catch((error)=>{
-                                      alert(error)
-                                  });
-                                
-                              }
-                            }
-                              insertBtn.addEventListener('click',InsertData);
-
-    const user=auth.currentUser;
-    onAuthStateChanged(auth, (user) => {
-    if (user) {
-         const uid=user.uid;
-         //alert(uid);
-         getdata(uid);
-
-    } else {
-        //alert("Not signIn!")
-    }
-    });                              
-function getdata(uid)
-  {
-    const user=auth.currentUser;
-    //const uid=user.uid;
-    get(ref(db,'Student Profile/'+uid))
-    .then((snapshot)=>{
-      
-        var enterFirstName=snapshot.val().FirstName;
-        //var enterFullName=snapshot.val().FullName;
-         var enterSecondName=snapshot.val().SecondName;
-         var enterEmail=snapshot.val().Email;
-         var enterWebsite=snapshot.val().Website;
-        // var enterStreet=snapshot.val().Street;
-        // var enterCity=snapshot.val().City;
-         var enterTelNumber=snapshot.val().TelNumber;
-         var enterRegNumber=snapshot.val().RegNumber;
-        
+                var enterFirstName=snapshot.val().FirstName;
+                //var enterFullName=snapshot.val().FullName;
+                var enterSecondName=snapshot.val().SecondName;
+                var enterDOB=snapshot.val().BirthDay;
+                //var enterGender=snapshot.Gender;
+                var enterEmail=snapshot.val().Email;
+                var enterAddress=snapshot.val().Address;
+                // var enterStreet=snapshot.val().Street;
+                // var enterCity=snapshot.val().City;
+                var enterTelNumber=snapshot.val().TelNumber;
+                var enterRegNumber=snapshot.val().RegNumber;
+                var enterProfile=snapshot.val().Picture;
 
 
-        document.getElementById('enterFirstName1').innerHTML=enterFirstName;
-        //document.getElementById('fullName').innerHTML=enterFullName;
-         document.getElementById('enterSecondName1').innerHTML=enterSecondName;
-         document.getElementById('enterEmail1').innerHTML=enterEmail;
-         document.getElementById('enterWebsite1').innerHTML=enterWebsite;
-        // document.getElementById('enterStreet').innerHTML=enterStreet;
-        // document.getElementById('enterCity').innerHTML=enterCity;
-         document.getElementById('enterTelNumber1').innerHTML=enterTelNumber;
-         document.getElementById('enterRegNumber1').innerHTML=enterRegNumber;
-      
-        
-    })
-  }
+                document.getElementById('enterFirstName1').innerHTML=enterFirstName;
+                //document.getElementById('fullName').innerHTML=enterFullName;
+                document.getElementById('enterSecondName1').innerHTML=enterSecondName;
+
+                document.getElementById('dob').innerHTML=enterDOB;
+                
+               
+
+                document.getElementById('enterEmail1').innerHTML=enterEmail;
+                document.getElementById('enterAddress1').innerHTML=enterAddress;
+                // document.getElementById('enterStreet').innerHTML=enterStreet;
+                // document.getElementById('enterCity').innerHTML=enterCity;
+                document.getElementById('enterTelNumber1').innerHTML=enterTelNumber;
+                document.getElementById('enterRegNumber1').innerHTML=enterRegNumber;
+
+                const img=document.querySelector("#proPic");
+        img.setAttribute("src",enterProfile);
+        img.style.display="block";
+              
+                
+            })
+          }     
    
+
+    function getGender() {
+      
+      var checkRadio = document.querySelector(
+        'input[name="inlineRadioOptions"]:checked');
+      if(checkRadio != null) {
+          var gender=checkRadio.value;
+        // alert(checkRadio.value);
+      }
+      else {
+        //alert("Please enter gender");
+        var gender=" ";
+      }
+    
+      return gender;
+	}
 
 </script>
         <footer class="bg-light text-lg-start mt-auto ">

@@ -67,7 +67,7 @@
                     <div class="card">
                       <div class="card-body text-center bg-primary rounded-top">
                        <div class="user-box">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" id="proPic">
                       </div>
                       <div>
                         <span class="mb-1 text-white" id="enterFirstName">Full Name</span>
@@ -100,8 +100,8 @@
                             <i class="fa fa-globe"></i>
                           </div>
                           <div class="list-details">
-                            <span id="enterWebsite">xxxxx@gmail.com</span>
-                            <small>Website Address</small>
+                            <span id="enterAddress">No 46/A west palangathura</span>
+                            <small>Address</small>
                           </div>
                         </li>
                         </ul>
@@ -131,20 +131,22 @@
                     </ul>
                     <div class="tab-content p-3">
                         <div class="tab-pane active show" id="profile">
-                            <h5 class="mb-3"><strong>User Profile</strong></h5>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6><strong>About</strong></h6>
-                                    <p>
-                                        Web Designer, UI/UX Engineer
-                                    </p>
-                                    <h6><strong>Studies</strong></h6>
-                                    <p>
-                                      University of sri jayewardenepura
-                                    </p>
-                                </div>
-                                
+                          <h5 class="mb-3"><strong>User Profile</strong></h5>
+                          <div class="row">
+                              <div class="col-md-6">
+                                <h6><strong>About</strong></h6>
+                                  <p >
+                                      Undergraduate in USJ
+                                  </p>
+                                  <h6><strong>Date Of Birth</strong></h6>
+                                  <p id="dob">
+                                      DOB
+                                  </p>
+                                  
+                              </div>
+                               
                                 <div class="col-md-12">
+                
                                     <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-left"></span>&nbsp;&nbsp;<strong>Activity</strong></h5>
                                     <table>
                                         <tbody>                                    
@@ -228,7 +230,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
   import { getDatabase,set,ref,child,onValue,get} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
   import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-  
+  import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+
           
           
             const firebaseConfig = {
@@ -249,10 +252,14 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
          
                                    
                               var enterFirstName=document.querySelector("#enterFirstName");
-                              var enterTelNumber=document.querySelector("#enterTelNumber");
                               var enterSecondName=document.querySelector("#enterSecondName");
+
+                              var enterDOB=document.querySelector("#dob");
+                              
+
+                              var enterTelNumber=document.querySelector("#enterTelNumber");
                               var enterEmail=document.querySelector("#enterEmail");
-                              var enterWebsite=document.querySelector("#enterWebsite");
+                              var enterAddress=document.querySelector("#enterAddress");
                               
                               var enterRegNumber=document.querySelector("#enterRegNumber");
 
@@ -266,8 +273,8 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
     if (user) {
          const uid=user.uid;
          //alert(uid);
+        
          getdata(uid);
-
     } else {
         //alert("Not signIn!")
     }
@@ -283,9 +290,12 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
         var enterFirstName=snapshot.val().FirstName;
         var enterTelNumber=snapshot.val().TelNumber;
         var enterSecondName=snapshot.val().SecondName;
+        var enterDOB=snapshot.val().BirthDay;
+        
+        var enterSecondName=snapshot.val().SecondName;
         var enterEmail=snapshot.val().Email;
-        var enterWebsite=snapshot.val().Website;
-      
+        var enterAddress=snapshot.val().Address;
+        var enterProfile=snapshot.val().Picture;
         var enterRegNumber=snapshot.val().RegNumber;
         
 
@@ -294,11 +304,17 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
         document.getElementById('enterTelNumber').innerHTML=enterTelNumber;
         document.getElementById('enterSecondName').innerHTML=enterSecondName;
         document.getElementById('enterEmail').innerHTML=enterEmail;
-        document.getElementById('enterWebsite').innerHTML=enterWebsite;
-       
+        document.getElementById('enterAddress').innerHTML=enterAddress;
+       // document.getElementById('proPic').innerHTML=enterProfile;
         document.getElementById('enterRegNumber').innerHTML=enterRegNumber;
-      
-        
+
+        document.getElementById('dob').innerHTML=enterDOB;
+       
+
+        const img=document.querySelector("#proPic");
+        img.setAttribute("src",enterProfile);
+        img.style.display="block";
+             // alert('sent1');
     })
   }
    
