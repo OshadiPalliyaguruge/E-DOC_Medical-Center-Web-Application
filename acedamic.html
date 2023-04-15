@@ -57,7 +57,8 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">LOGIN<br>
-                <small><small>- Student -</small></small></h3>
+              <small><small>- Acedamic -</small></small></h3>
+
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control form-control-lg" placeholder="E-mail"/>
           
@@ -83,8 +84,8 @@
     
 
             <hr class="my-4">
-            <a href="forgotStudent.html">forgot password</a>
-            <p>Don't have an account? <a href="createStudent.html">Register here</a></p>
+            <a href="forgotAcedamic.html">forgot password</a>
+            <p>Don't have an account? <a href="createAcedamic.html">Register here</a></p>
 
           </div>
         </div>
@@ -129,14 +130,14 @@ signInWithEmailAndPassword(auth, email, password)
 // Signed in 
 const user = userCredential.user;
 const dt=new Date();
-update(ref(database,'Students Account Details/'+user.uid),{
+update(ref(database,'Acedamic Account Details/'+user.uid),{
 last_login:dt,       //never save our password to the database
 })
 
 
 alert('User loged in ');
 
-location.href = "editProfile.html";
+location.href = "editAcedamicProfile.html";
 })
 .catch((error) => {
 const errorCode = error.code;

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="viewStudentProfile.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/css/Bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>  
+    
+
+
+    
+    <title> Edit Profile</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+              <div class="container-fluid">
+                <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                  <div class="navbar-nav ms-auto  mb-2 mb-lg-0 n">
+                    
+                    <div class="nav-item ">
+                      <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link " href="about.html">About</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link " href="doctor.html">Doctors</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link " href="other.html">Other</a>
+                    </div>
+  
+                    <div class="nav-item">
+                      <a class="nav-link " href="index.html"><i class="bi bi-box-arrow-right"></i>Log out</a>
+                      
+                    </div>
+  
+                    
+                  </div>
+                </div>
+              </div>
+            </nav>
+      </header>
+
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-4">
+                   <div class="profile-card-4 z-depth-1">
+                    <div class="card">
+                      <div class="card-body text-center bg-primary rounded-top">
+                       <div class="user-box">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" id="proPic">
+                      </div>
+                      <div>
+                        <span class="mb-1 text-white" id="enterFirstName1">Full Name</span>
+                        <span class="mb-1 text-white" id="enterSecondName1"></span>
+                      </div>
+                      <h6 class="text-light" id="enterRegNumber1">SIDxxxx</h6>
+                     </div>
+                      <div class="card-body">
+                        <ul class="list-group shadow-none">
+                        <li class="list-group-item">
+                          <div class="list-icon">
+                            <i class="fa fa-phone-square"></i>
+                          </div>
+                          <div class="list-details">
+                            <span id="enterTelNumber1">xxxxxxxxxx</span>
+                            <small>Mobile Number</small>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="list-icon">
+                            <i class="fa fa-envelope"></i>
+                          </div>
+                          <div class="list-details">
+                            <span id="enterEmail1">xxxx@gmail.com</span>
+                            <small>Email Address</small>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="list-icon">
+                            <i class="fa fa-globe"></i>
+                          </div>
+                          <div class="list-details">
+                            <span id="enterAddress1">No 46/A west palangathura</span>
+                            <small>Address</small>
+                          </div>
+                        </li>
+                        </ul>
+                        <br>
+                       </div>
+                       <div class="card-footer text-center">
+                         <a href="javascript:void()" class="btn-social btn-facebook waves-effect waves-light m-1"><i class="fa fa-facebook"></i></a>
+                         <a href="javascript:void()" class="btn-social btn-google-plus waves-effect waves-light m-1"><i class="fa fa-google-plus"></i></a>
+                         <a href="javascript:void()" class="list-inline-item btn-social btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
+                         <a href="javascript:void()" class="list-inline-item btn-social btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
+                       </div>
+                       <br>
+                     </div>
+                   </div>
+                </div>
+                <div class="col-lg-8">
+                   <div class="card z-depth-3">
+                    <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-primary nav-justified">
+                       
+                        <li class="nav-item">
+                            <a href="editNonAcedamicProfile.html" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs"> Profile</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="viewNonAcedamicProfile.html" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs"> Edit Profile</span></a>
+                      </li>
+                    </ul>
+                    <div class="tab-content p-3">
+                        <div class="tab-pane" id="profile">
+                            <h5 class="mb-3"><strong>User Profile</strong></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><strong>Date Of Birth</strong></h6>
+                                    <p id="dob">
+                                        DOB
+                                    </p>
+                                    <h6><strong>Gender</strong></h6>
+                                    <p id="gender">
+                                        Male/Female
+                                    </p>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-left"></span>&nbsp;&nbsp;<strong>Activity</strong></h5>
+                                    <table>
+                                        <tbody>                                    
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-primary"><a class="dropdown-item" href="addMedical.html">Add Medical Report</a></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-primary"><a class="dropdown-item" href="addMedical.html">Download Medical Report</a></button> 
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--/row-->
+                        </div>
+                        
+                        <div class="tab-pane active show" id="edit">
+                            <form>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="enterFirstName" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="enterSecondName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label class="col-lg-3 col-form-label form-control-label">Date Of Birth</label>
+                                  <div class="col-lg-9">
+                                      <input class="form-control" type="date" id="enterDOB">
+                                  </div>
+                               </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="email" id="enterEmail">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="file" id="enterProPic">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                  <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="enterAddress">
+                                    </div>
+                                </div>
+                                 
+
+                                <div class="form-group row">
+                                  <label class="col-lg-3 col-form-label form-control-label">Staff ID</label>
+                                  <div class="col-lg-9">
+                                      <input class="form-control" type="text" id="enterRegNumber">
+                                  </div>
+                                </div>
+                                  
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Tel No</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" id="enterTelNumber">
+                                </div>
+                            </div>
+                                
+                               
+                                
+                                
+                                <div class="form-group row mt-2">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel" id="reset">
+                                        <input type="button" class="btn btn-primary" value="Save Changes" id="insert">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+                
+            </div>
+        </div>
+
+
+
+
+        <script type="module">
+
+          //------------------------------------getData-----------------------------------//
+          
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+            import { getDatabase,set,get,update,remove,ref,child,onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+            import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+            import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+
+   
+          
+          
+            const firebaseConfig = {
+apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+authDomain: "se-mini-project-fcee4.firebaseapp.com",
+databaseURL: "https://se-mini-project-fcee4-default-rtdb.firebaseio.com",
+projectId: "se-mini-project-fcee4",
+storageBucket: "se-mini-project-fcee4.appspot.com",
+messagingSenderId: "574489212826",
+appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+};
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+            const db =getDatabase(app);
+            
+           
+                                   
+                var enterFirstName=document.querySelector("#enterFirstName");
+                var enterSecondName=document.querySelector("#enterSecondName");
+                var enterDOB=document.querySelector("#enterDOB");
+                //var enterAddress=document.querySelector("#enterAddress");
+                var enterTelNumber=document.querySelector("#enterTelNumber");
+                var enterEmail=document.querySelector("#enterEmail");
+                var enterAddress=document.querySelector("#enterAddress");
+                var enterProPic=document.querySelector("#enterProPic");
+                var enterRegNumber=document.querySelector("#enterRegNumber");
+               
+
+                var insertBtn=document.querySelector("#insert");
+                var selecBtn=document.querySelector("#select");
+                var removeBtn=document.querySelector("#remove");
+
+
+                const user=auth.currentUser;
+                //const uid=user.uid;
+                onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid=user.uid;
+                    //const userId=user.uid;
+                    //alert(uid);
+                    getdata(uid);
+
+                } else {
+                    //alert("Not signIn!")
+                }
+                }); 
+    
+                function profilePic()
+                {
+                  //alert("hii");    
+                  const user=auth.currentUser;
+                  const uid=user.uid;
+                  var enterGender=getGender();
+                  if(enterFirstName.value=="" || enterSecondName.value=="" || enterRegNumber.value=="" || enterTelNumber.value=="" || enterEmail.value=="" || enterAddress.value=="" || enterProPic.value=="" || enterDOB.value=="" )
+                  {
+                    alert("Please enter all the details");
+                  }
+                  else{
+                  const file=document.getElementById('enterProPic').files[0];
+                
+                  const storage = getStorage();
+                  const storageRef = setRef(storage, 'Profile Pictures/'+uid);
+                
+                  const metadata = {
+                  contentType: 'image/jpeg',};
+
+                // Upload the file
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                // Listen for state changes, errors, and completion of the upload.
+                uploadTask.on('state_changed',
+                  (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+
+                    switch (snapshot.state) {
+                      case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                      case 'running':
+                        console.log('Upload is running');
+                        break;
+                    }
+                   
+                  }, 
+                  (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                      case 'storage/unauthorized':
+                        console.log('Unauthorized Storage !!');
+                        break;
+                      case 'storage/canceled':
+                        console.log('Storage Canceled !!');
+                        break;
+                      case 'storage/unknown':
+                        console.log('Unknown error occured !!');
+                        break;
+                    }
+                  }, 
+                  () => {
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(uploadTask.snapshot.ref)
+                    .then((downloadURL) => {
+                      console.log('File available at', downloadURL);
+                      //var downloadLink=downloadURL;
+                      const img=document.querySelector("#proPic");
+                      //alert(downloadLink);
+                      if(downloadURL!="")
+                      {
+                        //alert("link");
+                        img.setAttribute("src",downloadURL);
+                        img.style.display="block";
+                        alert("Data added Successfully!")
+                       insertData(downloadURL,enterGender);
+                        //alert('sent2');
+                      }
+                      //return downloadURL;
+                     // alert('sent');
+                    });
+                  }
+                )
+
+                }
+              }
+
+
+                function insertData(imageURL)
+                {
+                    const user=auth.currentUser;
+                    const uid=user.uid;
+                   
+                    set(ref(db,"Non Acedamic Profile/"+ uid),{
+                        FirstName:enterFirstName.value,
+                        SecondName:enterSecondName.value,
+                        BirthDay:enterDOB.value,
+                        
+                        TelNumber:enterTelNumber.value,
+                        Email:enterEmail.value,
+                        Address:enterAddress.value,
+                        Picture :imageURL,
+                        RegNumber:enterRegNumber.value,
+                      
+                        
+                    })
+                    .then(()=>{
+                        // alert("Data added Successfully!")
+                    })
+                    .catch((error)=>{
+                        alert(error)
+                    });
+                    getdata();
+                }
+                
+                insertBtn.addEventListener('click',profilePic);
+
+    
+    
+
+          function getdata()
+          {
+            const user=auth.currentUser;
+            const uid=user.uid;
+            get(ref(db,'Non Acedamic Profile/'+uid))
+            .then((snapshot)=>{
+              
+                var enterFirstName=snapshot.val().FirstName;
+                //var enterFullName=snapshot.val().FullName;
+                var enterSecondName=snapshot.val().SecondName;
+                var enterDOB=snapshot.val().BirthDay;
+                //var enterGender=snapshot.Gender;
+                var enterEmail=snapshot.val().Email;
+                var enterAddress=snapshot.val().Address;
+                // var enterStreet=snapshot.val().Street;
+                // var enterCity=snapshot.val().City;
+                var enterTelNumber=snapshot.val().TelNumber;
+                var enterRegNumber=snapshot.val().RegNumber;
+                var enterProfile=snapshot.val().Picture;
+
+
+                document.getElementById('enterFirstName1').innerHTML=enterFirstName;
+                //document.getElementById('fullName').innerHTML=enterFullName;
+                document.getElementById('enterSecondName1').innerHTML=enterSecondName;
+
+                document.getElementById('dob').innerHTML=enterDOB;
+                
+               
+
+                document.getElementById('enterEmail1').innerHTML=enterEmail;
+                document.getElementById('enterAddress1').innerHTML=enterAddress;
+                // document.getElementById('enterStreet').innerHTML=enterStreet;
+                // document.getElementById('enterCity').innerHTML=enterCity;
+                document.getElementById('enterTelNumber1').innerHTML=enterTelNumber;
+                document.getElementById('enterRegNumber1').innerHTML=enterRegNumber;
+
+                const img=document.querySelector("#proPic");
+        img.setAttribute("src",enterProfile);
+        img.style.display="block";
+              
+                
+            })
+          }     
+   
+
+    function getGender() {
+      
+      var checkRadio = document.querySelector(
+        'input[name="inlineRadioOptions"]:checked');
+      if(checkRadio != null) {
+          var gender=checkRadio.value;
+        // alert(checkRadio.value);
+      }
+      else {
+        //alert("Please enter gender");
+        var gender=" ";
+      }
+    
+      return gender;
+	}
+
+</script>
+        <footer class="bg-light text-lg-start mt-auto ">
+      
+  
+            <hr class="m-0" />
+        
+            <div class="text-center py-2 align-items-center">
+              <div class="name">
+                <p>University of Sri Jayewardenepura<br>
+                  Gangodawila, Nugegoda, Sri Lanka.</p>
+              </div>
+      
+              <div class="name">
+                <p>+94 11 2758000, +94 11 2802022<br>
+                  +94 11 2801024, +94 11 2801025</p>
+              </div>
+             
+              </a>
+            </div>
+        
+            <!-- Copyright -->
+            <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2023 Copyright:
+              <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
+            </div>
+            <!-- Copyright -->
+          </footer>
+          
+      
+      
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

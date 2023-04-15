@@ -82,11 +82,19 @@
             
               </div>
 
-              <div class="form-outline mb-2">
-                <input type="radio" id="enterGender" name="gender" value="male"> &nbsp;Male
-                <input type="radio" id="enterGender" name="gender" value="female">&nbsp; Female
-
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+                  value="Female"/>
+                <label class="form-check-label" for="gender">Female</label>
               </div>
+
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+                  value="Male"/>
+                <label class="form-check-label" for="gender">Male</label>
+              </div>
+              <br><br>
+
                 <input type="submit" id="insert" class="btn btn-primary btn-lg btn-block" value="Add Data">
               <hr>
 
@@ -134,15 +142,34 @@
                         var enterPosition=document.querySelector("#enterPosition");
                         var enterAge=document.querySelector("#enterAge");   
                         var enterReason=document.querySelector("#enterReason");
-                        var enterGender=document.querySelector("#enterGender");
+                        //var enterGender=document.querySelector("#enterGender");
                         
                         
                         
                         var insertBtn=document.querySelector("#insert");
                 
+
+
+
+                        function getGender() 
+                        {
+                            var checkRadio = document.querySelector(
+                              'input[name="inlineRadioOptions"]:checked');
+                            if(checkRadio != null) {
+                                var gender=checkRadio.value;
+                              // alert(checkRadio.value);
+                            }
+                            else {
+                              //alert("Please enter gender");
+                              var gender=" ";
+                            }
+                            return gender;
+                        }
+
                         function InsertData()
                         {
-                          if(enterFullName.value=="" || enterStaffID.value=="" ||enterPosition.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender.value=="" )
+                          var enterGender=getGender();
+                          if(enterFullName.value=="" || enterStaffID.value=="" ||enterPosition.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender=="" )
                           {
                             alert("Please enter all the details");
                           }else{
@@ -153,7 +180,7 @@
                                 Position:enterPosition.value,
                                 Age:enterAge.value,
                                 Reason:enterReason.value,
-                                Gender:enterGender.value,
+                                Gender:enterGender,
                                 
                                 
                             })

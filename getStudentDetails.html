@@ -113,9 +113,20 @@
         <label class="labs">Reason: </label>
         <input type="text" id="reasonMod"><br>
         <label class="labs">Gender: </label>
-        <input type="radio" id="genderMod" name="gender" value="male"> Male
-        <input type="radio" id="genderMod" name="gender" value="female"> Female
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+            value="Female"/>
+          <label class="form-check-label" for="gender">Female</label>
+        </div>
+
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+            value="Male"/>
+          <label class="form-check-label" for="gender">Male</label>
+        </div>
+        <br><br>
       </div>
+
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="Update()" id="update">Save changes</button>
@@ -208,7 +219,7 @@ var nameMod=document.getElementById("nameMod");
 var regMod=document.getElementById("regMod");
 var ageMod=document.getElementById("ageMod");
 var reasonMod=document.getElementById("reasonMod");
-var genderMod=document.getElementById("genderMod");
+//var genderMod=document.getElementById("genderMod");
 
 var updateMod=document.getElementById("update");
 var modal=document.getElementById("modal");
@@ -219,7 +230,7 @@ function FillBoxes(index){
     regMod.value="";
     ageMod.value="";
     reasonMod.value="";
-    genderMod.value="";
+    genderMod="";
   }
   else{
     --index;
@@ -227,7 +238,7 @@ function FillBoxes(index){
     regMod.value=stdList[index][1];
     ageMod.value=stdList[index][2];
     reasonMod.value=stdList[index][3];
-    genderMod.value=stdList[index][4];
+    genderMod=stdList[index][4];
   }
 }
 
@@ -270,6 +281,7 @@ const db=getDatabase();
 //-----------------------------Get All Data---------------------------------------//
 
 function GetAllDataOnce(){
+var genderMod=getGender();
 const dbRef=ref(db);
 
 get(child(dbRef,"Add New Record"))
@@ -283,6 +295,22 @@ get(child(dbRef,"Add New Record"))
  AddAllItemToTable(Student);
 })
 }
+
+function getGender() 
+{
+    var checkRadio = document.querySelector(
+      'input[name="inlineRadioOptions"]:checked');
+    if(checkRadio != null) {
+        var gender=checkRadio.value;
+      // alert(checkRadio.value);
+    }
+    else {
+      //alert("Please enter gender");
+      var gender=" ";
+    }
+    return gender;
+}
+
 
 window.onload=GetAllDataOnce;
 
