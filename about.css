@@ -20,11 +20,11 @@
     color: black;
 }
 
-.card-body {
+.card{
     background-image: url("Photos/FOE.avif") ;
     background-size: cover;
     display: flex;
-    height: 500px;
+    height: 700px;
     position: relative;
 
  }
