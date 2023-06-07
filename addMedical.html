@@ -109,7 +109,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
    
 
    var enterDescription=document.querySelector("#enterDescription");
-                        var enterDate=document.querySelector("#enterDate");
+   var enterDate=document.querySelector("#enterDate");
                         
  var insertBtn=document.querySelector("#upload");
                         
@@ -124,19 +124,18 @@ if (user) {
 
     function InsertData(medicalDownloadLink)
     {
-      
+      const user=auth.currentUser;
+      const uid=user.uid;
         if(enterDate.value=="" || enterDescription.value=="" )
         {
         alert("Please enter all the details");
         }
         else{
-        set(ref(db,"Medical Reports/"+uid ),{
+        set(ref(db,"Medical Reports/"+uid+"/Report/"+enterDate.value),{
             Date:enterDate.value,
             MedicalDescription:enterDescription.value,
             DownloadLink:medicalDownloadLink
-
-            
-        
+ 
         })
         .then(()=>{
             alert('data addeded to medical reports');
@@ -159,6 +158,10 @@ function uploadFile() {
     const metadata = {
     contentType: 'image/jpeg'
     };
+
+
+    const user=auth.currentUser;
+    const uid=user.uid;
        
     const file=document.getElementById("medical").files[0];
     const storage = getStorage();
