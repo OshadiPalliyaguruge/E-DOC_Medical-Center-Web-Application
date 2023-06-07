@@ -56,8 +56,8 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <h3 class="mb-3">LOGIN<br>
-                <small><small>- Student -</small></small></h3>
+            <h3 class="mb-3">LOGIN<br></h3>
+                
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control form-control-lg" placeholder="E-mail"/>
           
@@ -84,7 +84,7 @@
 
             <hr class="my-4">
             <a href="forgotStudent.html">forgot password</a>
-            <p>Don't have an account? <a href="createStudent.html">Register here</a></p>
+            <p>Don't have an account? <a href="createAcedamic.html">Register here</a></p>
 
           </div>
         </div>
@@ -123,8 +123,10 @@ login.addEventListener('click',(e)=>{
 
 var email=document.getElementById('email').value;
 var password=document.getElementById('password').value;
-
-signInWithEmailAndPassword(auth, email, password)
+var domain= email.substring(email.indexOf('@')+1)
+if(domain=='foe.sjp.ac.lk')
+{
+  signInWithEmailAndPassword(auth, email, password)
 .then((userCredential) => {
 // Signed in 
 const user = userCredential.user;
@@ -143,6 +145,72 @@ const errorCode = error.code;
 const errorMessage = error.message;
 alert('You entered Email or Password is Incorrect');
 });
+}else if(domain=='sid.foe.sjp.lk')
+{
+signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+// Signed in 
+const user = userCredential.user;
+const dt=new Date();
+update(ref(database,'Non Acedamic Account Details/'+user.uid),{
+last_login:dt,       //never save our password to the database
+})
+
+
+alert('User loged in ');
+
+location.href = "editNonAcedamicProfile.html";
+})
+.catch((error) => {
+const errorCode = error.code;
+const errorMessage = error.message;
+alert('You entered Email or Password is Incorrect');
+});
+}else if(domain=='pid.foe.sjp.lk'){
+  signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+// Signed in 
+const user = userCredential.user;
+const dt=new Date();
+update(ref(database,'Acedamic Account Details/'+user.uid),{
+last_login:dt,       //never save our password to the database
+})
+
+
+alert('User loged in ');
+
+location.href = "editAcedamicProfile.html";
+})
+.catch((error) => {
+const errorCode = error.code;
+const errorMessage = error.message;
+alert('You entered Email or Password is Incorrect');
+});
+}else if(domain=='admin.foe.sjp.lk'){
+  signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+// Signed in 
+const user = userCredential.user;
+const dt=new Date();
+update(ref(database,'Admins Account Details/'+user.uid),{
+last_login:dt,       //never save our password to the database
+})
+
+
+alert('Admin loged in ');
+// ..
+  window.location.replace("adminPage.html")
+})
+.catch((error) => {
+const errorCode = error.code;
+const errorMessage = error.message;
+alert('You entered Email or Password is Incorrect');
+});
+
+}
+else{
+  alert('You dont have an access!');
+}
 
 })
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account For student</title>
+    <title>Create Account </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="createStudent.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
@@ -51,7 +51,7 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-3">SIGN IN<br>
-              <small><small>- Acedamic -</small></small></h3>
+              <small><small>- User -</small></small></h3>
 
 
             <div class="form-outline mb-4">
@@ -128,6 +128,8 @@
   var password1=document.getElementById('password1').value;
   var password2=document.getElementById('password2').value;
   var userName=document.getElementById('userName').value;
+  var domain= email.substring(email.indexOf('@')+1)
+  
 
   if(password1 != password2)  
   {   
@@ -135,7 +137,79 @@
   } 
   else 
   {  
-    createUserWithEmailAndPassword(auth, email, password1,password2)
+    if(domain=='foe.sjp.ac.lk')
+    {
+      createUserWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+  // Signed in 
+    const user = userCredential.user;
+
+    set(ref(database,'Students Account Details/'+ user.uid),{
+    userName:userName,
+    email:email,        //never save our password to the database
+    })
+    //alert('Account created')
+    //window.location.replace("viewStudentProfile.html")
+  
+  })
+
+  signInWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+    // Signed in 
+    const dt=new Date();
+    const user = userCredential.user;
+    update(ref(database,'Students Account Details/'+user.uid),{
+    last_login:dt,        
+    })
+    alert('Account created and User Logged');
+    window.location.replace("viewStudentProfile.html")
+          
+    })
+    
+     
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+ 
+    //alert(errorMessage);
+    });
+    }else if(domain=='sid.foe.sjp.lk'){
+      createUserWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+  // Signed in 
+    const user = userCredential.user;
+
+    set(ref(database,'Non Acedamic Account Details/'+ user.uid),{
+    userName:userName,
+    email:email,        //never save our password to the database
+    })
+    //alert('Account created')
+    //window.location.replace("viewStudentProfile.html")
+  
+  })
+
+  signInWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+    // Signed in 
+    const dt=new Date();
+    const user = userCredential.user;
+    update(ref(database,'Non Acedamic Account Details/'+user.uid),{
+    last_login:dt,        
+    })
+    alert('Account created and User Logged');
+    window.location.replace("viewNonAcedamicProfile.html")
+          
+    })
+    
+     
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+ 
+    //alert(errorMessage);
+    });
+    }else if(domain=='pid.foe.sjp.lk'){
+      createUserWithEmailAndPassword(auth, email, password1,password2)
     .then((userCredential) => {
   // Signed in 
     const user = userCredential.user;
@@ -169,6 +243,31 @@
  
     //alert(errorMessage);
     });
+    }else if(domain=='admin.foe.sjp.lk')
+    {
+      createUserWithEmailAndPassword(auth, email, password1,password2)
+    .then((userCredential) => {
+  // Signed in 
+    const user = userCredential.user;
+
+    set(ref(database,'Admins Account Details/'+user.uid),{
+    userName:userName,
+    email:email,        //never save our password to the database
+    })
+    alert('Account created');
+    window.location.replace("adminPage.html") 
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+ 
+    alert('You entered Email or Password is Incorrect');
+    });
+    }
+    else{
+      alert('You dont have an access!');
+    }
+
     
   }
   })

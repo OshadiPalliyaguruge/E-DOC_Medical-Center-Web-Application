@@ -139,7 +139,13 @@ last_login:dt,       //never save our password to the database
 
 alert('Admin loged in ');
 // ...
-window.location.replace("adminPage.html")
+if (email=='judy123@gmail.com')
+{
+  window.location.replace("adminPage.html")
+}else{
+  window.location.replace("about.html")
+}
+
 })
 .catch((error) => {
 const errorCode = error.code;
