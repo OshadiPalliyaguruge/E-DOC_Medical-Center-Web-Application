@@ -64,11 +64,12 @@
             <input id="SearchBar" type="text" class="form-control" placeholder="Search A Record" >
             <select id="CategorySelected">
               <option selected>Choose...</option>
-              <option value="1">FullName</option>
-              <option value="2">Registration No</option>
-              <option value="3">Age</option>
-              <option value="4">Reason</option>
-              <option value="5">Gender</option>
+              <option value="1">Date</option>
+              <option value="2">FullName</option>
+              <option value="3">Registration No</option>
+              <option value="4">Age</option>
+              <option value="5">Reason</option>
+              <option value="6">Gender</option>
               
             </select>
             <button id="SearchBtn" class="btn btn-outline-primary ml-1" type="button" id="button-addon2">Search</button>  
@@ -79,6 +80,7 @@
         <table class="table table-striped bg-light table-bordered">
         <thead>
           <th></th>
+          <th>Date</th>
             <th>FullName</th>
             <th>Registration No</th>
             <th>Age</th>
@@ -129,7 +131,7 @@
 
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="Update()" id="update">Save changes</button>
+        <button type="button" class="btn btn-primary" id="update">Save changes</button>
       </div>
     </div>
   </div>
@@ -163,7 +165,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 import{
-getDatabase,ref,child,onValue,get
+getDatabase,ref,child,onValue,get,set
 }
 from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
@@ -171,7 +173,7 @@ const db=getDatabase();
 
 
 
-var selecBtn=document.querySelector("#edit");
+var selectBtn=document.querySelector("#edit");
 var No=0;
 var stdList=[];
 
@@ -195,7 +197,7 @@ function Select_AllData(){
 window.onload=Select_AllData;
 //-------------------------------------Filling Table-----------------------//
 
-function AddItemToTable(fullName,regNumber,age,reason,gender){
+function AddItemToTable(date,fullName,regNumber,age,reason,gender){
   var tbody=document.getElementById("tbody1");
    let trow=document.createElement("tr");
    let td0=document.createElement('td');
@@ -204,20 +206,23 @@ function AddItemToTable(fullName,regNumber,age,reason,gender){
    let td3=document.createElement('td');
    let td4=document.createElement('td');
    let td5=document.createElement('td');
+   let td6=document.createElement('td');
   
-   stdList.push([fullName,regNumber,age,reason,gender]);
+   stdList.push([date,fullName,regNumber,age,reason,gender]);
    td0.innerHTML=++No;
-   td1.innerHTML=fullName;
-   td2.innerHTML=regNumber;
-   td3.innerHTML=age;
-   td4.innerHTML=reason;
-   td5.innerHTML=gender;
+   td1.innerHTML=date;
+   td2.innerHTML=fullName;
+   td3.innerHTML=regNumber;
+   td4.innerHTML=age;
+   td5.innerHTML=reason;
+   td6.innerHTML=gender;
 
-  td1.classList +="fullNameField";
-  td2.classList +="regNumberField";
-  td3.classList +="ageField";
-  td4.classList +="reasonField";
-  td5.classList +="genderField";
+  td1.classList +="dateField";
+  td2.classList +="fullNameField";
+  td3.classList +="regNumberField";
+  td4.classList +="ageField";
+  td5.classList +="reasonField";
+  td6.classList +="genderField";
 
 
    trow.appendChild(td0);
@@ -226,46 +231,48 @@ function AddItemToTable(fullName,regNumber,age,reason,gender){
    trow.appendChild(td3);
    trow.appendChild(td4);
    trow.appendChild(td5);
+   trow.appendChild(td6);
 
 
    var ControlDiv = document.createElement("div");
-    //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="FillBoxes(null)">Edit Record</button>';
-   ControlDiv.innerHTML+= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
+   //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="FillBoxes(null)">Edit Record</button>';
+   ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
 
    trow.appendChild(ControlDiv);
    tbody.appendChild(trow);
 
 }       
 
-                    // function selectData()
-                    // {
-                    //     const dbref=ref(db);
-                    //     get(child(dbref,"Student Profile/" + nameMod.value)).then((snapshot)=>{
-                    //         if(snapshot.exists()){
-                    //           nameMod.value=snapshot.val().FullName;
-                    //           regMod.value=snapshot.val().RegNumber;
-                    //           ageMod.value=snapshot.val().Age;
-                    //           reasonMod.value=snapshot.val().Reason;
-                    //           genderMod.value=snapshot.val().Gender;
+                    function selectData()
+                    {
+                        const dbref=ref(db);
+                        get(child(dbref,"Add New Record/" + regMod.value)).then((snapshot)=>{
+                            if(snapshot.exists()){
+                              nameMod.value=snapshot.val().FullName;
+                              regMod.value=snapshot.val().RegNumber;
+                              ageMod.value=snapshot.val().Age;
+                              reasonMod.value=snapshot.val().Reason;
+                              genderMod.value=snapshot.val().Gender;
                                 
-                    //         }
-                    //         else{
-                    //             alert("No data found");
-                    //         }
-                    //     })
-                    //     .catch((error)=>{
-                    //         alert(error);
-                    //     })
+                            }
+                            else{
+                                alert("No data found");
+                            }
+                        })
+                        .catch((error)=>{
+                            alert(error);
+                        })
                         
-                    // }
-                    // selecBtn.addEventListener('click',selectData);
+                    }
+                    window.onload=selectData;
+                    //selectBtn.addEventListener('click',selectData);
 var NameMod=document.getElementById("nameMod");
 var RegMod=document.getElementById("regMod");
 var AgeMod=document.getElementById("ageMod");
 var ReasonMod=document.getElementById("reasonMod");
-var GenderMod=document.getElementById("genderMod");
+var GenderMod=document.getElementById("gender");
 
-var updateMod=document.getElementById("update");
+var UpDateBtn=document.getElementById("update");
 var modal=document.getElementById("modal");
 
 function FillTboxes(index){
@@ -274,7 +281,7 @@ function FillTboxes(index){
     RegMod.value="";
     AgeMod.value="";
     ReasonMod.value="";
-    GenderMod="";
+    GenderMod.value="";
   }
   else{
     --index;
@@ -284,14 +291,88 @@ function FillTboxes(index){
     ReasonMod.value=stdList[index][3];
     GenderMod.value=stdList[index][4];
   }
+
+  // get(ref(db,'Add New Record'))
+  //           .then((snapshot)=>{
+              
+  //               var enterFullName=snapshot.val().FullName;            
+  //               var enterRegNumber=snapshot.val().RegNumber;
+  //               var enterAge=snapshot.val().Age;
+  //               var enterReason=snapshot.val().Reason;
+  //               var enterGender=snapshot.val().Gender;
+           
+
+  //               document.getElementById('nameMod').value=enterFullName;
+                
+  //               document.getElementById('regMod').value=enterRegNumber;
+                
+  //               document.getElementById('reasonMod').value=enterReason;
+               
+  //               document.getElementById('ageMod').value=enterAge;
+                
+  //               document.getElementById('genderMod').value=enterGender;
+              
+                
+  //           })
+
+
 }
 
+
+
+function UpDate()
+{
+  const dbref=ref(db);
+  //update(child(dbref,"Add New Record/" + nameMod.value)).then((snapshot)=>{
+      firebase.database().ref("Add New Record/"+RegMod.value).update({
+        FullName:NameMod.value,
+        RegNumber:RegMod.value,
+        Age:AgeMod.value,
+        Reason:ReasonMod.value,
+        Gender:GenderMod.value
+      },
+      (error)=>{
+        if(error){
+          alert("Not Update!")
+        }else{
+
+        }
+      }
+      
+      )                
+                        
+}
+
+function Add()
+{
+      firebase.database().ref("Add New Record/"+RegMod.value).set({
+        FullName:NameMod.value,
+        RegNumber:RegMod.value,
+        Age:AgeMod.value,
+        Reason:ReasonMod.value,
+        Gender:GenderMod.value
+      },
+      (error)=>{
+        if(error){
+          alert("Not Update!")
+        }else{
+          alert("Update!")
+          Select_AllData();
+        }
+      }
+      
+      )                
+                        
+}
+
+
+UpDateBtn.addEventListener('click',Add);
 
 function AddAllItemToTable(Student){
 
    tbody.innerHTML="";
    Student.forEach(element=>{
-       AddItemToTable(element.FullName,element.RegNumber,element.Age,element.Reason,element.Gender);
+       AddItemToTable(element.Date,element.FullName,element.RegNumber,element.Age,element.Reason,element.Gender);
    });
 }
    
@@ -370,18 +451,20 @@ if(searchbar.value==""){
 }
 
 else if(category.value==1)
-SearchTableByExactValues("fullNameField");
+SearchTableByExactValues("dateField");
 
 else if(category.value==2)
-SearchTableByExactValues("regNumberField");
+SearchTableByExactValues("fullNameField");
 
 else if(category.value==3)
-SearchTableByExactValues("ageField");
+SearchTableByExactValues("regNumberField");
 
 else if(category.value==4)
-SearchTableByExactValues("reasonField");
+SearchTableByExactValues("ageField");
 
 else if(category.value==5)
+SearchTableByExactValues("reasonField");
+else if(category.value==6)
 SearchTableByExactValues("genderField");
 
 

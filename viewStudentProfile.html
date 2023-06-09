@@ -18,7 +18,7 @@
 
 
     
-    <title>view Student Profile</title>
+    <title> Edit Student Profile</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -309,7 +309,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
     
                 function profilePic()
                 {
-                  //alert("hii");    
+                     
                   const user=auth.currentUser;
                   const uid=user.uid;
                   var enterGender=getGender();
@@ -397,7 +397,6 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                         FirstName:enterFirstName.value,
                         SecondName:enterSecondName.value,
                         BirthDay:enterDOB.value,
-                        
                         TelNumber:enterTelNumber.value,
                         Email:enterEmail.value,
                         Address:enterAddress.value,
@@ -442,19 +441,19 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
 
 
                 document.getElementById('enterFirstName1').innerHTML=enterFirstName;
-                //document.getElementById('fullName').innerHTML=enterFullName;
+                document.getElementById('enterFirstName').value=enterFirstName;
                 document.getElementById('enterSecondName1').innerHTML=enterSecondName;
-
+                document.getElementById('enterSecondName').value=enterSecondName;
                 document.getElementById('dob').innerHTML=enterDOB;
-                
-               
-
+                document.getElementById('enterDOB').value=enterDOB;
                 document.getElementById('enterEmail1').innerHTML=enterEmail;
+                document.getElementById('enterEmail').value=enterEmail;
                 document.getElementById('enterAddress1').innerHTML=enterAddress;
-                // document.getElementById('enterStreet').innerHTML=enterStreet;
-                // document.getElementById('enterCity').innerHTML=enterCity;
+                document.getElementById('enterAddress').value=enterAddress;
                 document.getElementById('enterTelNumber1').innerHTML=enterTelNumber;
+                document.getElementById('enterTelNumber').value=enterTelNumber;
                 document.getElementById('enterRegNumber1').innerHTML=enterRegNumber;
+                document.getElementById('enterRegNumber').value=enterRegNumber;
 
                 const img=document.querySelector("#proPic");
         img.setAttribute("src",enterProfile);

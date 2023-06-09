@@ -59,12 +59,12 @@
       <input id="SearchBar" type="text" class="form-control" placeholder="Search A Record" >
       <select id="CategorySelected">
         <option selected>Choose...</option>
-        <option value="1">FullName</option>
-        <option value="2">StaffID</option>
-        <option value="3">Age</option>
-        <option value="4">Reason</option>
-        <option value="5">Gender</option>
-        <option value="5">Position</option>
+        <option value="1">Date</option>
+              <option value="2">FullName</option>
+              <option value="3">Staff ID</option>
+              <option value="4">Age</option>
+              <option value="5">Reason</option>
+              <option value="6">Gender</option>
         
       </select>
       <button id="SearchBtn" class="btn btn-outline-primary ml-1" type="button" id="button-addon2">Search</button>
@@ -74,12 +74,13 @@
     <table class="table table-light">
     <thead>
       <th></th>
-        <th>FullName</th>
-        <th>StaffID</th>
-        <th>Position</th>
-        <th>Age</th>
-        <th>Reason</th>
-        <th>Gender</th>
+      <th>Date</th>
+      <th>FullName</th>
+      <th>Staff ID</th>
+      <th>Age</th>
+      <th>Reason</th>
+      <th>Gender</th>
+      <th>Edit Record</th>
     </thead>
     <tbody id="tbody1"></tbody>
     </table>
@@ -92,7 +93,8 @@
 var tbody=document.getElementById("tbody1");
 var No=0;
 
-function AddItemToTable(fullName,staffID,position,age,reason,gender){
+function AddItemToTable(date,fullName,StaffID,age,reason,gender){
+  var tbody=document.getElementById("tbody1");
    let trow=document.createElement("tr");
    let td0=document.createElement('td');
    let td1=document.createElement('td');
@@ -101,26 +103,25 @@ function AddItemToTable(fullName,staffID,position,age,reason,gender){
    let td4=document.createElement('td');
    let td5=document.createElement('td');
    let td6=document.createElement('td');
-
-
-
+  
+  
    td0.innerHTML=++No;
-   td1.innerHTML=fullName;
-   td2.innerHTML=staffID;
-   td3.innerHTML=position;
+   td1.innerHTML=date;
+   td2.innerHTML=fullName;
+   td3.innerHTML=StaffID;
    td4.innerHTML=age;
    td5.innerHTML=reason;
    td6.innerHTML=gender;
 
-  td1.classList +="fullNameField";
-  td2.classList +="staffIDField";
-  td3.classList +="positionField";
+  td1.classList +="dateField";
+  td2.classList +="fullNameField";
+  td3.classList +="StaffIDField";
   td4.classList +="ageField";
   td5.classList +="reasonField";
   td6.classList +="genderField";
 
 
-  trow.appendChild(td0);
+   trow.appendChild(td0);
    trow.appendChild(td1);
    trow.appendChild(td2);
    trow.appendChild(td3);
@@ -129,17 +130,15 @@ function AddItemToTable(fullName,staffID,position,age,reason,gender){
    trow.appendChild(td6);
 
 
+   var ControlDiv = document.createElement("div");
+   //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="FillBoxes(null)">Edit Record</button>';
+   ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
+
+   trow.appendChild(ControlDiv);
    tbody.appendChild(trow);
 
-}       
+} 
 
-function AddAllItemToTable(Student){
-
-   tbody.innerHTML="";
-   Student.forEach(element=>{
-       AddItemToTable(element.FullName,element.StaffID,element.Position,element.Age,element.Reason,element.Gender);
-   });
-}
    
 //------------------------------import + Configuration---------------------//
 
@@ -170,20 +169,51 @@ const db=getDatabase();
 
 //-----------------------------Get All Data---------------------------------------//
 
+
+function AddAllItemToTable(Student){
+
+tbody.innerHTML="";
+Student.forEach(element=>{
+    AddItemToTable(element.Date,element.FullName,element.StaffID,element.Age,element.Reason,element.Gender);
+});
+}
+
+
+
+
+//-----------------------------Get All Data---------------------------------------//
+
 function GetAllDataOnce(){
+var genderMod=getGender();
 const dbRef=ref(db);
 
 get(child(dbRef,"Add New Academic Record"))
 .then((snapshot)=>{
- var Student=[];
+var Student=[];
 
- snapshot.forEach(childSnapshot=>{
-    Student.push(childSnapshot.val());
- });
+snapshot.forEach(childSnapshot=>{
+ Student.push(childSnapshot.val());
+});
 
- AddAllItemToTable(Student);
+AddAllItemToTable(Student);
 })
 }
+
+function getGender() 
+{
+ var checkRadio = document.querySelector(
+   'input[name="inlineRadioOptions"]:checked');
+ if(checkRadio != null) {
+     var gender=checkRadio.value;
+   // alert(checkRadio.value);
+ }
+ else {
+   //alert("Please enter gender");
+   var gender=" ";
+ }
+ return gender;
+}
+
 
 window.onload=GetAllDataOnce;
 
@@ -202,43 +232,43 @@ for(let i=0;i<tr.length;i++){
 var td=tr[i].getElementsByClassName(Category);
 
 for(let j=0;j<td.length;j++){
-  if(td[j].innerHTML.toUpperCase()==filter){
-    found=true;
-  }
+if(td[j].innerHTML.toUpperCase()==filter){
+ found=true;
+}
 }
 if(found){
-  tr[i].style.display="";
-  found=false;
+tr[i].style.display="";
+found=false;
 }
 
 else{
-  tr[i].style.display="none";
+tr[i].style.display="none";
 }
 
 }
 }
 searchBtn.onclick=function(){
 if(searchbar.value==""){
-  SearchTableByExactValues("fullNameField");
+SearchTableByExactValues("fullNameField");
 }
 
 else if(category.value==1)
-SearchTableByExactValues("fullNameField");
+SearchTableByExactValues("dateField");
 
 else if(category.value==2)
-SearchTableByExactValues("staffIDField");
+SearchTableByExactValues("fullNameField");
 
 else if(category.value==3)
-SearchTableByExactValues("ageField");
+SearchTableByExactValues("StaffIDField");
 
 else if(category.value==4)
-SearchTableByExactValues("reasonField");
+SearchTableByExactValues("ageField");
 
 else if(category.value==5)
+SearchTableByExactValues("reasonField");
+else if(category.value==6)
 SearchTableByExactValues("genderField");
 
-else if(category.value==6)
-SearchTableByExactValues("positionField");
 
 }
 

@@ -51,6 +51,11 @@
             <div class="card-body p-5 text-center">
   
               <h3 class="mb-2">Add New Record</h3>
+
+              <div class="form-outline mb-3">
+                <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Date"/>
+            
+              </div>
   
               <div class="form-outline mb-3">
                 <input type="text" id="enterFullName" class="form-control form-control-lg" placeholder="Full Name"/>
@@ -106,6 +111,7 @@
   </section>
 
   <script type="module">
+    
 
     //------------------------------------getData-----------------------------------//
     
@@ -134,7 +140,7 @@
             
             
                         var enterFullName=document.querySelector("#enterFullName");
-          
+                        var enterDate=document.querySelector("#enterDate");
                         var enterRegNumber=document.querySelector("#enterRegNumber");
                         var enterAge=document.querySelector("#enterAge");   
                         var enterReason=document.querySelector("#enterReason");
@@ -160,11 +166,12 @@
                         function InsertData()
                         {
                           var enterGender=getGender();
-                          if(enterFullName.value=="" || enterRegNumber.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender=="" )
+                          if(enterDate.value=="" || enterFullName.value=="" || enterRegNumber.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender=="" )
                           {
                             alert("Please enter all the details");
                           }else{
                             set(ref(db,"Add New Record/"+enterRegNumber.value ),{
+                                Date:enterDate.value,
                                 FullName:enterFullName.value,                       
                                 RegNumber:enterRegNumber.value,
                                 Age:enterAge.value,
@@ -184,7 +191,22 @@
                        
                         insertBtn.addEventListener('click',InsertData);
     
-                        
+        var d=new Date()
+        var yr= d.getFullYear();
+        var month = d.getMonth()+1
+
+        if(month<10){
+          month='0'+month
+        }
+
+        var date = d.getDate();
+        if(date<10){
+          date='0'+date
+        }
+
+        var c_date=yr+"-"+month+"-"+date;
+        document.getElementById('enterDate').value=c_date;
+
     
                       
         //---------------------------------GetImage----------------------------------------------//
@@ -212,7 +234,7 @@
             
             });
     }
-    
+  
               
           </script>
   <!------------------------------------------------------------------------------------------------------------------->
