@@ -5,11 +5,15 @@
 }
 
 .topic{
-    color: brown;
+    color: black;
     text-align: center;
     margin-top: 10px;
 }
+.btn-group{
+    text-align: center;
+  
 
+}
 .btn1{
     border: none;
     outline: none;
@@ -27,9 +31,15 @@
     border:1px solid;
     color: black;
 }
+.row{
+    align-items: center;
+}
+.card{
+    text-align: center;
+}
 
 body {
-    background: url("Photos/background.jpg") no-repeat center center fixed;
+    background: url("Photos/2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: 100% 100%;

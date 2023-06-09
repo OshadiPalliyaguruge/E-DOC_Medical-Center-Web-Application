@@ -192,11 +192,11 @@
                     const app = initializeApp(firebaseConfig);
                     const db=getDatabase(app);
                     const auth = getAuth();
+                    //firebase.initializeApp(firebaseConfig);
                   
                     
                     
-                    //-----------------------------Get All Data---------------------------------------//
-                    const user=auth.currentUser;
+                    //-----------------------------Get All Data 1---------------------------------------//
                     
                     onAuthStateChanged(auth, (user) => {
                     if (user) {
@@ -226,26 +226,29 @@
                     }
 
 
+//-----------------------------------------------------------------------------------------------//
 
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var myVariable1 = urlParams.get('variable2');
+                   
                     onAuthStateChanged(auth, (user) => {
                     if (user) {
-                        const uid=user.uid;
-                        //alert(uid);
-        
-                        GetAllDataOnce2(uid);
+                        const uid=user.uid; 
+                        GetAllDataOnce2(uid);     
                     } else {
                         //alert("Not signIn!")
                     }
-                      }); 
+                    }); 
+                  
                     function GetAllDataOnce2(){
                     const dbRef=ref(db);
-                    
                     const user=auth.currentUser;
                     const uid=user.uid;
-                    
+                   
                     get(child(dbRef,"Add New Record/"))
                     .then((snapshot)=>{
                      var Student=[];
+
                     
                      snapshot.forEach(childSnapshot=>{
                         Student.push(childSnapshot.val());
@@ -254,6 +257,8 @@
                      AddAllItemToTable2(Student);
                     })
                     }
+
+                    
         
 
 

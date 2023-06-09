@@ -248,20 +248,17 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
             const app = initializeApp(firebaseConfig);
             const auth = getAuth();
             const db =getDatabase();
-            
-         
-                                   
                               var enterFirstName=document.querySelector("#enterFirstName");
                               var enterSecondName=document.querySelector("#enterSecondName");
 
                               var enterDOB=document.querySelector("#dob");
-                              
 
                               var enterTelNumber=document.querySelector("#enterTelNumber");
                               var enterEmail=document.querySelector("#enterEmail");
                               var enterAddress=document.querySelector("#enterAddress");
                               
                               var enterRegNumber=document.querySelector("#enterRegNumber");
+                              window.location.href = "downloadMedical.html?variable1=" + enterRegNumber;
 
                               var insertBtn=document.querySelector("#insert");
                               var selecBtn=document.querySelector("#select");
@@ -272,7 +269,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
     onAuthStateChanged(auth, (user) => {
     if (user) {
          const uid=user.uid;
-         //alert(uid);
+         alert(enterRegNumber);
         
          getdata(uid);
     } else {
