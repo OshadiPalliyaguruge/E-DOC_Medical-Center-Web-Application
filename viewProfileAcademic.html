@@ -13,7 +13,64 @@
     <script src="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/js/Bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/Bootstrap@5.2.2/dist/js/Bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> 
+    <style>
 
+      .wrapper{
+          width: 450px;
+          border-radius: 7px;
+          background: #fff;
+          padding: 30px 25px 40px;
+      }
+      
+      .wrapper :where(textarea,input,select,button){
+          width:100%;
+          outline: none;
+          border: none;
+          border-radius: 5px;
+      }
+      .wrapper textarea{
+          height: 270px;
+          resize: none;
+          padding: 8px 13px;
+          border: 1px solid #ccc;
+      }
+      
+      .wrapper .file-option{
+          display: flex;
+          margin-top: 10px;
+          align-items: center;
+          justify-content: space-between;
+      }
+      
+      .file-option .option{
+          width:  calc(100% / 2 - 8px);
+      }
+      
+      .option :where(input,.select-menu){
+          height: 50px;
+          padding: 0 15px;
+          margin-top: 6px;
+          border-radius: 5px;
+          border: 1px solid #bfbfbf;
+      }
+      
+      .option .select-menu select{
+          height: 50px;
+          background: none;
+      }
+      
+      .wrapper .save-btn{
+          margin-top: 20px;
+          padding: 16px 0;
+          background: #17A2B8;
+      }
+      
+      .topic{
+          color: brown;
+          text-align: center;
+          margin-top: 10px;
+      }
+      </style>
 
   </head>
 <body class="d-flex flex-column min-vh-100">
@@ -98,13 +155,13 @@
           <div class="wrapper">
             <textarea>
     
-    SRI JAYEWARDENEPURA UNIVERSITY HEALTH SERVICES
+    SRI JAYEWARDENEPURA UNIVERSITY 
+    HEALTH SERVICES
     MEDICAL CERTIFICATE
     Ref No:                                                                      
     Date :
                  
-            This is to certify that Mr./Miss/Mrs. (Type here full name) of the Engineering Faculty was under treatment at the health Centre/ Referred for hospital treatment on (mention here).
-    I recommended (mention no of days) leave from (date) due to (Reason).
+            This is to certify that Mr./Miss/Mrs. (Type here full name) of the Engineering Faculty was under treatment at the health Centre/ Referred for hospital treatment on (mention here).I recommended (mention no of days) leave from (date) due to (Reason).
                        
     Medical Officer
     Medical Center

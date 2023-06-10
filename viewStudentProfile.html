@@ -192,7 +192,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" id="enterEmail">
+                                        <input class="form-control" type="email" id="enterEmail"  placeholder="xxxxxxx@foe.sjp.ac.lk">
                                     </div>
                                 </div>
 
@@ -214,7 +214,7 @@
                                 <div class="form-group row">
                                   <label class="col-lg-3 col-form-label form-control-label">Registration No</label>
                                   <div class="col-lg-9">
-                                      <input class="form-control" type="text" id="enterRegNumber">
+                                      <input class="form-control" type="text" id="enterRegNumber" >
                                   </div>
                                 </div>
                                   
@@ -312,6 +312,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                      
                   const user=auth.currentUser;
                   const uid=user.uid;
+                  //var domain= enterEmail.substring(enterEmail.indexOf('@')+1)
                   var enterGender=getGender();
                   if(enterFirstName.value=="" || enterSecondName.value=="" || enterRegNumber.value=="" || enterTelNumber.value=="" || enterEmail.value=="" || enterAddress.value=="" || enterProPic.value=="" || enterDOB.value=="" )
                   {
