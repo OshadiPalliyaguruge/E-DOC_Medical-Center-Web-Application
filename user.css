@@ -8,9 +8,11 @@ body {
     height: 100vh;
 }
 .topic{
-    color: brown;
     text-align: center;
+    color: black;
+    font-weight: 600;
 }
+
 
 .btn1{
     border: none;
@@ -29,3 +31,4 @@ body {
     border:1px solid;
     color: black;
 }
+

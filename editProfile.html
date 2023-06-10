@@ -258,7 +258,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
                               var enterAddress=document.querySelector("#enterAddress");
                               
                               var enterRegNumber=document.querySelector("#enterRegNumber");
-                              window.location.href = "downloadMedical.html?variable1=" + enterRegNumber;
+                             // window.location.href = "downloadMedical.html?variable1=" + enterRegNumber;
 
                               var insertBtn=document.querySelector("#insert");
                               var selecBtn=document.querySelector("#select");
@@ -269,7 +269,7 @@ appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
     onAuthStateChanged(auth, (user) => {
     if (user) {
          const uid=user.uid;
-         alert(enterRegNumber);
+        // alert(enterRegNumber);
         
          getdata(uid);
     } else {

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,13 +62,12 @@
 <div class="row">
   
   <div class="col-md-6">
-      <form>
-          <input type="Text" name="text" required="" placeholder="Your name" class="form-control">
+      <form action="https://formspree.io/f/xayzgzqg" method="POST">
+          <input type="Text" name="text" required="" placeholder="Your name" class="form-control" required>
           <br>
-          <input type="Email" name="email" required="" placeholder="Your email" class="form-control">
+          <input type="Email" name="email" required="" placeholder="Your email" class="form-control" required>
           <br>
-
-          <textarea rows="6" class="form-control" placeholder="Message"></textarea>
+          <textarea id="message" name="message" rows="6" class="form-control" placeholder="Message" required></textarea>
           <br>
           <center>
               <button class="btn btn-info">Submit</button>

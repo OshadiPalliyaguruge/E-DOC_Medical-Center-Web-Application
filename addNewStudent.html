@@ -50,7 +50,7 @@
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
   
-              <h3 class="mb-2">Add New Record</h3>
+              <h3 class="topic mb-4 mt-1">Add New Record</h3>
 
               <div class="form-outline mb-3">
                 <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Date"/>
@@ -89,18 +89,18 @@
                 <label class="form-check-label" for="gender">Male</label>
               </div>
               <br><br>
+<div class="btn-group mb-3">
+  
+  <input type="button" id="insert" class="btn btn-primary btn-block " value="&nbsp;&nbsp;ADD&nbsp;&nbsp;">
+    
 
-                <input type="submit" id="insert" class="btn btn-primary btn-lg btn-block" value="Add Data">
-            <hr>
-
-            <div class="form-outline mb-3">
-              
-              <form action="prescription.html">
-                <button class="btn btn-primary btn-lg btn-block"
-                      type="submit">
-                      CREATE PRESCRIPTION
-              </button>
-              </form>
+    <a href="prescription.html">
+      <input type="button" id="insert" class="btn btn-primary btn-block " value="PRESCRIPTION">
+      
+    </a>
+    
+</div>
+                
             </div>
 
             </div>
@@ -237,7 +237,7 @@
   
 
 // Redirect to the next page with the variable as a URL parameter
-window.location.href = "downloadMedical.html?variable2=" + enterRegNumber;
+//window.location.href = "downloadMedical.html?variable2=" + enterRegNumber;
               
           </script>
   <!------------------------------------------------------------------------------------------------------------------->
