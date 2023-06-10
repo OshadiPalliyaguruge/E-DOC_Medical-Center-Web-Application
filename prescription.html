@@ -5,10 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prescription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Prescription.css">
     <link rel="stylesheet" href="addNew.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
+<style>
+  .btn{
+  
+  position: relative;
+ 
+  margin-left: 40%;
+  margin-top: 3%;
+
+}
+.select1::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 175px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+.select2::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 170px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+.select3::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 270px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+</style>
 <body class="d-flex flex-column min-vh-100">
 
     <header>
@@ -43,44 +80,104 @@
     </header>
 
 <!-------------------------------form----------------------------------------------->
-<section class="vh-100" >
-    <div class="container py-5 h-100 ">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-3 text-center">
-            <div class="container">
-              <h3 class="mb-3">Prescription</h3>
 
-              
-                
+    
+            <div class="container ">
+              <h3 class="topic mb-3">Prescription</h3>
 
-             
-              
+              <div class="form-outline mb-2">
+                <input type="date" id="date" class="form-control form-control-lg" placeholder="Date"/>
+              </div>
+              <div class="form-outline mb-2">
+                <input type="text" id="name" class="form-control form-control-lg" placeholder="Full Name"/>
+              </div>
+              <div class="form-outline mb-2">
+                <input type="number" id="age" class="form-control form-control-lg" placeholder="Age"/>
+              </div>
+              <table class="_table">
+                <thead>
+                  <tr>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Meal Type</th>
+                    <th>Days</th>
+                    <th width="10px">
+                      <div class="action_container">
+                        <button class="success" onclick="create_tr('table_body')">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="table_body">
+                  <tr>
+                    <td>
+                      <div class="select1">
+                      <select type="text" class="form-control" id="medicineName" placeholder="Select Medicine ">
+                        <option selected>Select Medicine</option>
+                        <option value="Atropine">Atropine</option>
+                        <option value="Diazepam">Diazepam</option>
+                        <option value="Morphine">Morphine</option>
+                        <option value="Paracetamol">Paracetamol</option>
+                        <option value="Tramadol">Tramadol</option>
+                    </select>  
+                  </div>
+                      
+                    </td>
+                    <td>
+                      <div class="select2">
+                      <select type="text" class="form-control" id="medicineQnt">
+                        <option selected>Select Quantity</option>
+                        <option value="1+1+1">1+1+1</option>
+                        <option value="1+0+1">1+0+1</option>
+                        <option value="0+1+0">0+1+0</option>
+                        <option value="2+2+2">2+2+2</option>
+                        <option value="2+0+2">2+0+2</option>
+                        <option value="0+2+0">0+2+0</option>
+                    </select> 
+                    </div>
+                    </td>
+                    <td>
+                      <div class="select3">
+                      <select type="text" class="form-control" id="medicineName">
+                        <option selected>Select Meal Type</option>
+                        <option value="Before Meal">Before Meal</option>
+                        <option value="After Meal">After Meal</option>
+                        <option value="Full Meal">Full Meal</option>
+                        <option value="Before 30 minutes on Meal">Before 30 minutes on Meal</option>
+                        <option value="After 30 minutes on Meal">After 30 minutes on Meal</option>
+                        
+                    </select> 
+                    </div>
+                    </td>
+                    <td>
+                      <input type="number" placeholder="No Of Days"> 
+                      
+                    </td>
+
+                    <td>
+                      <div class="action_container">
+                        <button class="danger" onclick="remove_tr(this)">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   
-              
               <form action="prescription.html">
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create Prescription">
             </form>
-             
-  
-
-  
-      
-  
-              
-  
-            </div>
+                
           </div>
-        </div>
-      </div>
-    </div>
-</div>
-  </section>
+          
+  <script src="app.js"></script>
   <!------------------------------------------------------------------------------------------------------------------->
   
   
-  <footer class="bg-light text-lg-start mt-auto ">
+  <!-- <footer class="bg-light text-lg-start mt-auto ">
       
   
         <hr class="m-0" />
@@ -99,13 +196,13 @@
           </a>
         </div>
     
-        <!-- Copyright -->
+        
         <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
           © 2023 Copyright:
           <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
         </div>
-        <!-- Copyright -->
-      </footer>
+       
+      </footer> -->
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>   
 </body>
