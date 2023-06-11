@@ -84,6 +84,7 @@
             <th>Age</th>
             <th>Reason</th>
             <th>Gender</th>
+            <th>Prescription</th>
             <th>Edit Record</th>
         </thead>
         <tbody id="tbody1"></tbody>
@@ -195,7 +196,7 @@ function Select_AllData(){
 window.onload=Select_AllData;
 //-------------------------------------Filling Table-----------------------//
 
-function AddItemToTable(date,fullName,regNumber,age,reason,gender){
+function AddItemToTable(date,fullName,regNumber,age,reason,gender,prescription){
   var tbody=document.getElementById("tbody1");
    let trow=document.createElement("tr");
    let td0=document.createElement('td');
@@ -205,8 +206,9 @@ function AddItemToTable(date,fullName,regNumber,age,reason,gender){
    let td4=document.createElement('td');
    let td5=document.createElement('td');
    let td6=document.createElement('td');
+   let td7=document.createElement('td');
   
-   stdList.push([date,fullName,regNumber,age,reason,gender]);
+   stdList.push([date,fullName,regNumber,age,reason,gender,prescription]);
    td0.innerHTML=++No;
    td1.innerHTML=date;
    td2.innerHTML=fullName;
@@ -214,6 +216,11 @@ function AddItemToTable(date,fullName,regNumber,age,reason,gender){
    td4.innerHTML=age;
    td5.innerHTML=reason;
    td6.innerHTML=gender;
+   
+  let downloadLink = document.createElement('a');
+  downloadLink.href = prescription;
+  downloadLink.innerHTML = 'Download Prescription';
+  td7.appendChild(downloadLink);
 
   td1.classList +="dateField";
   td2.classList +="fullNameField";
@@ -221,6 +228,7 @@ function AddItemToTable(date,fullName,regNumber,age,reason,gender){
   td4.classList +="ageField";
   td5.classList +="reasonField";
   td6.classList +="genderField";
+  td6.classList +="prescriptionField";
 
 
    trow.appendChild(td0);
@@ -230,6 +238,7 @@ function AddItemToTable(date,fullName,regNumber,age,reason,gender){
    trow.appendChild(td4);
    trow.appendChild(td5);
    trow.appendChild(td6);
+   trow.appendChild(td7);
 
 
    var ControlDiv = document.createElement("div");
@@ -370,7 +379,7 @@ function AddAllItemToTable(Student){
 
    tbody.innerHTML="";
    Student.forEach(element=>{
-       AddItemToTable(element.Date,element.FullName,element.RegNumber,element.Age,element.Reason,element.Gender);
+       AddItemToTable(element.Date,element.FullName,element.RegNumber,element.Age,element.Reason,element.Gender,element.DownloadLink);
    });
 }
    

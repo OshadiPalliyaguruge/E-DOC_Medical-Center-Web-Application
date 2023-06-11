@@ -90,7 +90,12 @@
                      
                        td1.innerHTML=date;
                        td2.innerHTML=description;
-                       td3.innerHTML=report;
+                       //td3.innerHTML=report;
+
+                       let downloadLink = document.createElement('a');
+  downloadLink.href = report;
+  downloadLink.innerHTML = 'Download Medical';
+  td3.appendChild(downloadLink);
               
                       td1.classList +="dateField";
                       td2.classList +="descriptionField";
@@ -132,7 +137,10 @@
                      
                        td1.innerHTML=date;
                        td2.innerHTML=reason;
-                       td3.innerHTML=prescription;
+                       let downloadLink = document.createElement('a');
+                      downloadLink.href = prescription;
+                      downloadLink.innerHTML = 'Download Prescription';
+                      td3.appendChild(downloadLink);
               
                       td1.classList +="dateField";
                       td2.classList +="reasonField";
@@ -155,7 +163,7 @@
                     
                        tbody2.innerHTML="";
                        Student.forEach(element=>{
-                           AddItemToTable2(element.Date,element.Reason,element.Prescription);
+                           AddItemToTable2(element.Date,element.Reason,element.DownloadLink);
                        });
                       }
                        
@@ -220,8 +228,8 @@
 
 //-----------------------------------------------------------------------------------------------//
 
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var myVariable1 = urlParams.get('variable2');
+                    // var urlParams = new URLSearchParams(window.location.search);
+                    // var myVariable1 = urlParams.get('variable2');
                    
                     onAuthStateChanged(auth, (user) => {
                     if (user) {

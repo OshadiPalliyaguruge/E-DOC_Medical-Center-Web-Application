@@ -97,3 +97,27 @@
     transition: unset;
     transform: scale(.95);
 }
+  .myButtonClass {
+    /* Change button color */
+    color: white;
+    background-color: #007bff;
+    
+    /* Add padding and border */
+    padding: 10px 20px;
+    border: none;
+    
+    /* Add rounded corners */
+    border-radius: 5px;
+    
+    /* Add shadow effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    
+    /* Add hover effect */
+    transition: background-color 0.3s ease;
+  }
+  
+  .myButtonClass:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+  }
+

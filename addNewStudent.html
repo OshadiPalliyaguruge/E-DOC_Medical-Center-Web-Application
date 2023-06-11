@@ -57,29 +57,29 @@
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
   
-              <h3 class="topic mb-4 mt-1">Add New Record</h3>
+              <h3 class="topic mb-2 mt-0">Add New Record</h3>
 
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Date"/>
             
               </div>
   
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterFullName" class="form-control form-control-lg" placeholder="Full Name"/>
             
               </div>
               
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterRegNumber" class="form-control form-control-lg" placeholder="Registration No"/>
               
               </div>
 
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="number" id="enterAge" class="form-control form-control-lg" placeholder="Age" />
              
               </div>
   
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-2">
                 <input type="text" id="enterReason" class="form-control form-control-lg" placeholder="Reason" />
             
               </div>
@@ -94,15 +94,20 @@
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
                   value="Male"/>
                 <label class="form-check-label" for="gender">Male</label>
-              </div>
+              </div><br><br>
+
+              <div class="form-outline mb-2">
+                <input type="file" id="medical" />
+                <button id="upload">Upload </button>           
+              </div> 
               <br><br>
-<div class="btn-group mb-3">
+<div class="btn-group mb-1">
   
   <input type="button" id="insert" class="btn btn-primary btn-block " value="&nbsp;&nbsp;ADD&nbsp;&nbsp;">
     
 
     <a href="prescription.html">
-      <input type="button" id="insert" class="btn btn-primary btn-block " value="PRESCRIPTION">
+      <input type="button" id="insert1" class="btn btn-primary btn-block " value="PRESCRIPTION">
       
     </a>
     
@@ -122,10 +127,12 @@
 
     //------------------------------------getData-----------------------------------//
     
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                    import { getDatabase,set,ref,child,onValue,get,update,remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+                    import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+                    import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+                   
+              
       // Your web app's Firebase configuration
       const firebaseConfig = {
     apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
@@ -137,13 +144,13 @@
     appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
   };
     
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+  
             
-            import {getDatabase,set,get,update,remove,ref,child}
-            from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
+     
             
-            const db =getDatabase();
+  const app = initializeApp(firebaseConfig);
+  const db=getDatabase(app);
+  const auth = getAuth();
             
             
                         var enterFullName=document.querySelector("#enterFullName");
@@ -170,7 +177,7 @@
                             return gender;
                         }
 
-                        function InsertData()
+                        function InsertData(prescriptionDownloadLink)
                         {
                           var enterGender=getGender();
                           if(enterDate.value=="" || enterFullName.value=="" || enterRegNumber.value=="" || enterAge.value=="" || enterReason.value=="" || enterGender=="" )
@@ -183,7 +190,9 @@
                                 RegNumber:enterRegNumber.value,
                                 Age:enterAge.value,
                                 Reason:enterReason.value,
-                                Gender:enterGender                             
+                                Gender:enterGender,
+                                DownloadLink:prescriptionDownloadLink 
+
                                 
                             })
                             .then(()=>{
@@ -196,7 +205,7 @@
                     
                         }
                        
-                        insertBtn.addEventListener('click',InsertData);
+                        
     
         var d=new Date()
         var yr= d.getFullYear();
@@ -217,34 +226,88 @@
     
                       
         //---------------------------------GetImage----------------------------------------------//
-    
-    import{getStorage,ref as sRef,uploadBytesResumable,getDownloadURL} 
-    from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
+ 
                         
-    function upload()
-    {
-            var image=document.getElementById("image").files[0];
-            var imageName=image.name;
-            var storageRef=firebase.storage().ref('images/'+imageName);
-            var uploadTask=storageRef.put(image);
     
-            uploadTask.on('state_changed',function(snapshot){
-                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                console.log("upload is "+progress +"done");
-            },function(error){
-                console.log(error.message);
-                
-            },function(){
-                uploadTask.snapshot.ref.getDownLoadURL().then(function(downloadURL){
-                    console.log(downloadURL);
-                });
-            
-            });
-    }
-  
+function uploadFile() {
+
+    
+const metadata = {
+contentType: 'image/jpeg'
+};
+
+
+const user=auth.currentUser;
+const uid=user.uid;
+   
+const file=document.getElementById("medical").files[0];
+const storage = getStorage();
+const storageRef = setRef(storage, 'Medical Reports/' + uid);
+// const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
+const uploadTask = uploadBytesResumable(storageRef, file);
+
+uploadTask.on('state_changed',
+(snapshot) => {
+// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+switch (snapshot.state) {
+  case 'paused':
+    console.log('Upload is paused');
+    break;
+  case 'running':
+    console.log('Upload is running');
+    break;
+}
+// alert('Report Uploaded');
+}, 
+(error) => {
+// A full list of error codes is available at
+// https://firebase.google.com/docs/storage/web/handle-errors
+switch (error.code) {
+  case 'storage/unauthorized':
+    // User doesn't have permission to access the object
+    break;
+  case 'storage/canceled':
+    // User canceled the upload
+    break;
+
+  // ...
+
+  case 'storage/unknown':
+    // Unknown error occurred, inspect error.serverResponse
+    break;
+}
+}, 
+() => {
+// Upload completed successfully, now we can get the download URL
+getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  console.log('File available at', downloadURL);
+
+  if(downloadURL!="")
+  {
+    InsertData(downloadURL);
+  }
+});
+}
+);
+}
+
+onAuthStateChanged(auth, (user) => {
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  const uid = user.uid;
+ //alert(uid);
+ 
+   insertBtn.addEventListener('click',uploadFile);
+  // submitBtn.addEventListener('click',uploadFile);
+   const errorMsgElement = document.querySelector('span#errorMsg');
+} 
+});
+
 
 // Redirect to the next page with the variable as a URL parameter
-//window.location.href = "downloadMedical.html?variable2=" + enterRegNumber;
+//window.location.href = "Prescription1.html?variable2=" + enterRegNumber.value;
               
           </script>
   <!------------------------------------------------------------------------------------------------------------------->

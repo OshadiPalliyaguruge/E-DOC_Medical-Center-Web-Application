@@ -42,8 +42,9 @@
             </nav>
       </header>
       <form id="myfrm">
+        <center>
       <h2>
-        .........................................PRESCRIPTION..........................<br><hr>
+        .........................................PRESCRIPTION.........................................<br><hr>
        
     </h2>
    
@@ -59,11 +60,39 @@
         <p><span id="resultMeal" /></p>
         <p><span id="resultNoOfDays" /></p>
     </form>
+  </center>
+  <center>
+    <p><input type="button" onclick="myPrint('myfrm')" value="Print" class="myButtonClass"></p>
+   
+  </center>
 
-    <p><input type="button" onclick="myPrint('myfrm')" value="print" ></p>
+  <script type="module">
 
-
-    <script>
+    //------------------------------------getData-----------------------------------//
+ 
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                     import { getDatabase,set,ref,child,onValue,get,update,remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+                     import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+                     import { getStorage, ref as setRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+                    
+                     
+                     // TODO: Add SDKs for Firebase products that you want to use
+                     // https://firebase.google.com/docs/web/setup#available-libraries
+                     
+                     // Your web app's Firebase configuration
+                     const firebaseConfig = {
+                       apiKey: "AIzaSyD6022n259Mf4FCqynEVJxCzzIDr2c9HHg",
+                       authDomain: "se-mini-project-fcee4.firebaseapp.com",
+                       projectId: "se-mini-project-fcee4",
+                       storageBucket: "se-mini-project-fcee4.appspot.com",
+                       messagingSenderId: "574489212826",
+                       appId: "1:574489212826:web:c1a7cbda00ed8c6fd72c23"
+                     };
+ 
+ 
+   const app = initializeApp(firebaseConfig);
+   const db=getDatabase(app);
+   const auth = getAuth();
         window.addEventListener('load', () => {
 
 
@@ -95,6 +124,10 @@ document.getElementById('resultNoOfDays').innerHTML = medicineDays;
           newin.close();
         }
   
+        var urlParams = new URLSearchParams(window.location.search);
+        var myVariable1 = urlParams.get('variable2');
+
+
       </script>
 </body>
 </html>
