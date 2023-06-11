@@ -49,9 +49,9 @@
 <body class="d-flex flex-column min-vh-100">
 
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary " id="nav">
             <div class="container-fluid">
-              <img src="Photos/Logo.png" alt="Bootstrap" width="70" height="50">
+              <img src="Photos/Logo.png" alt="Bootstrap" width="90" height="50">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -70,9 +70,7 @@
                   <div class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                   </div>
-                  <div class="nav-item">
-                    <a class="nav-link " href="other.html">Other</a>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -83,6 +81,7 @@
 
     
             <div class="container ">
+              <!-- <form action="Prescription1.html" method="POST"> -->
               <h3 class="topic mb-3">Prescription</h3>
 
               <div class="form-outline mb-2">
@@ -140,7 +139,7 @@
                     </td>
                     <td>
                       <div class="select3">
-                      <select type="text" class="form-control" id="medicineName">
+                      <select type="text" class="form-control" id="medicineMeal">
                         <option selected>Select Meal Type</option>
                         <option value="Before Meal">Before Meal</option>
                         <option value="After Meal">After Meal</option>
@@ -152,7 +151,7 @@
                     </div>
                     </td>
                     <td>
-                      <input type="number" placeholder="No Of Days"> 
+                      <input type="number" placeholder="No Of Days" id="days"> 
                       
                     </td>
 
@@ -166,14 +165,88 @@
                   </tr>
                 </tbody>
               </table>
-  
-              <form action="prescription.html">
-                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create Prescription">
-            </form>
+         <a href="Prescription1.html">
+          <input type="submit" class="btn btn-primary btn-lg btn-block" onclick="handleSubmit()" id="create" value="Create Prescription">
+           
+         </a>
+              
                 
+            
           </div>
           
   <script src="app.js"></script>
+  <script>
+
+        var d=new Date()
+        var yr= d.getFullYear();
+        var month = d.getMonth()+1
+
+        if(month<10){
+          month='0'+month
+        }
+
+        var date = d.getDate();
+        if(date<10){
+          date='0'+date
+        }
+
+        var c_date=yr+"-"+month+"-"+date;
+        document.getElementById('date').value=c_date;
+
+
+
+    // create.addEventListener('click',(e)=>{
+       
+    //         var name=document.getElementById("name").value;
+    //         var date=document.getElementById("date").value;
+    //         var medicineName=document.getElementById("medicineName").value;
+    //         var medicineQnt=document.getElementById("medicineQnt").value;
+    //         var medicineMeal=document.getElementById("medicineMeal").value;
+    //         var days=document.getElementById("days").value;
+    //         var age=document.getElementById("age").value;
+
+    //         document.write("......................PRESCRIPTION.....................<hr><br>");
+    //         document.write("Dr. Amila Fernando.....................................Contact : 0766654345<br><br>");
+    //         document.write("Date    : "+date+"<br>");
+    //         document.write("Name    :" + name+"<br>");
+    //         document.write("Age    :" + age+"<br><br><hr>");
+    //         document.write("Medicine Name   ||  Medicine Qnt  ||  Medicine Meal ||  No Of Days  ||<br><br>");
+    //         document.write(medicineName+" ..........||  ");
+    //         document.write(medicineQnt+" ............||  ");
+    //         document.write(medicineMeal+" .......||  ");
+    //         document.write(days+" ....||  ");  
+    // })
+
+
+    function handleSubmit () {
+    const name = document.getElementById('name').value;
+    const date = document.getElementById('date').value;
+    const age = document.getElementById('age').value;
+    const namedicineNameme = document.getElementById('medicineName').value;
+    const medicineQnt = document.getElementById('medicineQnt').value;
+    const medicineMeal = document.getElementById('medicineMeal').value;
+    const days = document.getElementById('days').value;
+
+    // to set into local storage
+    /* localStorage.setItem("NAME", name);
+    localStorage.setItem("SURNAME", surname); */
+    
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("date", date);
+    sessionStorage.setItem("age", age);
+    sessionStorage.setItem("namedicineNameme", namedicineNameme);
+    sessionStorage.setItem("medicineQnt", medicineQnt);
+    sessionStorage.setItem("medicineMeal", medicineMeal);
+    sessionStorage.setItem("days", days);
+    
+
+    return;
+}
+
+
+
+
+  </script>
   <!------------------------------------------------------------------------------------------------------------------->
   
   
