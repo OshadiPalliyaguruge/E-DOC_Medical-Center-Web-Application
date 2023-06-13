@@ -1,7 +1,5 @@
-body{
-    font-family: monospace;
-   
-    background: url("Photos/background.jpg") no-repeat center center fixed;
+body {
+    background: url("Photos/2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: 100% 100%;
