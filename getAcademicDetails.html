@@ -90,6 +90,55 @@
     <tbody id="tbody1"></tbody>
     </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Record</h5>
+        <button type="button" class="btn-close float-end" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label class="labs">FullName: </label>
+        <input type="text" id="nameMod"><br>
+        <label class="labs">Reg No: </label>
+        <input type="text" id="regMod"><br>
+        <label class="labs">Age: </label>
+        <input type="number" id="ageMod"><br>
+        <label class="labs">Reason: </label>
+        <input type="text" id="reasonMod"><br>
+        <label class="labs">Gender: </label>
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+            value="Female"/>
+          <label class="form-check-label" for="gender">Female</label>
+        </div>
+
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender"
+            value="Male"/>
+          <label class="form-check-label" for="gender">Male</label>
+        </div>
+        <br><br>
+      </div>
+
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="update">Save changes</button>
+        <button type="button" class="btn btn-primary" id="delete">Delete </button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>   
+   
     
 <script type="module">
 
@@ -142,13 +191,13 @@ function AddItemToTable(date,fullName,StaffID,age,reason,gender,prescription){
    trow.appendChild(td7);
 
 
+    
    var ControlDiv = document.createElement("div");
-   //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="FillBoxes(null)">Edit Record</button>';
-   ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
+   //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="deleteData()">Delete Record</button>';
+   ControlDiv.innerHTML+= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
 
    trow.appendChild(ControlDiv);
    tbody.appendChild(trow);
-
 } 
 
    

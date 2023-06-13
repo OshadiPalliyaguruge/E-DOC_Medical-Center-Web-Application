@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prescription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Prescription.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary " id="nav">
+              <div class="container-fluid">
+                <img src="Photos/Logo.png" alt="Bootstrap" width="90" height="50">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                  <div class="navbar-nav ms-auto  mb-2 mb-lg-0 n">
+                    
+                    <div class="nav-item ">
+                      <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link " href="about.html">About</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link " href="doctor.html">Doctors</a>
+                    </div>
+                    <div class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact</a>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </nav>
+      </header>
+      <form id="myfrm">
+        <center>
+      <h2>
+        .........................................PRESCRIPTION.........................................<br><hr>
+       
+    </h2>
+   
+    
+        Dr. Amila Fernando.....................................Contact : 0766654345<br><br>
+        <p>Date: <span id="resultDate" /></p> 
+        <p>Name: <span id="resultName" /></p>
+        <p>Reason: <span id="resultReason" /></p>
+        <p>Age: <span id="resultAge" /><br><hr></p>
+
+        <!-- <p>Medicine Name   ||  Medicine Qnt  ||  Medicine Meal ||  No Of Days  ||<br><br> </p> -->
+        <p><span id="resultMedicineName" /></p>
+        <p><span id="resultMedicineQnt" /></p>
+        <p><span id="resultMeal" /></p>
+        <p><span id="resultNoOfDays" /></p>
+    </form>
+  </center>
+  <center>
+    <p><input type="button" onclick="myPrint('myfrm')" value="Print" class="myButtonClass"></p>
+    <p><button class="btn btn-primary"><a class="dropdown-item" href="addNewNonAcademic.html">Add New Record</a></button></p>
+  </center>
+
+    <script>
+        window.addEventListener('load', () => {
+
+
+const name = sessionStorage.getItem('name');
+const date = sessionStorage.getItem('date');
+const age = sessionStorage.getItem('age');
+const reason = sessionStorage.getItem('reason');
+const namedicineNameme = sessionStorage.getItem('namedicineNameme');
+const medicineQnt = sessionStorage.getItem('medicineQnt');
+const medicineMeal = sessionStorage.getItem('medicineMeal');
+const medicineDays = sessionStorage.getItem('days');
+
+document.getElementById('resultName').innerHTML = name;
+document.getElementById('resultDate').innerHTML = date;
+document.getElementById('resultReason').innerHTML = reason;
+document.getElementById('resultAge').innerHTML = age;
+document.getElementById('resultMedicineName').innerHTML = namedicineNameme;
+document.getElementById('resultMedicineQnt').innerHTML = medicineQnt;
+document.getElementById('resultMeal').innerHTML = medicineMeal;
+document.getElementById('resultNoOfDays').innerHTML = medicineDays;
+
+})
+
+    
+  
+        function myPrint(myfrm){
+          var printdata= document.getElementById(myfrm);
+          newin=window.open("");
+          newin.document.write(printdata.outerHTML);
+          newin.print();
+          newin.close();
+        }
+  
+      </script>
+</body>
+</html>

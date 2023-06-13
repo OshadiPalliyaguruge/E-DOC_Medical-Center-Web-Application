@@ -176,7 +176,7 @@ function uploadFile() {
        
     const file=document.getElementById("medical").files[0];
     const storage = getStorage();
-    const storageRef = setRef(storage, 'Medical Reports/' + uid);
+    const storageRef = setRef(storage, "Medical Reports/"+uid+"/Report/"+enterDate.value);
    // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
     const uploadTask = uploadBytesResumable(storageRef, file);
 

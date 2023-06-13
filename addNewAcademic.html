@@ -18,6 +18,11 @@
   margin-left: -10%;
 
 }
+
+.btn-close{
+  position: relative;
+  margin-top: -5%;
+}
 </style>
 <body class="d-flex flex-column min-vh-100">
 
@@ -66,6 +71,10 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-4 text-center">
+              <a href="adminPage.html">
+                <button type="button" class="btn-close float-end" aria-label="Close"></button>
+  
+              </a>
   
               <h3 class="topic mb-2">Add New Academic Record</h3>
 
@@ -114,11 +123,11 @@
               <br><br>
               <div class="form-outline mb-2">
                 <input type="file" id="medical" />
-                <button id="upload">Upload </button>           
+                          
               </div> 
-              <br><br>
+              <br>
 
-              <div class="btn-group mb-3">
+              <div class="btn-group mb-1">
   
                 <input type="button" id="insert" class="btn btn-primary btn-block " value="&nbsp;&nbsp;ADD&nbsp;&nbsp;">
                   
@@ -169,7 +178,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
                         //var enterGender=document.querySelector("#enterGender");
                         
 
-
+                        var insertBtn=document.querySelector("#insert");
 
                         function getGender() 
                         {
@@ -216,7 +225,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
                           }
                         }
                        
-                        insertBtn.addEventListener('click',InsertData);
+                       
                         var d=new Date()
         var yr= d.getFullYear();
         var month = d.getMonth()+1
@@ -248,7 +257,7 @@ const uid=user.uid;
    
 const file=document.getElementById("medical").files[0];
 const storage = getStorage();
-const storageRef = setRef(storage, 'Medical Reports/' + uid);
+const storageRef = setRef(storage, "Add New Academic Record/"+enterStaffID.value);
 // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
 const uploadTask = uploadBytesResumable(storageRef, file);
 

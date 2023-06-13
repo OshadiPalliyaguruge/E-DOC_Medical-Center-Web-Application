@@ -18,6 +18,11 @@
   margin-left: -10%;
 
 }
+
+.btn-close{
+  position: relative;
+  margin-top: -5%;
+}
 </style>
 <body class="d-flex flex-column min-vh-100">
 
@@ -66,6 +71,10 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-4 text-center">
+              <a href="adminPage.html">
+                <button type="button" class="btn-close float-end" aria-label="Close"></button>
+  
+              </a>
   
               <h3 class="topic mb-2">Add New Non-Academic Record</h3>
 
@@ -110,10 +119,10 @@
               
               <div class="form-outline mb-2">
                 <input type="file" id="medical" />
-                <button id="upload">Upload </button>           
+                       
               </div> 
-              <br><br>
-              <div class="btn-group mb-3">
+              <br>
+              <div class="btn-group mb-1">
   
                 <input type="button" id="insert" class="btn btn-primary btn-block " value="&nbsp;&nbsp;ADD&nbsp;&nbsp;">
                   
@@ -247,7 +256,7 @@ const uid=user.uid;
    
 const file=document.getElementById("medical").files[0];
 const storage = getStorage();
-const storageRef = setRef(storage, 'Medical Reports/' + uid);
+const storageRef = setRef(storage, "Add New Non Academic Record/"+enterStaffID.value);
 // const uploadTask = uploadBytesResumable(storageRef, photo, metadata);
 const uploadTask = uploadBytesResumable(storageRef, file);
 

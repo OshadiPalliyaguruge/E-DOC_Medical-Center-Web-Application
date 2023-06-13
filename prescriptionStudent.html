@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prescription</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Prescription.css">
+    <link rel="stylesheet" href="addNew.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<style>
+  .btn{
+  
+  position: relative;
+ 
+  margin-left: 40%;
+  margin-top: 3%;
+
+}
+.select1::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 175px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+.select2::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 170px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+.select3::after{
+  content: '\25BC';
+  position: absolute;
+  margin-left: 270px;
+  margin-top: -25px;
+  cursor: pointer;
+  pointer-events: none;
+}
+</style>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary " id="nav">
+            <div class="container-fluid">
+              <img src="Photos/Logo.png" alt="Bootstrap" width="90" height="40">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto  mb-2 mb-lg-0 n">
+                  
+                  <div class="nav-item ">
+                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link " href="doctor.html">Doctors</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </div>
+                  <div class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000">
+                      <button type="button" class="btn btn-dark"><span class="bi bi-chat-quote-fill"></span></button>
+                    </a> 
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+<!-------------------------------form----------------------------------------------->
+
+    
+            <div class="container ">
+              <!-- <form action="Prescription1.html" method="POST"> -->
+              <h3 class="topic mb-3">Prescription</h3>
+
+              <div class="form-outline mb-2">
+                <input type="date" id="date" class="form-control form-control-lg" placeholder="Date"/>
+              </div>
+              <div class="form-outline mb-2">
+                <input type="text" id="name" class="form-control form-control-lg" placeholder="Full Name"/>
+              </div>
+              <div class="form-outline mb-2">
+                <input type="text" id="reason" class="form-control form-control-lg" placeholder="Reason"/>
+              </div>
+              <div class="form-outline mb-2">
+                <input type="number" id="age" class="form-control form-control-lg" placeholder="Age"/>
+              </div>
+              <table class="_table">
+                <thead>
+                  <tr>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Meal Type</th>
+                    <th>Days</th>
+                    <th width="10px">
+                      <div class="action_container">
+                        <button class="success" onclick="create_tr('table_body')">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="table_body">
+                  <tr>
+                    <td>
+                      <div class="select1">
+                      <select type="text" class="form-control" id="medicineName" placeholder="Select Medicine ">
+                        <option selected>Select Medicine</option>
+                        <option value="Atropine">Atropine</option>
+                        <option value="Diazepam">Diazepam</option>
+                        <option value="Morphine">Morphine</option>
+                        <option value="Paracetamol">Paracetamol</option>
+                        <option value="Tramadol">Tramadol</option>
+                    </select>  
+                  </div>
+                      
+                    </td>
+                    <td>
+                      <div class="select2">
+                      <select type="text" class="form-control" id="medicineQnt">
+                        <option selected>Select Quantity</option>
+                        <option value="1+1+1">1+1+1</option>
+                        <option value="1+0+1">1+0+1</option>
+                        <option value="0+1+0">0+1+0</option>
+                        <option value="2+2+2">2+2+2</option>
+                        <option value="2+0+2">2+0+2</option>
+                        <option value="0+2+0">0+2+0</option>
+                    </select> 
+                    </div>
+                    </td>
+                    <td>
+                      <div class="select3">
+                      <select type="text" class="form-control" id="medicineMeal">
+                        <option selected>Select Meal Type</option>
+                        <option value="Before Meal">Before Meal</option>
+                        <option value="After Meal">After Meal</option>
+                        <option value="Full Meal">Full Meal</option>
+                        <option value="Before 30 minutes on Meal">Before 30 minutes on Meal</option>
+                        <option value="After 30 minutes on Meal">After 30 minutes on Meal</option>
+                        
+                    </select> 
+                    </div>
+                    </td>
+                    <td>
+                      <input type="number" placeholder="No Of Days" id="days"> 
+                      
+                    </td>
+
+                    <td>
+                      <div class="action_container">
+                        <button class="danger" onclick="remove_tr(this)">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+         <a href="Prescription1Student.html">
+          <input type="submit" class="btn btn-primary btn-lg btn-block" onclick="handleSubmit()" id="create" value="Create Prescription">
+           
+         </a>
+              
+                
+            
+          </div>
+          
+  <script src="app.js"></script>
+  <script>
+
+        var d=new Date()
+        var yr= d.getFullYear();
+        var month = d.getMonth()+1
+
+        if(month<10){
+          month='0'+month
+        }
+
+        var date = d.getDate();
+        if(date<10){
+          date='0'+date
+        }
+
+        var c_date=yr+"-"+month+"-"+date;
+        document.getElementById('date').value=c_date;
+
+
+
+    // create.addEventListener('click',(e)=>{
+       
+    //         var name=document.getElementById("name").value;
+    //         var date=document.getElementById("date").value;
+    //         var medicineName=document.getElementById("medicineName").value;
+    //         var medicineQnt=document.getElementById("medicineQnt").value;
+    //         var medicineMeal=document.getElementById("medicineMeal").value;
+    //         var days=document.getElementById("days").value;
+    //         var age=document.getElementById("age").value;
+
+    //         document.write("......................PRESCRIPTION.....................<hr><br>");
+    //         document.write("Dr. Amila Fernando.....................................Contact : 0766654345<br><br>");
+    //         document.write("Date    : "+date+"<br>");
+    //         document.write("Name    :" + name+"<br>");
+    //         document.write("Age    :" + age+"<br><br><hr>");
+    //         document.write("Medicine Name   ||  Medicine Qnt  ||  Medicine Meal ||  No Of Days  ||<br><br>");
+    //         document.write(medicineName+" ..........||  ");
+    //         document.write(medicineQnt+" ............||  ");
+    //         document.write(medicineMeal+" .......||  ");
+    //         document.write(days+" ....||  ");  
+    // })
+
+
+    function handleSubmit () {
+    const name = document.getElementById('name').value;
+    const date = document.getElementById('date').value;
+    const age = document.getElementById('age').value;
+    const reason = document.getElementById('reason').value;
+    const namedicineNameme = document.getElementById('medicineName').value;
+    const medicineQnt = document.getElementById('medicineQnt').value;
+    const medicineMeal = document.getElementById('medicineMeal').value;
+    const days = document.getElementById('days').value;
+
+    // to set into local storage
+    /* localStorage.setItem("NAME", name);
+    localStorage.setItem("SURNAME", surname); */
+    
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("date", date);
+    sessionStorage.setItem("age", age);
+    sessionStorage.setItem("reason", reason);
+    sessionStorage.setItem("namedicineNameme", namedicineNameme);
+    sessionStorage.setItem("medicineQnt", medicineQnt);
+    sessionStorage.setItem("medicineMeal", medicineMeal);
+    sessionStorage.setItem("days", days);
+    
+
+    return;
+}
+
+
+
+
+  </script>
+  <!------------------------------------------------------------------------------------------------------------------->
+  
+  
+  <!-- <footer class="bg-light text-lg-start mt-auto ">
+      
+  
+        <hr class="m-0" />
+    
+        <div class="text-center py-2 align-items-center">
+          <div class="name">
+            <p>University of Sri Jayewardenepura<br>
+              Gangodawila, Nugegoda, Sri Lanka.</p>
+          </div>
+  
+          <div class="name">
+            <p>+94 11 2758000, +94 11 2802022<br>
+              +94 11 2801024, +94 11 2801025</p>
+          </div>
+         
+          </a>
+        </div>
+    
+        
+        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <p><a href="https://www.sjp.ac.lk/" target="blank">info@sjp.ac.lk</a></p>
+        </div>
+       
+      </footer> -->
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>   
+</body>
+</html>
