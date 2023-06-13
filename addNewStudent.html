@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="addNew.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-</head>
+    </head>
 <style>
   .btn{
   
@@ -18,6 +18,11 @@
   margin-left: -10%;
 
 }
+.btn-close{
+  position: relative;
+  margin-top: -5%;
+}
+
 </style>
 <body class="d-flex flex-column min-vh-100">
 
@@ -44,6 +49,10 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                   </div>
                   <div class="nav-item">
+                    <a class="nav-link " href="index.html"><i class="bi bi-box-arrow-right"></i>Log out</a>
+                  </div>
+                </div>
+                  <div class="nav-item">
                     <a class="nav-link" href="http://127.0.0.1:5000">
                       <button type="button" class="btn btn-dark"><span class="bi bi-chat-quote-fill"></span></button>
                     </a> 
@@ -62,14 +71,18 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
+              <a href="prescription.html">
+                <button type="button" class="btn-close float-end" aria-label="Close"></button>
   
+              </a>
+             
               <h3 class="topic mb-2 mt-0">Add New Record</h3>
 
               <div class="form-outline mb-2">
                 <input type="date" id="enterDate" class="form-control form-control-lg" placeholder="Date"/>
             
               </div>
-  
+
               <div class="form-outline mb-2">
                 <input type="text" id="enterFullName" class="form-control form-control-lg" placeholder="Full Name"/>
             

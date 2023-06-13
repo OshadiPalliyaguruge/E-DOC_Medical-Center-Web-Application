@@ -45,6 +45,10 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                   </div>
                   <div class="nav-item">
+                    <a class="nav-link " href="index.html"><i class="bi bi-box-arrow-right"></i>Log out</a>
+                  </div>
+                </div>
+                  <div class="nav-item">
                     <a class="nav-link" href="http://127.0.0.1:5000">
                       <button type="button" class="btn btn-dark"><span class="bi bi-chat-quote-fill"></span></button>
                     </a> 
@@ -136,6 +140,7 @@
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="update">Save changes</button>
+        <button type="button" class="btn btn-primary" id="delete">Delete </button>
       </div>
     </div>
   </div>
@@ -178,9 +183,19 @@
 
 
 var selectBtn=document.querySelector("#edit");
+var deleteBtn=document.querySelector("#delete");
 var No=0;
 var stdList=[];
 var tbody=document.getElementById("tbody1");
+
+var nameMod=document.getElementById("nameMod");
+var regMod=document.getElementById("regMod");
+var ageMod=document.getElementById("ageMod");
+var reasonMod=document.getElementById("reasonMod");
+var genderMod=document.getElementById("genderMod");
+
+var updateMod=document.getElementById("update");
+var modal=document.getElementById("modal");
 
                    
 //-------------------------------------Filling Table-----------------------//
@@ -231,7 +246,15 @@ function AddItemToTable(date,fullName,regNumber,age,reason,gender,prescription){
    trow.appendChild(td7);
 
    tbody.appendChild(trow);
-                    
+
+   
+   var ControlDiv = document.createElement("div");
+   //ControlDiv.innerHTML= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModdelCenter" onclick="deleteData()">Delete Record</button>';
+   ControlDiv.innerHTML+= '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+No+')">Edit Record</button>';
+
+   trow.appendChild(ControlDiv);
+   tbody.appendChild(trow);
+                 
 
 }       
 
@@ -275,6 +298,39 @@ AddAllItemToTable(Student);
 })
 }
 
+
+function deleteData()
+{
+  remove(ref(db,"Add New Record/"+enterRegNumber.value))
+  .then(()=>{
+    alert("deleted");
+  })
+  .catch((error)=>{
+    alert("Unsuccessful" +error);
+  });
+}
+
+deleteBtn.addEventListener('click',deleteData);
+
+
+// function upd()
+// {
+//   update(ref(db,"Add New Record/"+regMod.value))
+//   .then(()=>{
+//     Date:enterDate.value,
+//     FullName:enterFullName.value,                       
+//     RegNumber:enterRegNumber.value,
+//     Age:enterAge.value,
+//     Reason:enterReason.value,
+//     Gender:enterGender,
+//     DownloadLink:prescriptionDownloadLink 
+//     Date:nameMod.value,
+
+//   })
+//   .catch((error)=>{
+//     alert("Unsuccessful" +error);
+//   });
+// }
 
 
 function getGender() 

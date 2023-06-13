@@ -140,7 +140,8 @@
                     <th>Full Name</th>
                     <th>Reg Number</th>
                     <th>Email</th>
-                    <th>Medical Report</th>
+                    <th>Tel Number</th>
+                    
                     
                 </thead>
                 <tbody id="tbody1"></tbody>
@@ -151,7 +152,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Create Medical Approve</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn-close float-end" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -195,12 +196,12 @@
             <button class="save-btn">Save as Text File</button>
         </div>
 
-
-
-    
           <div class="modal-footer">
             <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="Update()" id="update">SEND</button>
+            
+            <a href="https://mail.google.com/mail/u/1/#inbox">
+              <button type="button" class="btn btn-primary" id="update">SEND</button>
+            </a>
           </div>
         </div>
       </div>
@@ -241,7 +242,7 @@ const textarea=document.querySelector("textarea"),
         var tbody=document.getElementById("tbody1");
         var No=0;
         
-        function AddItemToTable(FirstName,RegNumber,Email,DownloadLink){
+        function AddItemToTable(FirstName,RegNumber,Email,TelNumber){
            let trow=document.createElement("tr");
            let td0=document.createElement('td');
            let td1=document.createElement('td');
@@ -253,13 +254,13 @@ const textarea=document.querySelector("textarea"),
            td1.innerHTML=FirstName;
            td2.innerHTML=RegNumber;
            td3.innerHTML=Email;
-           td4.innerHTML=DownloadLink;
+           td4.innerHTML=TelNumber;
 
         
           td1.classList +="FullNameField";
           td2.classList +="RegNumberField";
           td3.classList +="EmailField";
-          td4.classList +="DownloadLinkField";
+          td4.classList +="TelNumberField";
 
           trow.appendChild(td0);
           trow.appendChild(td1);
@@ -302,7 +303,7 @@ const textarea=document.querySelector("textarea"),
 
             tbody.innerHTML="";
             Student.forEach(element=>{
-            AddItemToTable(element.FirstName,element.RegNumber,element.Email);
+            AddItemToTable(element.FirstName,element.RegNumber,element.Email,element.TelNumber);
                 });
           }
 
@@ -365,6 +366,9 @@ SearchTableByExactValues("RegNumberField");
 
 else if(category.value==3)
 SearchTableByExactValues("EmailField");
+
+else if(category.value==4)
+SearchTableByExactValues("TelNumberField");
 
 }
       
