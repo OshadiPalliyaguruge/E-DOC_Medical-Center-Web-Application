@@ -13,5 +13,25 @@ The E_DOC University Medical Center Management Web Application revolutionizes pa
 
 ![Screenshot (618)](https://github.com/Judy0817/SE-Mini-Project/assets/119217708/539d426d-85ea-413e-be97-cea0d4836a6f)
 
+### Technologies For Front-End
+* HTML - Structure and Content
+* CSS - Styling and Layout
+* Javascript - Dynamic Functionalites
+* Bootstrap - CSS Framework
+  
+### Technologies For Back-End
+* Firebase - Authentication, Storage, Realtime Database, Firestore Database, Hosting
+* Python, Flask
+
+
+### To Create An Account
+Students              : enxxxxx@foe.sjp.ac.lk
+
+Academic Staff        : name@pid.foe.sjp.lk
+
+Non Academic Staff    : name@sid.foe.sjp.lk
+
+Medical Staff         : name@admin.foe.sjp.lk
+
 This Web Application is Live at : (https://judy0817.github.io/SE-Mini-Project/)
 
