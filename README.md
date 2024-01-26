@@ -33,5 +33,4 @@ Non Academic Staff    : name@sid.foe.sjp.lk
 
 Medical Staff         : name@admin.foe.sjp.lk
 
-This Web Application is Live at : (https://judy0817.github.io/SE-Mini-Project/)
 
