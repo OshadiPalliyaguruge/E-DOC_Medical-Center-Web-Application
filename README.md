@@ -1,7 +1,9 @@
 # E-DOC Medical Center
 
+<div align='center'>
+    <img src="https://github.com/Judy0817/SE-Mini-Project/assets/119217708/de5c07be-5571-41ff-b577-ba56afce448f" width="600" height="300" align="center">
+</div>
 
-![Logo](https://github.com/Judy0817/SE-Mini-Project/assets/119217708/de5c07be-5571-41ff-b577-ba56afce448f)
 
 
 
@@ -10,8 +12,10 @@ The E_DOC University Medical Center Management Web Application revolutionizes pa
 
 ## Development architecture Diagram
 
+<div align='center'>
+    <img src="https://github.com/Judy0817/SE-Mini-Project/assets/119217708/539d426d-85ea-413e-be97-cea0d4836a6f" width="900" height="350" align="center">
+</div>
 
-![Screenshot (618)](https://github.com/Judy0817/SE-Mini-Project/assets/119217708/539d426d-85ea-413e-be97-cea0d4836a6f)
 
 ### Technologies For Front-End
 * HTML - Structure and Content
