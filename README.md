@@ -1,4 +1,4 @@
-# E-DOC Medical Center
+# E-DOC Medical Center  
 
 <div align='center'>
     <img src="https://github.com/Judy0817/SE-Mini-Project/assets/119217708/de5c07be-5571-41ff-b577-ba56afce448f" width="600" height="300" align="center">
